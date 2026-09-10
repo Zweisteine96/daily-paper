@@ -8,7 +8,7 @@ interface Props {
   description?: string;
   /** 分享预览图（详情页用） */
   image?: string | null;
-  active?: 'today' | 'repos' | 'labs' | 'archive' | 'search' | 'library' | 'settings';
+  active?: 'today' | 'repos' | 'labs' | 'foundations' | 'archive' | 'search' | 'library' | 'settings';
 }
 const { title, description = '每日机器人与 AI 论文、GitHub 项目推荐', image, active } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.pathname;
@@ -17,6 +17,7 @@ const nav = [
   { key: 'today', label: '📄 今日论文', href: withBase('') },
   { key: 'repos', label: '🐙 GitHub 项目', href: withBase('repos/') },
   { key: 'labs', label: '🎓 学者追踪', href: withBase('labs/') },
+  { key: 'foundations', label: '📐 理论基础', href: withBase('foundations/') },
   { key: 'archive', label: '🗂️ 归档', href: withBase('archive/') },
   { key: 'search', label: '🔍 搜索', href: withBase('search/') },
   { key: 'library', label: '📚 我的书库', href: withBase('library/') },
