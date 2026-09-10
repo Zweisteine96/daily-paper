@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
+import { latestRepos, repoToCard } from '../lib/data';
+
+const repos = latestRepos?.items ?? [];
+const fresh = repos.filter((r) => r.is_new);
+const active = repos.filter((r) => !r.is_new);
+---
+
+<Base title="GitHub 项目" active="repos">
+  <div class="page-head">
+    <h1>GitHub 项目</h1>
+    {latestRepos && (
+      <span class="sub">{latestRepos.date} · 从 {latestRepos.total_fetched} 个候选中选出 {repos.length} 个</span>
+    )}
+  </div>
+
+  {repos.length === 0 && <div class="empty">还没有数据。</div>}
+
+  {fresh.length > 0 && (
+    <>
+      <div class="section-head"><h2>新项目</h2><span class="sub">最近一个月内创建</span></div>
+      <div class="cards">{fresh.map((r) => <Card item={repoToCard(r)} rank={r.rank} />)}</div>
+    </>
+  )}
+
+  {active.length > 0 && (
+    <>
+      <div class="section-head"><h2>活跃 / 趋势项目</h2><span class="sub">按相关度 + star 增速排序</span></div>
+      <div class="cards">{active.map((r) => <Card item={repoToCard(r)} rank={r.rank} />)}</div>
+    </>
+  )}
+</Base>

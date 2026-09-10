@@ -1,0 +1,93 @@
+# 个人兴趣画像。管道每天读取这个文件来决定抓什么、怎么打分。
+# 修改后下一次运行即生效。网站上的「点赞 / 不感兴趣」反馈保存在 data/library.json，
+# 会和这里的内容一起构成兴趣向量（点赞 = 正样本，不感兴趣 = 负样本）。
+
+arxiv:
+  # 抓取的 arXiv 分类（https://arxiv.org/category_taxonomy）
+  categories:
+    - cs.RO   # Robotics
+    - cs.AI   # Artificial Intelligence
+    - cs.LG   # Machine Learning
+    - cs.CV   # Computer Vision
+  # 只看最近 N 天提交的论文（配合 data/seen-papers.json 去重，不会重复推荐）
+  days_back: 7
+  # 每个分类每次最多拉多少篇（arXiv 单次请求上限 2000，这里保守一些）
+  max_results_per_category: 400
+
+# 用自然语言描述你关心的方向，每一条会被 embedding 成一个向量。
+# 写得越具体越好，一条只写一个方向。
+interests:
+  - "robot manipulation and grasping with learned policies"
+  - "vision-language-action (VLA) models and foundation models for robots"
+  - "imitation learning and diffusion policies for robot control"
+  - "reinforcement learning for legged locomotion and sim-to-real transfer"
+  - "humanoid robots and whole-body control"
+  - "large language models for robot task planning and reasoning"
+  - "3D perception, point clouds and scene understanding for robotics"
+  - "world models and video prediction for embodied agents"
+  - "dexterous hands and tactile sensing"
+  - "multi-agent systems and LLM agents"
+
+keywords:
+  # 命中这些词会加分（标题命中权重更高）
+  boost:
+    - robot
+    - manipulation
+    - grasp
+    - VLA
+    - vision-language-action
+    - imitation learning
+    - diffusion policy
+    - humanoid
+    - legged
+    - locomotion
+    - sim-to-real
+    - embodied
+    - dexterous
+    - tactile
+    - world model
+    - LLM agent
+    - task planning
+  # 命中这些词会减分（用来屏蔽你不关心的方向）
+  mute:
+    - medical imaging
+    - histopathology
+    - protein
+    - molecule
+    - recommendation system
+    - federated learning
+
+github:
+  # 通过 topic 监控的 GitHub 项目
+  topics:
+    - robotics
+    - robot-learning
+    - embodied-ai
+    - reinforcement-learning
+    - imitation-learning
+    - ros2
+    - humanoid-robot
+    - llm-agents
+  # 额外的自由搜索词（会拼成 GitHub 搜索语句）
+  queries:
+    - "vision language action robot"
+    - "diffusion policy robot"
+    - "robot foundation model"
+  # 新项目至少要有多少 star 才考虑
+  min_stars: 15
+  # 「新项目」指最近 N 天创建；「活跃项目」指最近 N 天有推送
+  days_back: 30
+
+scoring:
+  # fastembed 支持的模型名。bge-small 约 130MB，CPU 上几秒钟就能算完几百篇摘要。
+  embedding_model: BAAI/bge-small-en-v1.5
+  # 每天保留多少条进入推荐页和搜索索引
+  top_k_papers: 50
+  top_k_repos: 30
+  # 相似度和关键词的权重（相加为 1）
+  weights:
+    embedding: 0.7
+    keyword: 0.3
+
+# 搜索索引保留最近多少天的数据（越大索引文件越大，120 天约 2~3MB）
+retention_days: 120

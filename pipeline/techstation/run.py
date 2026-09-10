@@ -1,0 +1,151 @@
+"""管道入口：抓取 -> 打分 -> 写文件 -> 重建搜索索引。
+
+用法：
+    uv run techstation                 # 完整运行
+    uv run techstation --skip-github   # 只跑 arXiv
+    uv run techstation --no-embedding  # 不加载模型，只用关键词（调试用）
+"""
+
+from __future__ import annotations
+
+import argparse
+import logging
+import math
+from datetime import date, datetime, timedelta, timezone
+
+import numpy as np
+
+from . import arxiv, github, store
+from .config import Config
+from .scoring import Embedder, KeywordScorer, build_profile, score_items
+
+log = logging.getLogger("techstation")
+
+
+def _parse_args() -> argparse.Namespace:
+    ap = argparse.ArgumentParser(description="每日论文 / 项目推荐管道")
+    ap.add_argument("--date", help="覆盖今天的日期（YYYY-MM-DD），默认取 UTC 今天")
+    ap.add_argument("--skip-arxiv", action="store_true")
+    ap.add_argument("--skip-github", action="store_true")
+    ap.add_argument("--no-embedding", action="store_true", help="不加载 embedding 模型")
+    ap.add_argument("--keep-seen", action="store_true", help="不排除以前推荐过的论文（调试用）")
+    ap.add_argument("-v", "--verbose", action="store_true")
+    return ap.parse_args()
+
+
+def run_papers(cfg: Config, day: str, profile, embedder, kw, keep_seen: bool) -> int:
+    papers = arxiv.fetch_recent(cfg.arxiv_categories, cfg.arxiv_days_back, cfg.arxiv_max_results)
+    seen = store.load_seen_papers()
+    fresh = [p.to_dict() for p in papers if keep_seen or p.id not in seen]
+    log.info("排除已推荐过的论文后剩余 %d 篇", len(fresh))
+
+    ranked = score_items(
+        cfg,
+        fresh,
+        text_fn=lambda p: f"{p['title']}. {p['abstract']}",
+        title_fn=lambda p: p["title"],
+        profile=profile,
+        embedder=embedder,
+        kw_scorer=kw,
+    )
+    top = ranked[: cfg.top_k_papers]
+    for rank, p in enumerate(top, start=1):
+        p["rank"] = rank
+
+    store.write_daily(
+        "papers",
+        day,
+        top,
+        {"total_fetched": len(papers), "total_new": len(fresh), "categories": cfg.arxiv_categories},
+    )
+    for p in fresh:
+        seen[p["id"]] = day
+    store.save_seen_papers(seen, cfg.retention_days)
+    return len(top)
+
+
+def run_repos(cfg: Config, day: str, profile, embedder, kw) -> int:
+    repos = [r.to_dict() for r in github.fetch_repos(cfg.github_topics, cfg.github_queries, cfg.github_min_stars, cfg.github_days_back)]
+    snapshot = store.load_repo_snapshot()
+    now = datetime.now(timezone.utc)
+    new_cutoff = now - timedelta(days=cfg.github_days_back)
+
+    for r in repos:
+        prev = snapshot.get(r["id"])
+        r["stars_delta"] = (r["stars"] - prev["stars"]) if prev else None
+        r["first_seen"] = prev["first_seen"] if prev and "first_seen" in prev else day
+        created = datetime.fromisoformat(r["created_at"].replace("Z", "+00:00")) if r["created_at"] else now
+        r["is_new"] = created >= new_cutoff
+
+    ranked = score_items(
+        cfg,
+        repos,
+        text_fn=lambda r: f"{r['full_name']}: {r['description']} Topics: {', '.join(r['topics'])}",
+        title_fn=lambda r: f"{r['name']} {r['description']}",
+        profile=profile,
+        embedder=embedder,
+        kw_scorer=kw,
+    )
+
+    # 融合热度：新项目看总 star，老项目看 star 增量；再加一点活跃度
+    if ranked:
+        pop = np.array(
+            [
+                math.log1p(max(r["stars_delta"], 0)) if r["stars_delta"] is not None else math.log1p(r["stars"]) * 0.6
+                for r in ranked
+            ],
+            dtype=np.float32,
+        )
+        pop = (pop - pop.min()) / (pop.max() - pop.min() + 1e-9)
+        for r, p in zip(ranked, pop):
+            pushed = datetime.fromisoformat(r["pushed_at"].replace("Z", "+00:00")) if r["pushed_at"] else now
+            recency = max(0.0, 1 - (now - pushed).days / max(cfg.github_days_back, 1))
+            r["score_relevance"] = r["score"]
+            r["score"] = round(0.65 * r["score"] + 0.25 * float(p) + 0.10 * recency, 4)
+        ranked.sort(key=lambda r: r["score"], reverse=True)
+
+    top = ranked[: cfg.top_k_repos]
+    for rank, r in enumerate(top, start=1):
+        r["rank"] = rank
+    store.write_daily("repos", day, top, {"total_fetched": len(repos), "topics": cfg.github_topics})
+
+    for r in repos:
+        snapshot[r["id"]] = {"stars": r["stars"], "date": day, "first_seen": r["first_seen"]}
+    store.save_repo_snapshot(snapshot, cfg.retention_days)
+    return len(top)
+
+
+def main() -> None:
+    args = _parse_args()
+    logging.basicConfig(
+        level=logging.DEBUG if args.verbose else logging.INFO,
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+        datefmt="%H:%M:%S",
+    )
+    for noisy in ("httpx", "huggingface_hub", "urllib3", "fastembed"):
+        logging.getLogger(noisy).setLevel(logging.WARNING)
+    cfg = Config.load()
+    day = args.date or date.today().isoformat()
+    log.info("开始运行，日期 %s", day)
+
+    store.ensure_library_file()
+    library_items = store.load_library_items()
+    embedder = None if args.no_embedding else Embedder(cfg.embedding_model)
+    profile = build_profile(cfg, library_items, embedder)
+    kw = KeywordScorer(cfg.boost_keywords, cfg.mute_keywords)
+
+    if not args.skip_arxiv:
+        n = run_papers(cfg, day, profile, embedder, kw, args.keep_seen)
+        log.info("论文推荐写入 %d 篇", n)
+    if not args.skip_github:
+        n = run_repos(cfg, day, profile, embedder, kw)
+        log.info("项目推荐写入 %d 个", n)
+
+    store.prune_daily_files("papers", cfg.retention_days)
+    store.prune_daily_files("repos", cfg.retention_days)
+    store.rebuild_search_index(cfg.retention_days)
+    log.info("完成")
+
+
+if __name__ == "__main__":
+    main()

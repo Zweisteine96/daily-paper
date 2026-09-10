@@ -1,0 +1,148 @@
+---
+import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/base';
+---
+
+<Base title="我的书库" active="library">
+  <div class="page-head">
+    <h1>我的书库</h1>
+    <span class="sub" id="lib-stats"></span>
+  </div>
+
+  <div class="toolbar">
+    <div class="segmented" id="tab">
+      <button data-tab="liked" class="active">♥ 点赞</button>
+      <button data-tab="later">⌚ 稍后读</button>
+      <button data-tab="disliked">✕ 不感兴趣</button>
+    </div>
+    <div class="segmented" id="kind">
+      <button data-kind="all" class="active">全部</button>
+      <button data-kind="paper">论文</button>
+      <button data-kind="repo">项目</button>
+    </div>
+    <input id="filter" type="text" placeholder="在书库内过滤…" />
+    <button class="btn" id="btn-sync">同步</button>
+    <button class="btn" id="btn-export">导出 JSON</button>
+    <label class="btn" for="file-import" style="display:inline-block">导入 JSON</label>
+    <input id="file-import" type="file" accept="application/json" hidden />
+  </div>
+  <p class="hint" id="sync-hint">
+    书库保存在本浏览器。要跨设备使用并让每日推荐学习你的偏好，请在
+    <a href={withBase('settings/')}>设置</a> 里配置 GitHub 同步。
+  </p>
+  <p class="status-line" id="status"></p>
+
+  <div id="list" class="cards"></div>
+
+  <script>
+    import { cardHtml } from '../lib/card';
+    import type { LibraryItem } from '../lib/types';
+    import { BASE } from '../lib/base';
+    import { refreshCardStates } from '../scripts/hydrate';
+    import { activeItems, exportFile, importItems, mergeBuiltSnapshot, onLibraryChange, syncEnabled, syncNow } from '../scripts/store';
+
+    type Tab = 'liked' | 'later' | 'disliked';
+    let tab: Tab = 'liked';
+    let kind: 'all' | 'paper' | 'repo' = 'all';
+    let filter = '';
+
+    const list = document.getElementById('list')!;
+    const stats = document.getElementById('lib-stats')!;
+    const status = document.getElementById('status')!;
+    const filterInput = document.getElementById('filter') as HTMLInputElement;
+
+    function setStatus(msg: string, cls: '' | 'ok' | 'err' = '') {
+      status.textContent = msg;
+      status.className = `status-line ${cls}`;
+    }
+
+    function render() {
+      const items = activeItems();
+      const liked = items.filter((i) => i.liked).length;
+      const later = items.filter((i) => i.later).length;
+      const disliked = items.filter((i) => i.disliked).length;
+      stats.textContent = `${liked} 点赞 · ${later} 稍后读 · ${disliked} 不感兴趣`;
+
+      let shown: LibraryItem[] = items.filter((i) => i[tab]);
+      if (kind !== 'all') shown = shown.filter((i) => i.type === kind);
+      if (filter) {
+        const f = filter.toLowerCase();
+        shown = shown.filter((i) =>
+          [i.title, i.text, i.subtitle, ...(i.tags ?? [])].join(' ').toLowerCase().includes(f),
+        );
+      }
+      if (shown.length === 0) {
+        list.innerHTML = '<div class="empty">这里还是空的。在推荐页给论文或项目点「♥ 点赞」或「⌚ 稍后读」就会出现在这里。</div>';
+        return;
+      }
+      list.innerHTML = shown.map((it) => cardHtml(it, { removable: true })).join('');
+      refreshCardStates(list);
+    }
+
+    document.getElementById('tab')!.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-tab]');
+      if (!btn) return;
+      btn.parentElement!.querySelectorAll('button').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      tab = btn.dataset.tab as Tab;
+      render();
+    });
+    document.getElementById('kind')!.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-kind]');
+      if (!btn) return;
+      btn.parentElement!.querySelectorAll('button').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      kind = btn.dataset.kind as typeof kind;
+      render();
+    });
+    filterInput.addEventListener('input', () => {
+      filter = filterInput.value.trim();
+      render();
+    });
+
+    document.getElementById('btn-export')!.addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(exportFile(), null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `library-${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    (document.getElementById('file-import') as HTMLInputElement).addEventListener('change', async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file) return;
+      try {
+        const parsed = JSON.parse(await file.text());
+        const items: LibraryItem[] = Array.isArray(parsed) ? parsed : parsed.items ?? [];
+        const added = importItems(items);
+        setStatus(`导入完成，新增 ${added} 条`, 'ok');
+      } catch (err) {
+        setStatus(`导入失败：${(err as Error).message}`, 'err');
+      }
+    });
+
+    document.getElementById('btn-sync')!.addEventListener('click', async () => {
+      if (!syncEnabled()) {
+        setStatus('尚未配置 GitHub 同步，请先到「设置」页填写 token。', 'err');
+        return;
+      }
+      setStatus('同步中…');
+      try {
+        const r = await syncNow();
+        setStatus(`同步完成：共 ${r.total} 条${r.pushed ? '，已推送到 GitHub' : '，无需推送'}`, 'ok');
+      } catch (err) {
+        setStatus(`同步失败：${(err as Error).message}`, 'err');
+      }
+    });
+
+    onLibraryChange(render);
+    window.addEventListener('ts:library-changed', render);
+    render();
+    if (syncEnabled()) {
+      document.getElementById('sync-hint')!.textContent = '已开启 GitHub 同步：改动会在 2 秒后自动推送到仓库的 data/library.json。';
+    } else {
+      mergeBuiltSnapshot(BASE).then(render);
+    }
+  </script>
+</Base>

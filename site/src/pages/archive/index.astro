@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../lib/base';
+import { allDates, papersOn, reposOn } from '../../lib/data';
+---
+
+<Base title="归档" active="archive">
+  <div class="page-head">
+    <h1>归档</h1>
+    <span class="sub">共 {allDates.length} 天</span>
+  </div>
+  {allDates.length === 0 ? (
+    <div class="empty">还没有数据。</div>
+  ) : (
+    <ul class="date-list">
+      {allDates.map((d) => {
+        const p = papersOn(d)?.items.length ?? 0;
+        const r = reposOn(d)?.items.length ?? 0;
+        return (
+          <li>
+            <a class="d" href={withBase(`archive/${d}/`)}>{d}</a>
+            <div class="c">{p} 篇论文 · {r} 个项目</div>
+          </li>
+        );
+      })}
+    </ul>
+  )}
+</Base>

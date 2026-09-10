@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+import { withBase } from '../lib/base';
+
+interface Props {
+  title: string;
+  description?: string;
+  active?: 'today' | 'repos' | 'archive' | 'search' | 'library' | 'settings';
+}
+const { title, description = '每日机器人与 AI 论文、GitHub 项目推荐', active } = Astro.props;
+
+const nav = [
+  { key: 'today', label: '今日论文', href: withBase('') },
+  { key: 'repos', label: 'GitHub 项目', href: withBase('repos/') },
+  { key: 'archive', label: '归档', href: withBase('archive/') },
+  { key: 'search', label: '搜索', href: withBase('search/') },
+  { key: 'library', label: '我的书库', href: withBase('library/') },
+  { key: 'settings', label: '设置', href: withBase('settings/') },
+] as const;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · Tech Station</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={`data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#b23a48"/><text x="16" y="22" font-size="18" text-anchor="middle" fill="#fff" font-family="sans-serif">T</text></svg>')}`} />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="inner">
+        <a class="brand" href={withBase('')}>Tech Station</a>
+        <nav class="main">
+          {nav.map((n) => (
+            <a href={n.href} class={active === n.key ? 'active' : ''}>{n.label}</a>
+          ))}
+        </nav>
+        <span class="spacer"></span>
+        <span class="sync-status" id="sync-status"></span>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+      <footer class="site">
+        数据来自 arXiv API 与 GitHub API，每日自动更新。推荐分数由本地 embedding 模型 + 关键词规则计算，全程零成本。
+      </footer>
+    </main>
+    <script>
+      import { bindCardActions } from '../scripts/hydrate';
+      import { pullIfStale, syncEnabled } from '../scripts/store';
+      bindCardActions();
+      const el = document.getElementById('sync-status');
+      if (el) el.textContent = syncEnabled() ? '同步：GitHub' : '同步：仅本地';
+      pullIfStale();
+    </script>
+  </body>
+</html>

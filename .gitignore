@@ -1,0 +1,18 @@
+# 本地工具（node / uv 二进制），不进仓库
+.tools/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+pipeline/.cache/
+pipeline/.venv/
+
+# Node / Astro
+site/node_modules/
+site/dist/
+site/.astro/
+
+# 本地环境变量
+.env
+.env.*

@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
+import { withBase } from '../lib/base';
+import { latestPapers, latestRepos, paperToCard, repoToCard } from '../lib/data';
+
+const papers = latestPapers?.items ?? [];
+const repos = (latestRepos?.items ?? []).slice(0, 5);
+---
+
+<Base title="今日论文" active="today">
+  <div class="page-head">
+    <h1>今日论文</h1>
+    {latestPapers && (
+      <span class="sub">
+        {latestPapers.date} · 从 {latestPapers.total_fetched} 篇新论文中选出 {papers.length} 篇
+      </span>
+    )}
+  </div>
+
+  {papers.length === 0 ? (
+    <div class="empty">还没有数据。运行一次 <code>uv run techstation</code> 或等待每日任务。</div>
+  ) : (
+    <div class="cards">
+      {papers.map((p) => <Card item={paperToCard(p)} rank={p.rank} />)}
+    </div>
+  )}
+
+  {repos.length > 0 && (
+    <>
+      <div class="section-head">
+        <h2>GitHub 项目速览</h2>
+        <a class="more" href={withBase('repos/')}>查看全部 →</a>
+      </div>
+      <div class="cards">
+        {repos.map((r) => <Card item={repoToCard(r)} rank={r.rank} />)}
+      </div>
+    </>
+  )}
+</Base>

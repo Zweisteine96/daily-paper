@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+const defaultRepo = import.meta.env.PUBLIC_REPO || '';
+---
+
+<Base title="设置" active="settings">
+  <div class="page-head"><h1>设置</h1></div>
+
+  <div class="section-head"><h2>GitHub 同步</h2></div>
+  <div class="notice">
+    <p style="margin:0">
+      配置后，你的点赞 / 稍后读 / 不感兴趣会写回仓库里的 <code>data/library.json</code>：
+      一方面其他设备打开网站能看到同样的书库，另一方面每日管道会把这些反馈当作正 / 负样本来调整推荐。
+      Token 只保存在当前浏览器的 localStorage 里，不会发送到除 <code>api.github.com</code> 之外的任何地方。
+    </p>
+    <ol>
+      <li>打开 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Settings → Developer settings → Fine-grained tokens</a></li>
+      <li>Repository access 选「Only select repositories」，只勾选这个仓库</li>
+      <li>Permissions → Repository permissions → <b>Contents: Read and write</b>（其他都不需要）</li>
+      <li>生成后把 token 粘贴到下面</li>
+    </ol>
+  </div>
+
+  <form class="form" id="sync-form" style="margin-top:16px">
+    <label>
+      仓库（owner/name）
+      <input id="repo" type="text" placeholder="例如 yourname/daily-paper" value={defaultRepo} />
+    </label>
+    <label>
+      分支
+      <input id="branch" type="text" value="main" />
+    </label>
+    <label>
+      文件路径
+      <input id="path" type="text" value="data/library.json" />
+    </label>
+    <label>
+      Fine-grained token
+      <input id="token" type="password" placeholder="github_pat_…" autocomplete="off" />
+    </label>
+    <div class="row">
+      <button type="submit" class="btn primary">保存</button>
+      <button type="button" class="btn" id="btn-test">测试连接并同步</button>
+      <button type="button" class="btn ghost" id="btn-clear">清除 token</button>
+    </div>
+    <p class="status-line" id="status"></p>
+  </form>
+
+  <div class="section-head"><h2>本地数据</h2></div>
+  <div class="row" style="display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn" id="btn-wipe">清空本浏览器的书库</button>
+  </div>
+  <p class="hint">清空只影响本浏览器；若已开启同步，远端文件不受影响，下次打开会重新拉取。</p>
+
+  <script>
+    import { loadSyncSettings, saveSyncSettings, syncNow } from '../scripts/store';
+
+    const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+    const status = document.getElementById('status')!;
+    function setStatus(msg: string, cls: '' | 'ok' | 'err' = '') {
+      status.textContent = msg;
+      status.className = `status-line ${cls}`;
+    }
+
+    const s = loadSyncSettings();
+    if (s.repo) $('repo').value = s.repo;
+    $('branch').value = s.branch;
+    $('path').value = s.path;
+    $('token').value = s.token;
+
+    function read() {
+      return {
+        repo: $('repo').value.trim().replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, ''),
+        branch: $('branch').value.trim() || 'main',
+        path: $('path').value.trim() || 'data/library.json',
+        token: $('token').value.trim(),
+      };
+    }
+
+    document.getElementById('sync-form')!.addEventListener('submit', (e) => {
+      e.preventDefault();
+      saveSyncSettings(read());
+      setStatus('已保存。', 'ok');
+    });
+
+    document.getElementById('btn-test')!.addEventListener('click', async () => {
+      saveSyncSettings(read());
+      setStatus('连接中…');
+      try {
+        const r = await syncNow();
+        setStatus(`连接成功：远端共 ${r.total} 条${r.pushed ? '，已推送本地改动' : ''}`, 'ok');
+      } catch (err) {
+        setStatus(`失败：${(err as Error).message}`, 'err');
+      }
+    });
+
+    document.getElementById('btn-clear')!.addEventListener('click', () => {
+      const cur = read();
+      saveSyncSettings({ ...cur, token: '' });
+      $('token').value = '';
+      setStatus('已清除 token，同步已关闭。', 'ok');
+    });
+
+    document.getElementById('btn-wipe')!.addEventListener('click', () => {
+      if (!confirm('确定清空本浏览器中的书库？')) return;
+      localStorage.removeItem('ts:library:v1');
+      setStatus('本地书库已清空。', 'ok');
+    });
+  </script>
+</Base>

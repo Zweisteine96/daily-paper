@@ -1,0 +1,132 @@
+# 每日任务：抓取 arXiv / GitHub -> 打分 -> 提交 data/ -> 构建站点 -> 发布到 GitHub Pages
+#
+# 零成本说明：
+# - 公开仓库的 GitHub Actions 与 GitHub Pages 完全免费。
+# - 每次运行约 5~8 分钟（模型与依赖有缓存时更快），即使是私有仓库的 2000 分钟/月额度也够用。
+# - GITHUB_TOKEN 由 Actions 自动提供，用于 GitHub 搜索 API（每分钟 30 次）和把数据提交回仓库。
+
+name: daily
+
+on:
+  schedule:
+    # 每天 UTC 06:30（北京时间 14:30，伦敦时间 07:30）。arXiv 通常在 UTC 00:00 左右发布当天新论文。
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+    inputs:
+      run_pipeline:
+        description: '是否运行抓取 / 打分管道（false 则只重新构建站点）'
+        type: boolean
+        default: true
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'data/**'          # 管道自己的提交不要再触发一次
+      - '**.md'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # ---------- 管道 ----------
+      - name: 决定是否运行管道
+        id: decide
+        run: |
+          if [[ "${{ github.event_name }}" == "schedule" ]] || \
+             [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.run_pipeline }}" != "false" ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 安装 uv
+        if: steps.decide.outputs.run == 'true'
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: pipeline/uv.lock
+
+      - name: 缓存 embedding 模型
+        if: steps.decide.outputs.run == 'true'
+        uses: actions/cache@v4
+        with:
+          path: pipeline/.cache
+          key: fastembed-${{ hashFiles('profile/interests.yaml') }}
+          restore-keys: fastembed-
+
+      - name: 运行管道
+        if: steps.decide.outputs.run == 'true'
+        working-directory: pipeline
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: uv run techstation
+
+      - name: 提交数据
+        if: steps.decide.outputs.run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "数据无变化"
+          else
+            git commit -m "data: $(date -u +%F) 每日更新"
+            # 网站可能在此期间推送了 library.json，先 rebase 再推
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      # ---------- 站点 ----------
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: 计算站点地址
+        id: site
+        run: |
+          OWNER="${GITHUB_REPOSITORY_OWNER,,}"
+          REPO="${GITHUB_REPOSITORY#*/}"
+          if [[ "$REPO" == "$OWNER.github.io" ]]; then
+            echo "base=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=/$REPO/" >> "$GITHUB_OUTPUT"
+          fi
+          echo "url=https://$OWNER.github.io" >> "$GITHUB_OUTPUT"
+
+      - name: 构建站点
+        working-directory: site
+        env:
+          SITE_URL: ${{ steps.site.outputs.url }}
+          BASE_PATH: ${{ steps.site.outputs.base }}
+          PUBLIC_REPO: ${{ github.repository }}
+        run: |
+          npm ci
+          npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,11 @@
+---
+import { cardHtml, type CardOptions } from '../lib/card';
+import type { CardItem } from '../lib/types';
+
+interface Props extends CardOptions {
+  item: CardItem;
+}
+const { item, ...opts } = Astro.props;
+---
+
+<Fragment set:html={cardHtml(item, opts)} />

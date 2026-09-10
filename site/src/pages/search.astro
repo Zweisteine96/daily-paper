@@ -1,0 +1,141 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="搜索" active="search">
+  <div class="page-head">
+    <h1>搜索</h1>
+    <span class="sub" id="index-info">加载索引中…</span>
+  </div>
+
+  <div class="toolbar">
+    <input id="q" type="search" placeholder="搜索标题、摘要、作者、分类 / topic…" autocomplete="off" autofocus />
+    <div class="segmented" id="type-filter">
+      <button data-type="all" class="active">全部</button>
+      <button data-type="paper">论文</button>
+      <button data-type="repo">项目</button>
+    </div>
+  </div>
+  <p class="hint">支持前缀匹配和模糊匹配。结果范围是最近若干天内被推荐过的论文与项目（由 <code>retention_days</code> 控制）。</p>
+
+  <div id="results" class="cards"></div>
+
+  <script>
+    import MiniSearch from 'minisearch';
+    import { cardHtml } from '../lib/card';
+    import type { CardItem, IndexItem } from '../lib/types';
+    import { BASE } from '../lib/base';
+    import { refreshCardStates } from '../scripts/hydrate';
+
+    const q = document.getElementById('q') as HTMLInputElement;
+    const results = document.getElementById('results')!;
+    const info = document.getElementById('index-info')!;
+    const filterEl = document.getElementById('type-filter')!;
+    let typeFilter: 'all' | 'paper' | 'repo' = 'all';
+
+    // 索引文档：id 加类型前缀保证唯一，tags 拼成字符串供分词
+    interface Doc {
+      key: string;
+      title: string;
+      text: string;
+      authors: string;
+      tagsText: string;
+    }
+    const mini = new MiniSearch<Doc>({
+      idField: 'key',
+      fields: ['title', 'text', 'authors', 'tagsText'],
+      searchOptions: {
+        boost: { title: 3, tagsText: 2 },
+        prefix: true,
+        fuzzy: 0.2,
+        combineWith: 'AND',
+      },
+    });
+
+    let all: IndexItem[] = [];
+    const byKey = new Map<string, IndexItem>();
+    const keyOf = (it: IndexItem) => `${it.t}:${it.id}`;
+
+    function toCard(it: IndexItem): CardItem {
+      return {
+        type: it.t,
+        id: it.id,
+        title: it.title,
+        url: it.url,
+        subtitle: it.authors,
+        text: it.text,
+        tags: it.tags,
+        date: it.date,
+        score: it.score,
+        stars: it.stars,
+        pdf: it.t === 'paper' ? `https://arxiv.org/pdf/${it.id}` : undefined,
+      };
+    }
+
+    function render(items: IndexItem[]) {
+      if (items.length === 0) {
+        results.innerHTML = `<div class="empty">${q.value ? '没有匹配的结果' : '输入关键词开始搜索'}</div>`;
+        return;
+      }
+      results.innerHTML = items.slice(0, 100).map((it) => cardHtml(toCard(it))).join('');
+      refreshCardStates(results);
+    }
+
+    function run() {
+      const term = q.value.trim();
+      let hits: IndexItem[];
+      if (!term) {
+        hits = all.slice(0, 50);
+      } else {
+        hits = mini
+          .search(term)
+          .map((r) => byKey.get(String(r.id)))
+          .filter((it): it is IndexItem => Boolean(it));
+      }
+      if (typeFilter !== 'all') hits = hits.filter((h) => h.t === typeFilter);
+      render(hits);
+    }
+
+    filterEl.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-type]');
+      if (!btn) return;
+      filterEl.querySelectorAll('button').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      typeFilter = btn.dataset.type as typeof typeFilter;
+      run();
+    });
+
+    let timer: number | undefined;
+    q.addEventListener('input', () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(run, 120);
+    });
+
+    // 支持 ?q= 参数
+    const initial = new URLSearchParams(location.search).get('q');
+    if (initial) q.value = initial;
+
+    fetch(`${BASE}data/search-index.json`)
+      .then((r) => r.json())
+      .then((idx: { updated: string; items: IndexItem[] }) => {
+        all = idx.items ?? [];
+        for (const it of all) byKey.set(keyOf(it), it);
+        mini.addAll(
+          all.map((it) => ({
+            key: keyOf(it),
+            title: it.title,
+            text: it.text,
+            authors: it.authors,
+            tagsText: (it.tags ?? []).join(' '),
+          })),
+        );
+        const nPaper = all.filter((i) => i.t === 'paper').length;
+        info.textContent = `索引 ${nPaper} 篇论文 · ${all.length - nPaper} 个项目 · 更新于 ${(idx.updated || '').slice(0, 10)}`;
+        run();
+      })
+      .catch((err: Error) => {
+        console.error('[techstation] 搜索索引加载失败', err);
+        info.textContent = `索引加载失败：${err.message}`;
+      });
+  </script>
+</Base>
