@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
+import RefreshButton from '../components/RefreshButton.astro';
 import { latestRepos, repoToCard } from '../lib/data';
 
 const repos = latestRepos?.items ?? [];
@@ -14,6 +15,8 @@ const active = repos.filter((r) => !r.is_new);
     {latestRepos && (
       <span class="sub">{latestRepos.date} · 从 {latestRepos.total_fetched} 个候选中选出 {repos.length} 个</span>
     )}
+    <span class="grow"></span>
+    <RefreshButton />
   </div>
 
   {repos.length === 0 && <div class="empty">还没有数据。</div>}

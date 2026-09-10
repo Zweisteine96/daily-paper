@@ -1,0 +1,58 @@
+---
+/** 刷新推荐按钮：触发 GitHub Actions 重新抓取并重建站点 */
+interface Props {
+  label?: string;
+}
+const { label = '刷新推荐' } = Astro.props;
+---
+
+<div class="refresh-box" data-refresh>
+  <button class="btn primary" data-refresh-btn>↻ {label}</button>
+  <span class="status" data-refresh-status></span>
+</div>
+
+<script>
+  import { syncEnabled } from '../scripts/store';
+  import { triggerRefresh, waitForRun } from '../scripts/refresh';
+  import { withBase } from '../lib/base';
+
+  document.querySelectorAll<HTMLElement>('[data-refresh]').forEach((box) => {
+    const btn = box.querySelector<HTMLButtonElement>('[data-refresh-btn]')!;
+    const status = box.querySelector<HTMLElement>('[data-refresh-status]')!;
+    const set = (html: string, cls = '') => {
+      status.innerHTML = html;
+      status.className = `status ${cls}`;
+    };
+
+    btn.addEventListener('click', async () => {
+      if (!syncEnabled()) {
+        set(`需要先在 <a href="${withBase('settings/')}">设置</a> 里配置带 Actions 写权限的 token`, 'err');
+        return;
+      }
+      btn.disabled = true;
+      set('<span class="spin"></span> 正在触发 GitHub Actions…');
+      const started = Date.now();
+      try {
+        await triggerRefresh();
+        set('<span class="spin"></span> 已触发，等待任务开始…');
+        const run = await waitForRun(started, (r, sec) => {
+          const m = Math.floor(sec / 60), s = sec % 60;
+          const t = `${m}:${String(s).padStart(2, '0')}`;
+          if (!r) set(`<span class="spin"></span> 等待任务出现… ${t}`);
+          else if (r.status !== 'completed') set(`<span class="spin"></span> 抓取 / 打分 / 构建中… ${t} · <a href="${r.html_url}" target="_blank" rel="noopener">查看日志</a>`);
+        });
+        if (run?.conclusion === 'success') {
+          set('完成！Pages 大约 1 分钟后更新，<a href="javascript:location.reload()">刷新页面</a> 查看新推荐', 'ok');
+        } else if (run) {
+          set(`任务结束：${run.conclusion}，<a href="${run.html_url}" target="_blank" rel="noopener">查看日志</a>`, 'err');
+        } else {
+          set('等待超时，可稍后手动刷新页面查看', 'err');
+        }
+      } catch (err) {
+        set((err as Error).message, 'err');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+</script>

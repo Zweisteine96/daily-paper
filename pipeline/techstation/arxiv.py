@@ -89,6 +89,21 @@ def _parse_entry(entry) -> Paper | None:
 
 def fetch_category(category: str, cutoff: datetime, max_results: int) -> list[Paper]:
     """按提交时间倒序拉取某个分类，直到早于 cutoff 或达到 max_results。"""
+    return fetch_query(f"cat:{category}", cutoff, max_results, label=category)
+
+
+def fetch_by_author(name: str, cutoff: datetime, max_results: int = 50) -> list[Paper]:
+    """按作者名查最近的论文，并用作者列表精确匹配过滤掉同名误报。"""
+    papers = fetch_query(f'au:"{name}"', cutoff, max_results, label=f"au:{name}")
+    target = _norm_name(name)
+    return [p for p in papers if any(_norm_name(a) == target for a in p.authors)]
+
+
+def _norm_name(name: str) -> str:
+    return re.sub(r"[^a-z ]", "", name.lower()).strip()
+
+
+def fetch_query(search_query: str, cutoff: datetime, max_results: int, label: str = "") -> list[Paper]:
     papers: list[Paper] = []
     start = 0
     session = requests.Session()
@@ -96,7 +111,7 @@ def fetch_category(category: str, cutoff: datetime, max_results: int) -> list[Pa
 
     while start < max_results:
         params = {
-            "search_query": f"cat:{category}",
+            "search_query": search_query,
             "sortBy": "submittedDate",
             "sortOrder": "descending",
             "start": start,
@@ -106,7 +121,7 @@ def fetch_category(category: str, cutoff: datetime, max_results: int) -> list[Pa
             resp = session.get(API_URL, params=params, timeout=60)
             resp.raise_for_status()
         except requests.RequestException as exc:
-            log.warning("arXiv 请求失败 (%s start=%d): %s", category, start, exc)
+            log.warning("arXiv 请求失败 (%s start=%d): %s", label or search_query, start, exc)
             break
 
         feed = feedparser.parse(resp.text)
@@ -130,7 +145,7 @@ def fetch_category(category: str, cutoff: datetime, max_results: int) -> list[Pa
         start += len(entries)
         time.sleep(REQUEST_INTERVAL)
 
-    log.info("arXiv %s: 抓到 %d 篇（cutoff=%s）", category, len(papers), cutoff.date())
+    log.info("arXiv %s: 抓到 %d 篇（cutoff=%s）", label or search_query, len(papers), cutoff.date())
     return papers
 
 

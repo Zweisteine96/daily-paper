@@ -5,13 +5,17 @@ import { withBase } from '../lib/base';
 interface Props {
   title: string;
   description?: string;
-  active?: 'today' | 'repos' | 'archive' | 'search' | 'library' | 'settings';
+  /** 分享预览图（详情页用） */
+  image?: string | null;
+  active?: 'today' | 'repos' | 'labs' | 'archive' | 'search' | 'library' | 'settings';
 }
-const { title, description = '每日机器人与 AI 论文、GitHub 项目推荐', active } = Astro.props;
+const { title, description = '每日机器人与 AI 论文、GitHub 项目推荐', image, active } = Astro.props;
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.pathname;
 
 const nav = [
   { key: 'today', label: '今日论文', href: withBase('') },
   { key: 'repos', label: 'GitHub 项目', href: withBase('repos/') },
+  { key: 'labs', label: '学者追踪', href: withBase('labs/') },
   { key: 'archive', label: '归档', href: withBase('archive/') },
   { key: 'search', label: '搜索', href: withBase('search/') },
   { key: 'library', label: '我的书库', href: withBase('library/') },
@@ -26,7 +30,13 @@ const nav = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · Tech Station</title>
     <meta name="description" content={description} />
-    <link rel="icon" href={`data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#b23a48"/><text x="16" y="22" font-size="18" text-anchor="middle" fill="#fff" font-family="sans-serif">T</text></svg>')}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={canonical} />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <link rel="icon" href={`data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#c8553d"/><text x="16" y="22" font-size="18" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="700">T</text></svg>')}`} />
   </head>
   <body>
     <header class="topbar">

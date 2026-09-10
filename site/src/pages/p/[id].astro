@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../lib/base';
+import { mediaHtml, youtubeId } from '../../lib/card';
+import { allPapers, paperToCard } from '../../lib/data';
+
+export function getStaticPaths() {
+  return allPapers().map(({ paper, day }) => ({ params: { id: paper.id }, props: { paper, day } }));
+}
+
+const { paper, day } = Astro.props;
+const item = paperToCard(paper);
+const yt = youtubeId(item.video);
+const payload = JSON.stringify(item);
+---
+
+<Base title={paper.title} description={paper.abstract.slice(0, 200)} image={item.image} active="today">
+  <p class="hint" style="margin-top:22px">
+    {day ? <a href={withBase(`archive/${day}/`)}>← {day} 的推荐</a> : <a href={withBase('labs/')}>← 学者追踪</a>}
+  </p>
+  <article class="detail card paper" data-id={item.id} data-type="paper" data-item={payload} style="display:grid">
+    <div class="card-body">
+      <div class="meta">
+        <span class="date">{item.date}</span>
+        {paper.primary_category && <span class="tag">{paper.primary_category}</span>}
+        {(paper.tracked_authors ?? []).map((n) => <span class="badge track">追踪学者 · {n}</span>)}
+        {typeof paper.score === 'number' && <span class="score" title="综合推荐分">{(paper.score * 100).toFixed(0)}</span>}
+      </div>
+      <h1>{paper.title}</h1>
+      <p class="authors">{paper.authors.join(', ')}</p>
+      {paper.comment && <p class="hint">{paper.comment}</p>}
+      <div class="actions">
+        <button class="btn like" data-action="liked">♥ 点赞</button>
+        <button class="btn later" data-action="later">⌚ 稍后读</button>
+        <button class="btn dislike" data-action="disliked">✕ 不感兴趣</button>
+        <button class="btn share" data-action="share">⇪ 分享</button>
+      </div>
+      <p class="abs">{paper.abstract}</p>
+      <div class="links" style="font-size:.95rem">
+        <a href={paper.url} target="_blank" rel="noopener">arXiv</a>
+        <a href={paper.pdf_url} target="_blank" rel="noopener">PDF</a>
+        <a href={`https://arxiv.org/html/${paper.id}`} target="_blank" rel="noopener">HTML</a>
+        <a href={`https://www.semanticscholar.org/arxiv/${paper.id}`} target="_blank" rel="noopener">Semantic Scholar</a>
+        {(item.links ?? []).map((l) => <a href={l.url} target="_blank" rel="noopener">{l.label}</a>)}
+      </div>
+      <div class="tags" style="margin-top:12px">
+        {paper.categories.map((c) => <span class="tag">{c}</span>)}
+        {paper.matched_keywords.map((k) => <span class="kw">{k}</span>)}
+      </div>
+      {paper.why && <p class="why">{paper.why}</p>}
+    </div>
+    <aside class="hero">
+      {yt ? (
+        <div class="media video">
+          <iframe src={`https://www.youtube-nocookie.com/embed/${yt}`} title="视频" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      ) : (
+        <Fragment set:html={mediaHtml(item, { large: true })} />
+      )}
+      {item.imageCaption && <p class="caption">{item.imageCaption}</p>}
+      {!item.image && !item.video && <p class="caption">这篇论文暂无 HTML 版本，因此没有抓到配图。</p>}
+    </aside>
+  </article>
+</Base>

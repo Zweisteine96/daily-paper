@@ -102,6 +102,11 @@ def write_daily(kind: str, day: str, items: list[dict], meta: dict) -> Path:
     return path
 
 
+def read_daily(kind: str, day: str) -> dict:
+    directory = PAPERS_DIR if kind == "papers" else REPOS_DIR
+    return read_json(directory / f"{day}.json", {})
+
+
 def list_daily_files(kind: str) -> list[Path]:
     directory = PAPERS_DIR if kind == "papers" else REPOS_DIR
     if not directory.exists():
@@ -134,6 +139,8 @@ def _compact_paper(p: dict, day: str) -> dict:
         "date": p.get("published", "")[:10],
         "day": day,
         "score": p.get("score", 0),
+        "img": p.get("figure_url"),
+        "tracked": p.get("tracked_authors") or [],
     }
 
 
@@ -150,6 +157,7 @@ def _compact_repo(r: dict, day: str) -> dict:
         "day": day,
         "score": r.get("score", 0),
         "stars": r.get("stars", 0),
+        "img": r.get("image_url") or r.get("og_image"),
     }
 
 

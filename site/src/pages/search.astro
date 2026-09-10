@@ -69,6 +69,8 @@ import Base from '../layouts/Base.astro';
         score: it.score,
         stars: it.stars,
         pdf: it.t === 'paper' ? `https://arxiv.org/pdf/${it.id}` : undefined,
+        image: it.img ?? null,
+        badges: (it.tracked ?? []).map((n) => `追踪学者 · ${n}`),
       };
     }
 

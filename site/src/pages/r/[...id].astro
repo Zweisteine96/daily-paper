@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../lib/base';
+import { mediaHtml } from '../../lib/card';
+import { allRepos, repoToCard } from '../../lib/data';
+
+export function getStaticPaths() {
+  return allRepos().map(({ repo, day }) => ({ params: { id: repo.id }, props: { repo, day } }));
+}
+
+const { repo, day } = Astro.props;
+const item = repoToCard(repo);
+const payload = JSON.stringify(item);
+const fmt = (n: number) => (n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n));
+---
+
+<Base title={repo.full_name} description={repo.description} image={item.image} active="repos">
+  <p class="hint" style="margin-top:22px">
+    <a href={withBase(`archive/${day}/`)}>← {day} 的推荐</a>
+  </p>
+  <article class="detail card repo" data-id={item.id} data-type="repo" data-item={payload} style="display:grid">
+    <div class="card-body">
+      <div class="meta">
+        <span class="stars">★ {fmt(repo.stars)}{repo.stars_delta ? <span class="delta"> +{fmt(repo.stars_delta)}</span> : null}</span>
+        <span>⑂ {fmt(repo.forks)}</span>
+        {repo.language && <span class="tag">{repo.language}</span>}
+        {repo.license && <span class="tag">{repo.license}</span>}
+        {repo.is_new && <span class="badge new">新项目</span>}
+        <span class="score" title="综合推荐分">{(repo.score * 100).toFixed(0)}</span>
+      </div>
+      <h1>{repo.full_name}</h1>
+      <p class="abs">{repo.description || '（没有描述）'}</p>
+      <div class="actions">
+        <button class="btn like" data-action="liked">♥ 点赞</button>
+        <button class="btn later" data-action="later">⌚ 稍后读</button>
+        <button class="btn dislike" data-action="disliked">✕ 不感兴趣</button>
+        <button class="btn share" data-action="share">⇪ 分享</button>
+      </div>
+      <div class="links" style="font-size:.95rem">
+        <a href={repo.url} target="_blank" rel="noopener">GitHub</a>
+        {repo.homepage && <a href={repo.homepage} target="_blank" rel="noopener">主页</a>}
+        <a href={`${repo.url}#readme`} target="_blank" rel="noopener">README</a>
+      </div>
+      <p class="hint">创建于 {repo.created_at.slice(0, 10)} · 最近推送 {repo.pushed_at.slice(0, 10)} · 首次出现在推荐 {repo.first_seen}</p>
+      <div class="tags" style="margin-top:12px">
+        {repo.topics.map((t) => <span class="tag">{t}</span>)}
+        {repo.matched_keywords.map((k) => <span class="kw">{k}</span>)}
+      </div>
+      {repo.why && <p class="why">{repo.why}</p>}
+    </div>
+    <aside class="hero">
+      <Fragment set:html={mediaHtml(item, { large: true })} />
+      {repo.image_url && repo.og_image && (
+        <a class="media" href={repo.url} target="_blank" rel="noopener" style="margin-top:12px;aspect-ratio:2/1">
+          <img src={repo.og_image} alt="GitHub 预览" loading="lazy" />
+        </a>
+      )}
+    </aside>
+  </article>
+</Base>

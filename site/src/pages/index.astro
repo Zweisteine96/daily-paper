@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
+import RefreshButton from '../components/RefreshButton.astro';
 import { withBase } from '../lib/base';
 import { latestPapers, latestRepos, paperToCard, repoToCard } from '../lib/data';
 
@@ -16,6 +17,8 @@ const repos = (latestRepos?.items ?? []).slice(0, 5);
         {latestPapers.date} · 从 {latestPapers.total_fetched} 篇新论文中选出 {papers.length} 篇
       </span>
     )}
+    <span class="grow"></span>
+    <RefreshButton />
   </div>
 
   {papers.length === 0 ? (

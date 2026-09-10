@@ -9,14 +9,15 @@ const defaultRepo = import.meta.env.PUBLIC_REPO || '';
   <div class="section-head"><h2>GitHub 同步</h2></div>
   <div class="notice">
     <p style="margin:0">
-      配置后，你的点赞 / 稍后读 / 不感兴趣会写回仓库里的 <code>data/library.json</code>：
-      一方面其他设备打开网站能看到同样的书库，另一方面每日管道会把这些反馈当作正 / 负样本来调整推荐。
+      配置后可以做两件事：① 点赞 / 稍后读 / 不感兴趣会写回仓库里的 <code>data/library.json</code>，
+      其他设备能看到同样的书库，每日管道也会把这些反馈当作正 / 负样本来调整推荐；
+      ② 「刷新推荐」按钮可以随时触发 GitHub Actions 重新抓取。
       Token 只保存在当前浏览器的 localStorage 里，不会发送到除 <code>api.github.com</code> 之外的任何地方。
     </p>
     <ol>
       <li>打开 <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → Settings → Developer settings → Fine-grained tokens</a></li>
       <li>Repository access 选「Only select repositories」，只勾选这个仓库</li>
-      <li>Permissions → Repository permissions → <b>Contents: Read and write</b>（其他都不需要）</li>
+      <li>Permissions → Repository permissions：<b>Contents: Read and write</b>（书库同步）、<b>Actions: Read and write</b>（刷新推荐）。其他都不需要</li>
       <li>生成后把 token 粘贴到下面</li>
     </ol>
   </div>

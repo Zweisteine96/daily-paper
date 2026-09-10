@@ -1,0 +1,98 @@
+# 追踪的实验室 / 学者。管道会按作者名在 arXiv 上查最近 days_back 天的论文，
+# 生成 data/labs.json 供「学者追踪」页展示；每日推荐里命中这些作者的论文也会加上徽标并略微加分。
+#
+# 姓名要和 arXiv 上的署名一致（英文，First Last）。同名误报会用作者列表精确匹配过滤。
+# 随意增删，下一次运行生效。
+
+days_back: 45          # 追踪窗口
+max_per_author: 30     # 每位学者最多保留多少篇
+boost: 0.06            # 每日推荐里命中追踪学者时的加分
+# 只保留这些 arXiv 分类的论文，用来过滤同名学者（比如天体物理领域的同名作者）
+categories: [cs.RO, cs.AI, cs.LG, cs.CV, cs.CL, cs.HC, cs.MA, eess.SY]
+
+labs:
+  - name: UC Berkeley
+    short: Berkeley
+    researchers:
+      - Sergey Levine
+      - Pieter Abbeel
+      - Ken Goldberg
+      - Jitendra Malik
+      - Koushil Sreenath
+      - Trevor Darrell
+
+  - name: Stanford
+    short: Stanford
+    researchers:
+      - Chelsea Finn
+      - Shuran Song
+      - Jiajun Wu
+      - Dorsa Sadigh
+      - C. Karen Liu
+      - Jeannette Bohg
+      - Fei-Fei Li
+      - Li Fei-Fei
+
+  - name: Carnegie Mellon University
+    short: CMU
+    researchers:
+      - Deepak Pathak
+      - Abhinav Gupta
+      - Katerina Fragkiadaki
+      - Shubham Tulsiani
+      - Guanya Shi
+      - Oliver Kroemer
+
+  - name: MIT
+    short: MIT
+    researchers:
+      - Russ Tedrake
+      - Pulkit Agrawal
+      - Leslie Pack Kaelbling
+      - Tomás Lozano-Pérez
+      - Phillip Isola
+
+  - name: NYU / Columbia / Princeton
+    short: NYU
+    researchers:
+      - Lerrel Pinto
+      - Yann LeCun
+      - Jia Deng
+
+  - name: University of Washington
+    short: UW
+    researchers:
+      - Dieter Fox
+      - Abhishek Gupta
+      - Byron Boots
+
+  - name: Georgia Tech / UT Austin
+    short: GT / UT
+    researchers:
+      - Animesh Garg
+      - Yuke Zhu
+      - Peter Stone
+
+  - name: ETH Zürich / TU Darmstadt
+    short: ETH / TUDa
+    researchers:
+      - Marco Hutter
+      - Jan Peters
+      - Davide Scaramuzza
+
+  - name: 清华 / 北大 / 上交
+    short: 清北交
+    researchers:
+      - Yang Gao
+      - He Wang
+      - Hao Dong
+      - Cewu Lu
+      - Huazhe Xu
+
+  - name: 工业界研究团队
+    short: Industry
+    researchers:
+      - Karol Hausman
+      - Ted Xiao
+      - Fei Xia
+      - Dhruv Shah

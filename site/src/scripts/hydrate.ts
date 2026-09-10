@@ -3,6 +3,7 @@
  * 通过事件委托实现，动态插入的卡片（搜索结果）也自动生效。
  */
 import type { CardItem } from '../lib/types';
+import { detailPath } from '../lib/card';
 import { getItem, loadLibrary, onLibraryChange, removeItem, toggle } from './store';
 
 function parseCard(el: HTMLElement): CardItem | null {
@@ -10,6 +11,41 @@ function parseCard(el: HTMLElement): CardItem | null {
     return JSON.parse(el.dataset.item || '') as CardItem;
   } catch {
     return null;
+  }
+}
+
+let toastTimer: number | undefined;
+export function toast(msg: string): void {
+  let el = document.getElementById('toast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'toast';
+    el.className = 'toast';
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add('show');
+  window.clearTimeout(toastTimer);
+  toastTimer = window.setTimeout(() => el!.classList.remove('show'), 2200);
+}
+
+/** 分享：优先系统分享面板（手机），否则复制链接到剪贴板 */
+export async function shareItem(item: CardItem): Promise<void> {
+  const url = location.origin + detailPath(item);
+  const nav = navigator as Navigator & { share?: (d: ShareData) => Promise<void> };
+  if (nav.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    try {
+      await nav.share({ title: item.title, text: item.text.slice(0, 140), url });
+      return;
+    } catch {
+      /* 用户取消，回退到复制 */
+    }
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    toast('链接已复制');
+  } catch {
+    window.prompt('复制这个链接：', url);
   }
 }
 
@@ -42,6 +78,10 @@ export function bindCardActions(): void {
     }
     const item = parseCard(card);
     if (!item) return;
+    if (action === 'share') {
+      shareItem(item);
+      return;
+    }
     if (action === 'liked' || action === 'later' || action === 'disliked') {
       toggle(item, action);
       refreshCardStates();
