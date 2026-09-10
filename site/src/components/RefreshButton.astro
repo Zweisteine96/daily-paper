@@ -13,7 +13,7 @@ const { label = '刷新推荐' } = Astro.props;
 
 <script>
   import { syncEnabled } from '../scripts/store';
-  import { triggerRefresh, waitForRun } from '../scripts/refresh';
+  import { activeRun, QUICK_ETA_MIN, triggerRefresh, waitForRun, type RunInfo } from '../scripts/refresh';
   import { withBase } from '../lib/base';
 
   document.querySelectorAll<HTMLElement>('[data-refresh]').forEach((box) => {
@@ -23,24 +23,23 @@ const { label = '刷新推荐' } = Astro.props;
       status.innerHTML = html;
       status.className = `status ${cls}`;
     };
+    const fmt = (sec: number) => `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, '0')}`;
 
-    btn.addEventListener('click', async () => {
-      if (!syncEnabled()) {
-        set(`需要先在 <a href="${withBase('settings/')}">设置</a> 里配置带 Actions 写权限的 token`, 'err');
-        return;
-      }
+    /** 轮询一个运行直到结束并更新界面 */
+    const follow = async (started: number, known?: RunInfo | null) => {
       btn.disabled = true;
-      set('<span class="spin"></span> 正在触发 GitHub Actions…');
-      const started = Date.now();
       try {
-        await triggerRefresh();
-        set('<span class="spin"></span> 已触发，等待任务开始…');
-        const run = await waitForRun(started, (r, sec) => {
-          const m = Math.floor(sec / 60), s = sec % 60;
-          const t = `${m}:${String(s).padStart(2, '0')}`;
-          if (!r) set(`<span class="spin"></span> 等待任务出现… ${t}`);
-          else if (r.status !== 'completed') set(`<span class="spin"></span> 抓取 / 打分 / 构建中… ${t} · <a href="${r.html_url}" target="_blank" rel="noopener">查看日志</a>`);
-        });
+        const run = await waitForRun(
+          started,
+          (r, sec) => {
+            if (!r) set(`<span class="spin"></span> 等待任务出现… ${fmt(sec)}`);
+            else if (r.status !== 'completed')
+              set(
+                `<span class="spin"></span> 抓取 / 打分 / 构建中… ${fmt(sec)}（预计约 ${QUICK_ETA_MIN} 分钟）· <a href="${r.html_url}" target="_blank" rel="noopener">查看日志</a>`,
+              );
+          },
+          known,
+        );
         if (run?.conclusion === 'success') {
           set('完成！Pages 大约 1 分钟后更新，<a href="javascript:location.reload()">刷新页面</a> 查看新推荐', 'ok');
         } else if (run) {
@@ -48,11 +47,47 @@ const { label = '刷新推荐' } = Astro.props;
         } else {
           set('等待超时，可稍后手动刷新页面查看', 'err');
         }
-      } catch (err) {
-        set((err as Error).message, 'err');
       } finally {
         btn.disabled = false;
       }
+    };
+
+    btn.addEventListener('click', async () => {
+      if (!syncEnabled()) {
+        set(`需要先在 <a href="${withBase('settings/')}">设置</a> 里配置带 Actions 写权限的 token`, 'err');
+        return;
+      }
+      btn.disabled = true;
+      set('<span class="spin"></span> 检查是否已有任务在跑…');
+      try {
+        // 已有排队 / 进行中的任务：直接接管它的进度，不再重复触发（每次触发都是一次完整运行）
+        const existing = await activeRun();
+        if (existing) {
+          set('<span class="spin"></span> 已有一次刷新在进行中，接管其进度…');
+          await follow(Date.now(), existing);
+          return;
+        }
+        set('<span class="spin"></span> 正在触发 GitHub Actions（快速模式）…');
+        const started = Date.now();
+        await triggerRefresh(true);
+        set(`<span class="spin"></span> 已触发，等待任务开始…（预计约 ${QUICK_ETA_MIN} 分钟）`);
+        await follow(started);
+      } catch (err) {
+        set((err as Error).message, 'err');
+        btn.disabled = false;
+      }
     });
+
+    // 打开页面时如果上一次刷新还在跑（比如刷新过页面），自动显示进度
+    if (syncEnabled()) {
+      activeRun()
+        .then((r) => {
+          if (r) {
+            set('<span class="spin"></span> 上一次刷新仍在进行中…');
+            return follow(Date.now(), r);
+          }
+        })
+        .catch(() => {});
+    }
   });
 </script>

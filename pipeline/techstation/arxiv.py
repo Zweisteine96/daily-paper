@@ -99,6 +99,27 @@ def fetch_by_author(name: str, cutoff: datetime, max_results: int = 50) -> list[
     return [p for p in papers if any(_norm_name(a) == target for a in p.authors)]
 
 
+def fetch_by_authors(names: list[str], cutoff: datetime, max_per_author: int = 30) -> dict[str, list[Paper]]:
+    """一次请求查多位作者（au:"A" OR au:"B" …），再按精确姓名把论文分派给各自作者。
+
+    arXiv 要求请求间隔 3 秒，逐人查询 50 位学者要 3~5 分钟；合并后请求数减少约 8 倍。
+    """
+    if not names:
+        return {}
+    query = " OR ".join(f'au:"{n}"' for n in names)
+    # 一组里每个人最多 max_per_author 篇，但单次请求不超过一页
+    max_results = min(PAGE_SIZE, max_per_author * len(names))
+    papers = fetch_query(query, cutoff, max_results, label=f"au×{len(names)}")
+    targets = {_norm_name(n): n for n in names}
+    out: dict[str, list[Paper]] = {n: [] for n in names}
+    for p in papers:
+        for a in p.authors:
+            name = targets.get(_norm_name(a))
+            if name is not None and p not in out[name]:
+                out[name].append(p)
+    return out
+
+
 def _norm_name(name: str) -> str:
     return re.sub(r"[^a-z ]", "", name.lower()).strip()
 

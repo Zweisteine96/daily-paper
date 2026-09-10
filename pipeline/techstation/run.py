@@ -4,6 +4,7 @@
     uv run techstation                 # 完整运行
     uv run techstation --skip-github   # 只跑 arXiv
     uv run techstation --no-embedding  # 不加载模型，只用关键词（调试用）
+    uv run techstation --quick         # 快速模式（网站「刷新推荐」用）：跳过学者追踪
     uv run techstation --skip-media --skip-labs   # 最快的调试模式
 """
 
@@ -30,6 +31,7 @@ def _parse_args() -> argparse.Namespace:
     ap.add_argument("--skip-github", action="store_true")
     ap.add_argument("--skip-labs", action="store_true", help="不更新学者追踪")
     ap.add_argument("--skip-media", action="store_true", help="不抓配图（省时间）")
+    ap.add_argument("--quick", action="store_true", help="快速模式：只更新论文与项目推荐，跳过学者追踪（约省 3 分钟）")
     ap.add_argument("--no-embedding", action="store_true", help="不加载 embedding 模型")
     ap.add_argument("--keep-seen", action="store_true", help="不排除以前推荐过的论文（调试用）")
     ap.add_argument("-v", "--verbose", action="store_true")
@@ -173,6 +175,8 @@ def run_repos(cfg: Config, day: str, profile, embedder, kw, args) -> int:
 
 def main() -> None:
     args = _parse_args()
+    if args.quick:
+        args.skip_labs = True
     logging.basicConfig(
         level=logging.DEBUG if args.verbose else logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
@@ -183,7 +187,7 @@ def main() -> None:
     cfg = Config.load()
     labs_profile = labs.load_labs_profile()
     day = args.date or date.today().isoformat()
-    log.info("开始运行，日期 %s", day)
+    log.info("开始运行，日期 %s%s", day, "（快速模式）" if args.quick else "")
 
     store.ensure_library_file()
     library_items = store.load_library_items()

@@ -89,45 +89,51 @@ def _previous_media() -> dict[str, dict]:
     return out
 
 
+AUTHORS_PER_QUERY = 8  # 每次 arXiv 请求合并查询的学者数（8 人 × 30 篇 < 单页 200 条）
+
+
 def run_labs(profile: dict, day: str, fetch_media: bool = True) -> Path:
-    """逐个学者查询（每次请求间隔 3 秒），写 data/labs.json。"""
+    """按组合并查询学者（每次请求间隔 3 秒），写 data/labs.json。"""
     cutoff = datetime.now(timezone.utc) - timedelta(days=int(profile["days_back"]))
     max_per = int(profile["max_per_author"])
     allowed = set(profile.get("categories") or [])
-    prev_media = _previous_media() if fetch_media else {}
+    prev_media = _previous_media()  # 即使不抓新图，也沿用上次的配图，避免 --skip-media 把图清空
 
-    # 同一个人可能出现在多个实验室，只查一次
+    # 同一个人可能出现在多个实验室，只查一次；多人合并成一次请求
     cache: dict[str, list[dict]] = {}
     unique = sorted({str(n) for lab in profile["labs"] for n in lab.get("researchers", [])})
-    log.info("学者追踪：%d 位学者，窗口 %d 天", len(unique), int(profile["days_back"]))
-    for i, name in enumerate(unique):
+    per_query = max(1, min(AUTHORS_PER_QUERY, arxiv.PAGE_SIZE // max(max_per, 1)))
+    groups = [unique[i : i + per_query] for i in range(0, len(unique), per_query)]
+    log.info("学者追踪：%d 位学者，窗口 %d 天，分 %d 次请求", len(unique), int(profile["days_back"]), len(groups))
+    for i, group in enumerate(groups):
         if i > 0:
             time.sleep(arxiv.REQUEST_INTERVAL)
-        papers = arxiv.fetch_by_author(name, cutoff, max_results=max_per)
-        if allowed:
-            # 同名学者过滤：只保留和我们关心的领域相关的分类（比如把天体物理的 Yang Gao 去掉）
-            papers = [p for p in papers if allowed & set(p.categories)]
-        papers.sort(key=lambda p: p.published, reverse=True)
-        cache[name] = [_compact(p) for p in papers[:max_per]]
+        by_author = arxiv.fetch_by_authors(group, cutoff, max_per_author=max_per)
+        for name, papers in by_author.items():
+            if allowed:
+                # 同名学者过滤：只保留和我们关心的领域相关的分类（比如把天体物理的 Yang Gao 去掉）
+                papers = [p for p in papers if allowed & set(p.categories)]
+            papers.sort(key=lambda p: p.published, reverse=True)
+            cache[name] = [_compact(p) for p in papers[:max_per]]
 
+    # 同一篇论文可能出现在多位学者名下，按 id 去重后只抓一次
+    by_id: dict[str, dict] = {}
+    for ps in cache.values():
+        for p in ps:
+            by_id.setdefault(p["id"], p)
+    todo = []
+    for pid, p in by_id.items():
+        if pid in prev_media:
+            p.update(prev_media[pid])
+        else:
+            todo.append(p)
     if fetch_media:
-        # 同一篇论文可能出现在多位学者名下，按 id 去重后只抓一次
-        by_id: dict[str, dict] = {}
-        for ps in cache.values():
-            for p in ps:
-                by_id.setdefault(p["id"], p)
-        todo = []
-        for pid, p in by_id.items():
-            if pid in prev_media:
-                p.update(prev_media[pid])
-            else:
-                todo.append(p)
         media.enrich_papers(todo)
-        for ps in cache.values():
-            for p in ps:
-                src = by_id[p["id"]]
-                for k in ("figure_url", "figure_caption", "figure_source", "video_url", "links"):
-                    p[k] = src.get(k)
+    for ps in cache.values():
+        for p in ps:
+            src = by_id[p["id"]]
+            for k in ("figure_url", "figure_caption", "figure_source", "video_url", "links"):
+                p[k] = src.get(k)
 
     labs_out = []
     for lab in profile["labs"]:

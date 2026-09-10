@@ -17,6 +17,10 @@ on:
         description: '是否运行抓取 / 打分管道（false 则只重新构建站点）'
         type: boolean
         default: true
+      quick:
+        description: '快速模式：只更新论文 / 项目推荐，跳过学者追踪（网站「刷新推荐」按钮使用）'
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths-ignore:
@@ -71,7 +75,7 @@ jobs:
         working-directory: pipeline
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: uv run techstation
+        run: uv run techstation ${{ inputs.quick == true && '--quick' || '' }}
 
       - name: 提交数据
         if: steps.decide.outputs.run == 'true'
