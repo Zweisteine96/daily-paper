@@ -1,8 +1,8 @@
 {
-  "updated": "2026-09-10T21:58:50+00:00",
+  "updated": "2026-09-10T23:21:00+00:00",
   "day": "2026-09-10",
   "days_back": 45,
-  "total": 104,
+  "total": 103,
   "labs": [
     {
       "name": "UC Berkeley",
@@ -1556,30 +1556,7 @@
         },
         {
           "name": "Pulkit Agrawal",
-          "papers": [
-            {
-              "id": "2608.17896",
-              "title": "Dynamic Compression in Recurrent Networks",
-              "authors": [
-                "Jyothish Pari",
-                "Ryan Bahlous-Boldi",
-                "Pulkit Agrawal"
-              ],
-              "abstract": "Recurrent models process long contexts efficiently by compressing their history into a fixed-size state, but modern architectures typically do so in a single causal pass over the sequence. Each input must therefore be compressed before the model knows how it will later be used, forcing a limited state to compromise across possible future demands. We introduce dynamic compression, which allows a recurrent model to selectively revisit past tokens and revise its fixed-size state through additional recurrent updates. The model need not preserve every part of the history at uniformly high fidelity in its recurrent state, because lower-fidelity information can be revisited from the retained raw sequence when it becomes relevant. We study this in a controlled setting where the model first learns multiple functions in-context and, later in the same sequence, encounters a series of few-shot tasks that each require it to identify and reuse one of those functions. A single-pass model must preserve every function at sufficient fidelity for any future task, whereas selective re-scanning allows the model to revisit and refine only the function currently needed. We find that dynamic compression substantially reduces the recurrent state required for accurate reuse and scales more favorably as the number of stored functions grows. These results demonstrate a computation--memory tradeoff in which recurrent models can spend more computation revisiting their history to make more effective use of a fixed-size state.",
-              "categories": [
-                "cs.LG"
-              ],
-              "published": "2026-08-18T15:29:18Z",
-              "url": "https://arxiv.org/abs/2608.17896",
-              "pdf_url": "https://arxiv.org/pdf/2608.17896v1",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2608.17896v1/repeat_betas_codebook.png",
-              "figure_caption": "Figure 4: Top: Write strength β \\beta (averaged across heads) across layers and token positions for three repeat-model sequences, each containing K = 3 K=3 bases and one query group. Bottom: A re-scan codebook constructed from the β \\beta patterns of many such sequences. The codebook compresses thes",
-              "figure_source": null,
-              "video_url": null,
-              "links": {}
-            }
-          ]
+          "papers": []
         },
         {
           "name": "Leslie Pack Kaelbling",
@@ -1625,7 +1602,7 @@
           ]
         }
       ],
-      "total": 3
+      "total": 2
     },
     {
       "name": "NYU / Columbia / Princeton",
