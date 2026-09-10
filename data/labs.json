@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T21:35:12+00:00",
+  "updated": "2026-09-10T21:58:50+00:00",
   "day": "2026-09-10",
   "days_back": 45,
   "total": 104,
@@ -7,6 +7,7 @@
     {
       "name": "UC Berkeley",
       "short": "Berkeley",
+      "slug": "berkeley",
       "researchers": [
         {
           "name": "Sergey Levine",
@@ -29,8 +30,9 @@
               "url": "https://arxiv.org/abs/2609.07303",
               "pdf_url": "https://arxiv.org/pdf/2609.07303v1",
               "comment": "",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2609.07303.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {}
             },
@@ -70,6 +72,7 @@
               "comment": "25 pages, 12 figures, project website: https://async-rl-intermediate-information.github.io/",
               "figure_url": "https://arxiv.org/html/2608.23831v2/body/figures/arli_teaser.png",
               "figure_caption": "Figure 1: Enabling RL improvement of generalist robot policies under inference latency: Generalist policies incur significant action inference latency delays, either forcing pauses during inference or relying on stale observations, making RL improvement brittle. Arli uses intermediate actions and up",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://async-rl-intermediate-information.github.io/"
@@ -102,6 +105,7 @@
               "comment": "42 pages, 29 figures",
               "figure_url": "https://arxiv.org/html/2608.12253v2/figures/human_study/fig_human_study_tau2_landing.png",
               "figure_caption": "Figure 10: τ 2 \\tau^{2} -bench landing view. The right panel renders the structured task profile (goal, role information, conditional behaviors, style notes, and a sky-blue Travelers callout when the scenario involves multiple passengers). The left panel is a single-message-per-turn streaming chat w",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -126,6 +130,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.02547v1/paper_fig.png",
               "figure_caption": "Figure 1: In this work we investigate why action chunking improves the performance of behavioral cloning in robotic control. We show that common hypothesis—temporal consistency, horizon reduction, and representation learning—are not able to explain the performance of action chunking. Instead, we dem",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -157,6 +162,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.02358v1/figures/paper_calibrated_trigger.png",
               "figure_caption": "Figure 3: RA-guided runtime trigger study. Difficulty score d = max t ⁡ V ^ ψ ​ ( s t ) d=\\max_{t}\\hat{V}_{\\psi}(s_{t}) is measured in a behavior-only pre-scan. Gray dots show all 59 59 MuJoCo clips; blue circles and red squares show matched sim and hardware failure rates for H1–H5.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -189,6 +195,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.01961v1/Abstract_new2.png",
               "figure_caption": "Figure 1: Debridement pipeline with the dVRK robot and one RGB camera (not shown). Frame 1 illustrates the initial debridement configuration; Frame 2 shows the camera-frame servoing process; Frame 3 shows the MACAW window in blue and images before and after contact; Frame 4 demonstrates a successful",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -210,6 +217,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.18227v1/figures/pusht_az_2d.png",
               "figure_caption": "Figure 1: The agent-written Push A–Z benchmark in the 2D gym. Each tile shows the goal letter pose (green), the block (gray), and the pusher (blue dot); headers give the letter, seed, and final coverage. Red frames mark failures of the pre-MPC baseline controller (B and R at coverage 0.00, S at 0.36",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -267,6 +275,7 @@
               "comment": "53 pages, 7 figures",
               "figure_url": "https://arxiv.org/html/2608.07558v1/teaser.png",
               "figure_caption": "Figure 1: Overview of TF-ART: a unified force/tactile-aware multi-modal multi-phase framework. The main hierarchical architecture includes multimodal perception, encoding and fusion, primary action generation, action refinement, and low-level robot-end control. The branching modules include input da",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -298,6 +307,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.02358v1/figures/paper_calibrated_trigger.png",
               "figure_caption": "Figure 3: RA-guided runtime trigger study. Difficulty score d = max t ⁡ V ^ ψ ​ ( s t ) d=\\max_{t}\\hat{V}_{\\psi}(s_{t}) is measured in a behavior-only pre-scan. Gray dots show all 59 59 MuJoCo clips; blue circles and red squares show matched sim and hardware failure rates for H1–H5.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -326,6 +336,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2607.27924v3/figures/ODEWorld_framework.png",
               "figure_caption": "Figure 1: Illustration of PT-Flow and ODEWorld. (a), (b) Comparison between flow matching and our proposed PT-Flow. Although both methods learn time-dependent velocity fields and perform generation with ODE solvers, their notion of time and design philosophies are completely different. (c) Model arc",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://dstate.github.io/odeworld_website/"
@@ -361,6 +372,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.02885v1/figures/qualitative.png",
               "figure_caption": "Figure 1: Qualitative example of predicted next-state representations at a single decision point in the WebArena Reddit environment. Given the current state and queried action, our predicted-state-matching world model identifies the specific state change produced by the action. A textual-summary met",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://dhruvpendharkar.github.io/dwm/"
@@ -387,8 +399,9 @@
               "url": "https://arxiv.org/abs/2608.28958",
               "pdf_url": "https://arxiv.org/pdf/2608.28958v1",
               "comment": "Accepted to EMNLP 2026 Findings",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2608.28958.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {}
             },
@@ -415,6 +428,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2607.25860v1/method_figure_strong_weak2.png",
               "figure_caption": "Figure 1 : Open-ended CT segmentation with weak supervision. In our method, we train a per-slice segmentation model with both strong and weak supervision. The model takes as input a single 2D slice and a finding description and produces as output a presence (i.e. slice-level existence) probability a",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -426,6 +440,7 @@
     {
       "name": "Stanford",
       "short": "Stanford",
+      "slug": "stanford",
       "researchers": [
         {
           "name": "Chelsea Finn",
@@ -449,8 +464,9 @@
               "url": "https://arxiv.org/abs/2609.00196",
               "pdf_url": "https://arxiv.org/pdf/2609.00196v1",
               "comment": "",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2609.00196.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {
                 "code": "https://github.com/krafton-ai/WHALE"
@@ -476,6 +492,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.17163v1/figures/tree_search.png",
               "figure_caption": "Figure 1: Overview of QWM . Left: World-model tree search. From the current state, the policy proposes candidate actions and the world model imagines future states. The value of each initial action is computed by aggregating value of intermediate and leaf nodes. Right: Online action selection. At ea",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -503,6 +520,7 @@
               "comment": "Project page: https://spd.bot",
               "figure_url": "https://arxiv.org/html/2608.15917v2/teaser.png",
               "figure_caption": "Figure 1: Simulation pre-training for dexterity. Top: 75 hours of teleoperated simulation data spanning six scenes and hundreds of object instances, covering contact-rich low-level dexterous behavior. Bottom: the pre-trained policy adapts to the real-world dexterous tasks shown, with 1 hour of real ",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://spd.bot"
@@ -528,6 +546,7 @@
               "comment": "10 pages, 12 figures. This arXiv version includes an appendix with qualitative simulation rollouts and additional ablations. Published at ICRA 2025",
               "figure_url": "https://arxiv.org/html/2608.09138v2/Task_Definition_Real.png",
               "figure_caption": "Fig. 2: Initialization and key actions for three real-world tasks (top to bottom): Tea Bag Disposal, Food Preparation, and Almond Pouring.",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://daivdyuan.github.io/speed-tuning/"
@@ -552,6 +571,7 @@
               "comment": "Fixed typo in author name",
               "figure_url": "https://arxiv.org/html/2607.27203v2/figures/ipe.png",
               "figure_caption": "Figure 1: IPE . Left: naively pretraining does not help RL fine-tuning performance as Q π base ≠ Q π RL ∗ Q^{\\pi_{\\text{base}}}\\neq Q^{\\pi^{*}_{\\text{RL}}} . Mid: IPE enables online RL fine-tuning to better learn Q π RL ∗ Q^{\\pi^{*}_{\\text{RL}}} through diverse action coverage. Right: IPE results in",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -581,6 +601,7 @@
               "comment": "22 pages, 15 figures",
               "figure_url": "https://arxiv.org/html/2608.26545v1/pullfig.png",
               "figure_caption": "Figure 1: Memory Anchors . New tasks may be visually similar to old tasks while requiring different, sometimes even opposite actions, causing catastrophic forgetting (Right). We claim that a small proportion of old data plays a large role in anchoring past task performance. While these Memory Anchor",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://robot-adaptation.github.io/MemoryAnchors"
@@ -604,6 +625,7 @@
               "comment": "26 pages, 12 figures, 20 tables. Project page: https://transformer-transformer.github.io",
               "figure_url": "https://arxiv.org/html/2607.25798v1/figures/teaser_v6.jpg",
               "figure_caption": "Figure 1: Demonstrate, Generate, Validate. From target end-effector motions and unseen reward functions, Transformer Transformer generates optimized robot designs that maximize rewards, then validates generated robots by controlling them to track the given motions. Trained over robot embodiment, sta",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://transformer-transformer.github.io"
@@ -660,6 +682,7 @@
               "comment": "47 pages, 12 figures, 11 tables",
               "figure_url": "https://arxiv.org/html/2609.06396v2/figures/institutions.png",
               "figure_caption": "",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -685,6 +708,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.01938v2/splash_fig.png",
               "figure_caption": "Figure 1: We propose DemoMimic, a method that learns a dexterous manipulation policy from a single human demonstration (top) and can generalize to different unseen objects (bottom).",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -708,6 +732,7 @@
               "comment": "ECCV 2026",
               "figure_url": "https://arxiv.org/html/2609.01823v1/method_v2.png",
               "figure_caption": "Figure 2 : Left: Overview of Kirin generation pipeline. A text description and an image are provided as inputs. The text and image are used for motion generation, while the image is also used to generate a T-posed mesh. The animation module then rigs the generated motion onto the mesh to produce the",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://kirin-ani.github.io/"
@@ -739,6 +764,7 @@
               "comment": "EMNLP Main Conference",
               "figure_url": "https://arxiv.org/html/2608.30530v1/intro.png",
               "figure_caption": "Figure 1: When the VLM judges by screenshot, edits that look improved can fail under browser re-execution: the proposer-judge gap our audit measures.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -766,6 +792,7 @@
               "comment": "20 pages, 11 figures, 14 tables",
               "figure_url": "https://arxiv.org/html/2608.27181v1/figure_architecture.png",
               "figure_caption": "",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -803,8 +830,9 @@
               "url": "https://arxiv.org/abs/2608.25924",
               "pdf_url": "https://arxiv.org/pdf/2608.25924v1",
               "comment": "",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2608.25924.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {}
             },
@@ -830,6 +858,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.24101v3/img/splash.png",
               "figure_caption": "Figure 1: Overview of TrAct. TrAct uses VLAT (left, purple), pretrained on large-scale cross-embodiment data, to propose candidate action–track pairs. TWM (middle, gray) rolls out the visual outcome for each candidate conditioned on the tracks, and VLAC (middle, green) selects the highest-reward rol",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -862,6 +891,7 @@
               "comment": "We updated scores with models trained on updated agentic data",
               "figure_url": "https://arxiv.org/html/2608.23181v3/cybergym-intro.png",
               "figure_caption": "Figure 1: CyberFactory turns real-world vulnerability evidence into executable, difficulty-calibrated supervision for training OpenAegis on vulnerability detection, patch generation, and CyberQA.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -885,6 +915,7 @@
               "comment": "Accepted at IEEE GLOBECOM 2026",
               "figure_url": "https://arxiv.org/html/2608.20518v1/deployment.png",
               "figure_caption": "Fig. 1: FL-MAESTRO deployment overview. The orchestrator coordinates topology, resource allocation, and aggregation decisions across clients.",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "code": "https://github.com/denoslab/FL-MAESTRO"
@@ -917,6 +948,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.01938v2/splash_fig.png",
               "figure_caption": "Figure 1: We propose DemoMimic, a method that learns a dexterous manipulation policy from a single human demonstration (top) and can generalize to different unseen objects (bottom).",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -940,6 +972,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.17163v1/figures/tree_search.png",
               "figure_caption": "Figure 1: Overview of QWM . Left: World-model tree search. From the current state, the policy proposes candidate actions and the world model imagines future states. The value of each initial action is computed by aggregating value of intermediate and leaf nodes. Right: Online action selection. At ea",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -967,6 +1000,7 @@
               "comment": "Project page: https://ajaysridhar.com/barx/",
               "figure_url": "https://arxiv.org/html/2607.27549v1/icra_barx_figure.png",
               "figure_caption": "Fig. 1: Left : We consider cross-embodiment datasets of both simulated and real-world robots. We then extract behavior-aligned representations: language motions via heuristics and end effector pose deltas, end effector traces via segmentation models, and bounding boxes via Grounding DINO. Right : We",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://ajaysridhar.com/barx/"
@@ -991,6 +1025,7 @@
               "comment": "Fixed typo in author name",
               "figure_url": "https://arxiv.org/html/2607.27203v2/figures/ipe.png",
               "figure_caption": "Figure 1: IPE . Left: naively pretraining does not help RL fine-tuning performance as Q π base ≠ Q π RL ∗ Q^{\\pi_{\\text{base}}}\\neq Q^{\\pi^{*}_{\\text{RL}}} . Mid: IPE enables online RL fine-tuning to better learn Q π RL ∗ Q^{\\pi^{*}_{\\text{RL}}} through diverse action coverage. Right: IPE results in",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -1022,6 +1057,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.02358v1/figures/paper_calibrated_trigger.png",
               "figure_caption": "Figure 3: RA-guided runtime trigger study. Difficulty score d = max t ⁡ V ^ ψ ​ ( s t ) d=\\max_{t}\\hat{V}_{\\psi}(s_{t}) is measured in a behavior-only pre-scan. Gray dots show all 59 59 MuJoCo clips; blue circles and red squares show matched sim and hardware failure rates for H1–H5.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -1049,6 +1085,7 @@
               "comment": "Project page: https://spd.bot",
               "figure_url": "https://arxiv.org/html/2608.15917v2/teaser.png",
               "figure_caption": "Figure 1: Simulation pre-training for dexterity. Top: 75 hours of teleoperated simulation data spanning six scenes and hundreds of object instances, covering contact-rich low-level dexterous behavior. Bottom: the pre-trained policy adapts to the real-world dexterous tasks shown, with 1 hour of real ",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://spd.bot"
@@ -1072,6 +1109,7 @@
               "comment": "26 pages, 12 figures, 20 tables. Project page: https://transformer-transformer.github.io",
               "figure_url": "https://arxiv.org/html/2607.25798v1/figures/teaser_v6.jpg",
               "figure_caption": "Figure 1: Demonstrate, Generate, Validate. From target end-effector motions and unseen reward functions, Transformer Transformer generates optimized robot designs that maximize rewards, then validates generated robots by controlling them to track the given motions. Trained over robot embodiment, sta",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://transformer-transformer.github.io"
@@ -1104,6 +1142,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.01938v2/splash_fig.png",
               "figure_caption": "Figure 1: We propose DemoMimic, a method that learns a dexterous manipulation policy from a single human demonstration (top) and can generalize to different unseen objects (bottom).",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -1128,6 +1167,7 @@
               "comment": "16 pages",
               "figure_url": "https://arxiv.org/html/2608.01402v1/failure-profile-usb.png",
               "figure_caption": "",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -1158,6 +1198,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.01938v2/splash_fig.png",
               "figure_caption": "Figure 1: We propose DemoMimic, a method that learns a dexterous manipulation policy from a single human demonstration (top) and can generalize to different unseen objects (bottom).",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -1188,6 +1229,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.24101v3/img/splash.png",
               "figure_caption": "Figure 1: Overview of TrAct. TrAct uses VLAT (left, purple), pretrained on large-scale cross-embodiment data, to propose candidate action–track pairs. TWM (middle, gray) rolls out the visual outcome for each candidate conditioned on the tracks, and VLAC (middle, green) selects the highest-reward rol",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -1199,6 +1241,7 @@
     {
       "name": "Carnegie Mellon University",
       "short": "CMU",
+      "slug": "cmu",
       "researchers": [
         {
           "name": "Deepak Pathak",
@@ -1226,6 +1269,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.03497v1/figs/teaser.png",
               "figure_caption": "Figure 1: BRIDGE : An Open-Source Humanoid Platform via Morphology–Control Co-Design for Physical AI. Standing 88 cm tall and weighing 13 kg, BRIDGE is a compact humanoid capable of executing complex real-world behaviors—ranging from stable daily motion and balance recovery to agile, highly dynamic ",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://sites.google.com/view/bridgerobot"
@@ -1259,6 +1303,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.03497v1/figs/teaser.png",
               "figure_caption": "Figure 1: BRIDGE : An Open-Source Humanoid Platform via Morphology–Control Co-Design for Physical AI. Standing 88 cm tall and weighing 13 kg, BRIDGE is a compact humanoid capable of executing complex real-world behaviors—ranging from stable daily motion and balance recovery to agile, highly dynamic ",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://sites.google.com/view/bridgerobot"
@@ -1288,6 +1333,7 @@
               "comment": "Project Page: https://qwen-3d.github.io/",
               "figure_url": "https://arxiv.org/html/2608.02980v1/teaser_v6.png",
               "figure_caption": "Figure 1 : Qwen-3D performs attention directly in 3D world space rather than over independent image frames. Given multi-view RGB observations, depth, and camera poses, Qwen-3D maps visual tokens into a shared 3D coordinate system and applies geometry-aware attention through 3D Rotary Positional Embe",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://qwen-3d.github.io/"
@@ -1317,6 +1363,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.09145v1/teasor_fig.png",
               "figure_caption": "Figure 1 : Point4D enables long-range 4D reconstruction via autoregressively chaining motion reconstruction across overlapping chunks . Existing 4D reconstruction methods (e.g., TraceAnything [ 19 ] , Any4D [ 15 ] , 4RC [ 20 ] , VDPM [ 27 ] ) predict 4D motion for query 2D pixels, and cannot be easi",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://point-4d.github.io"
@@ -1341,6 +1388,7 @@
               "comment": "Preprint(20 pages). Under Review",
               "figure_url": "https://arxiv.org/html/2607.26055v1/fig/concept_v5.png",
               "figure_caption": "Figure 1: Overview of π ​ 𝐑 2 \\pi\\mathbf{R}^{2} . Top. While standard diffusion/flow matching relies on stale observations to predict actions via iterative denoising, π ​ 𝐑 2 \\pi\\mathbf{R}^{2} disentangles the observation into a fast channel (proprioception) and a slow channel (image encoding, VLM e",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://pi-r2-flow.github.io/"
@@ -1374,6 +1422,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.02358v1/figures/paper_calibrated_trigger.png",
               "figure_caption": "Figure 3: RA-guided runtime trigger study. Difficulty score d = max t ⁡ V ^ ψ ​ ( s t ) d=\\max_{t}\\hat{V}_{\\psi}(s_{t}) is measured in a behavior-only pre-scan. Gray dots show all 59 59 MuJoCo clips; blue circles and red squares show matched sim and hardware failure rates for H1–H5.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -1404,6 +1453,7 @@
               "comment": "28 pages, 7 figures, 15 tables",
               "figure_url": "https://arxiv.org/html/2609.00641v1/figure1_v7.png",
               "figure_caption": "Figure 1: Overview of AM-Bench : AM-Bench is designed to systematically evaluate aerial manipulation along several dimensions: (left) robot platforms, including underactuated (UA-Quad, UA-Hexa), fully actuated (FA-Hexa), and overactuated (Omni-Hexa) systems, together with different low-level control",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -1429,6 +1479,7 @@
               "comment": "15 pages, 6 figures",
               "figure_url": "https://arxiv.org/html/2608.19443v1/teaser.png",
               "figure_caption": "Fig. 1: (a) Motivation of FS-MPC: showing the sampling distributions of FS-MPC (left) and standard MPPI (middle), and the distributions of their samples’ costs (right), where the quadrotor is initialized at the same state. Given the long horizon navigation task with unstable quadrotor dynamics, feed",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -1457,6 +1508,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.09808v1/Figures/gta2.png",
               "figure_caption": "Fig. 2: Overview of GTA-2. GTA-2 takes a task prompt, scene image, and controller library as inputs. Specialized agents process these inputs to decompose the task, generate abstract skill recipes, set task-specific parameters, and produce 3D visual groundings. These outputs are combined into an exec",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://gta2-project.github.io/"
@@ -1470,6 +1522,7 @@
     {
       "name": "MIT",
       "short": "MIT",
+      "slug": "mit",
       "researchers": [
         {
           "name": "Russ Tedrake",
@@ -1495,6 +1548,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.15938v2/media/all_tasks.png",
               "figure_caption": "Figure 1: Benchmark Tasks. FurnitureSimOneLeg [ 51 ] : pick up table leg and insert and screw into table top to assemble the table. Push-T [ 52 ] : Push T-shaped slider to target pose, then return robot to reset pose. GearInsertion : Pick up large gear and insert onto gear carrier, meshed with other",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -1521,6 +1575,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.17896v1/repeat_betas_codebook.png",
               "figure_caption": "Figure 4: Top: Write strength β \\beta (averaged across heads) across layers and token positions for three repeat-model sequences, each containing K = 3 K=3 bases and one query group. Bottom: A re-scan codebook constructed from the β \\beta patterns of many such sequences. The codebook compresses thes",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -1561,6 +1616,7 @@
               "comment": "Project page: https://spd.bot",
               "figure_url": "https://arxiv.org/html/2608.15917v2/teaser.png",
               "figure_caption": "Figure 1: Simulation pre-training for dexterity. Top: 75 hours of teleoperated simulation data spanning six scenes and hundreds of object instances, covering contact-rich low-level dexterous behavior. Bottom: the pre-trained policy adapts to the real-world dexterous tasks shown, with 1 hour of real ",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://spd.bot"
@@ -1574,6 +1630,7 @@
     {
       "name": "NYU / Columbia / Princeton",
       "short": "NYU",
+      "slug": "nyu",
       "researchers": [
         {
           "name": "Lerrel Pinto",
@@ -1605,6 +1662,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.27395v1/pca_comparison.png",
               "figure_caption": "Figure 3: Patch-token PCA across methods. The three leading principal components of the patch-token representations, visualized as RGB, for the same input image. LeVJEPA yields a decomposition that cleanly separates the animal from the surrounding furniture and background, comparable to that of V-JE",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -1629,6 +1687,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.22764v1/fig_piecewise_heatmap_r14c14.png",
               "figure_caption": "(a) Support Jaccard Heatmap.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -1692,8 +1751,9 @@
               "url": "https://arxiv.org/abs/2608.16319",
               "pdf_url": "https://arxiv.org/pdf/2608.16319v2",
               "comment": "",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2608.16319.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {}
             },
@@ -1723,8 +1783,9 @@
               "url": "https://arxiv.org/abs/2608.02208",
               "pdf_url": "https://arxiv.org/pdf/2608.02208v1",
               "comment": "Preprint Version",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2608.02208.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {}
             },
@@ -1751,6 +1812,7 @@
               "comment": "15 pages, 4 figures, 5 tables",
               "figure_url": "https://arxiv.org/html/2608.00491v1/x1.png",
               "figure_caption": "Figure 1. Motivation and overview of HP-JEPA. Real-world graphs contain complementary structural information at multiple resolutions, including fine-resolution local motifs, intermediate-resolution regional context, and coarse-resolution global topology. A single fixed resolution can be overly fine,",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -1777,6 +1839,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.00103v1/images/flops_acc_text_L512_L1024.png",
               "figure_caption": "",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -1815,8 +1878,9 @@
               "url": "https://arxiv.org/abs/2608.16798",
               "pdf_url": "https://arxiv.org/pdf/2608.16798v1",
               "comment": "",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2608.16798.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {}
             }
@@ -1828,6 +1892,7 @@
     {
       "name": "University of Washington",
       "short": "UW",
+      "slug": "uw",
       "researchers": [
         {
           "name": "Dieter Fox",
@@ -1855,6 +1920,7 @@
               "comment": "Project page: https://flex-pi.github.io/",
               "figure_url": "https://arxiv.org/html/2608.10860v3/flexipi_teaser_v4.png",
               "figure_caption": "Figure 1: Flex- π \\pi is a multi-stream world-action model which can take in RGB, 3D, and DINO visual features to jointly generate both latent future visual features and actions. After training, it supports flexible inference modes that let end users trade off latency and performance.",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://flex-pi.github.io/"
@@ -1887,6 +1953,7 @@
               "comment": "24 pages, 6 figures. The first four authors contributed equally",
               "figure_url": "https://arxiv.org/html/2608.05326v1/obs1.png",
               "figure_caption": "(a) FMM over decoding. Window policies reduce attention assigned to discarded states. The dashed curve treats the R3 tier as inaccessible, isolating the contribution of recoverable low-bit windows.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -1912,6 +1979,7 @@
               "comment": "25 Pages, 7 figures. Accepted to the International Conference on Machine Learning (ICML 2026)",
               "figure_url": "https://arxiv.org/html/2608.01582v1/sde_pipeline_updated_2.png",
               "figure_caption": "Figure 1 : Pipeline for LieStoNet",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "code": "https://github.com/sumit-sinha-seas/LieStoNet_Final.git}{this"
@@ -1929,6 +1997,7 @@
     {
       "name": "Georgia Tech / UT Austin",
       "short": "GT / UT",
+      "slug": "gt-ut",
       "researchers": [
         {
           "name": "Animesh Garg",
@@ -1954,6 +2023,7 @@
               "comment": "Project page with videos: https://varungiridhar.github.io/qplanning/",
               "figure_url": "https://arxiv.org/html/2608.21204v1/img/qplanning_teaser.png",
               "figure_caption": "Figure 1: Q-Planning overview. Left: at inference, the frozen BC policy samples N N candidate action chunks; the Q-function scores them and the executed chunk is a single-step Q-weighted average. Right: rollouts (successful and failed) are appended to a replay buffer and used to fine-tune only the Q",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://varungiridhar.github.io/qplanning/"
@@ -2008,6 +2078,7 @@
               "comment": "66 pages",
               "figure_url": "https://arxiv.org/html/2609.04494v1/sections/figures/WP1-Jess.png",
               "figure_caption": "Figure 9 : Jess (Simple Western) of STAT3/pSTAT3 under induction of SOAT1. pSTAT3 induction in IL-6 or LDL treated HepG2 lysates at 4 and 24 hours under low serum conditions. HepG2 cells were pre-treated with nevanimibe (0, 0.3, 1 μ \\mu M) and then stimulated with IL-6 (100 ng/mL) for 4 or 24 hours.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -2019,6 +2090,7 @@
     {
       "name": "ETH Zürich / TU Darmstadt",
       "short": "ETH / TUDa",
+      "slug": "eth-tuda",
       "researchers": [
         {
           "name": "Marco Hutter",
@@ -2044,6 +2116,7 @@
               "comment": "Accepted for publication at the IEEE Robotics and Automation Letters on 23 August, 2026",
               "figure_url": "https://arxiv.org/html/2609.03561v1/Figure1.png",
               "figure_caption": "Fig. 1 : Results of RESPLE (LIO), DR-LRIO (LIO + radar), and Ours in degenerate environments: (a) Airfield1 and (b) BikeTunnel2 . While RESPLE is unstable in Airfield1 and fails in BikeTunnel2 , Ours remains stable in both. Zoomed views and inset images show local details and environments. Circles a",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "code": "https://github.com/ChiyunNoh/TRaIL-Odom"
@@ -2070,6 +2143,7 @@
               "comment": "Project page: https://wuyan01.github.io/ADAPT-project/",
               "figure_url": "https://arxiv.org/html/2609.00677v1/img/teaser.png",
               "figure_caption": "Figure 1: ADAPT is an end-to-end diffusion-based skill prior that enables interactive text-driven humanoid control with smooth and robust skill transitions and can be reused for downstream tasks to achieve goal-reaching with controllable motion styles. Please refer to the project webpage for real-wo",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://wuyan01.github.io/ADAPT-project/"
@@ -2096,6 +2170,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.29769v1/media/front_page_v2_compressed.png",
               "figure_caption": "Fig. 1 : Hardware deployment: jumping onto the bar (left) and ducking beneath thin overhead bars (right); bottom: the policies’ learned attention pattern for lidar observations, where task-related returns are focused on.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2120,6 +2195,7 @@
               "comment": "project website: https://tolomeis.github.io/contact-guided-exp Accepted in IEEE Robotics and Automation Letter (RA-L) 8 pages, 9 figures",
               "figure_url": "https://arxiv.org/html/2608.28140v1/teaser_comp.png",
               "figure_caption": "Fig. 1: Learning Non-Prehensile Manipulation via Contact-guided exploration. We guide reinforcement learning exploration using object-centric contact priors. The colored dashed lines illustrate the learned policy’s ability to execute contact-rich behaviours (e.g., pushing a chair to a target) by foc",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://tolomeis.github.io/contact-guided-exp"
@@ -2149,6 +2225,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.12063v1/main_figure.png",
               "figure_caption": "Figure 1: The three main stages of our proposed pipeline. We first collect a dataset from an expert SMPC , which is easy to tune in near real-time. We then train complex loco-manipulation policies with sparse rewards solely by mixing in the offline expert data, skipping tedious reward tuning. Finall",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2172,6 +2249,7 @@
               "comment": "IROS 2026. Implementation: https://github.com/rai-opensource/vernata",
               "figure_url": "https://arxiv.org/html/2608.06919v1/images/Vernata_Teaser.png",
               "figure_caption": "Fig. 1: Visualization of PCA Features in LiDAR Scenes. We visualize the principal components of point representations produced by Sonata [ 31 ] finetuned on LiDAR datasets, as well as our approach. Sonata struggles with separation between distinct semantic classes, as well as consistency across the ",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "code": "https://github.com/rai-opensource/vernata"
@@ -2197,6 +2275,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.06170v1/prior-sg_main_fig_real.png",
               "figure_caption": "Fig. 1: System architecture of the Prior-SG framework. As detailed in Section IV , the Prior Graph 𝒢 P \\mathcal{G}_{P} (left) is synthesized by a Large Language Model conditioned on a high-level task and environment. This involves top-down state-space truncation (A) to define the expected hierarchic",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2223,6 +2302,7 @@
               "comment": "Accepted for publication in Science Robotics. This is the author's version of the work. It is posted here by permission of the AAAS for personal use, not for redistribution. The definitive version was published in Science Robotics on July 29, 2026, DOI: 10.1126/scirobotics.aee0787",
               "figure_url": "https://arxiv.org/html/2607.28952v1/hardware_copyright.png",
               "figure_caption": "Figure 1: Hardware overview. ( A ) A comparison of the functional analogies between human body parts (for example, eye and muscles) and robot components (perception and actuation). ( B ) The internal structure of a robotic actuation unit [ 30 ] . ( C ) Historic development of the control paradigm to",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2247,6 +2327,7 @@
               "comment": "8 pages, 11 figures, Accepted in July 2026 at IEEE Robotics and Automation Letters (RA-L)",
               "figure_url": "https://arxiv.org/html/2607.25781v1/images/robot/tripody_teaser.jpg",
               "figure_caption": "Fig. 1 : Tripody equipped with a drilling end-effector shown in transportation, retracted, and extended configurations. Insets highlight the base and end-effector assemblies.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -2274,6 +2355,7 @@
               "comment": "9 pages, 6 figures. Project page: https://aditya.bhatts.org/BlindDexterity/",
               "figure_url": "https://arxiv.org/html/2608.29487v1/imufree_walking.png",
               "figure_caption": "Fig. 1: Estimating inertial measurements from proprioception. In simulation, we command all three locomotion policies to stand in place, perturb the robot with an identical velocity impulse at 5 ​ s 5s , and compare the predictions of the proprioceptive estimator against the ground-truth inertial me",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://aditya.bhatts.org/BlindDexterity/"
@@ -2302,6 +2384,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.01506v2/pipeline_diagram.png",
               "figure_caption": "Fig. 1: Pipeline of the proposed online embodiment adaptation framework. The cross-embodiment base policy π base \\pi_{\\text{base}} is trained to handle locomotion tasks across different embodiments with the ground-truth embodiment description. The adaptation module f f is trained to infer embodiment",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2354,6 +2437,7 @@
               "comment": "53 pages, 7 figures",
               "figure_url": "https://arxiv.org/html/2608.07558v1/teaser.png",
               "figure_caption": "Figure 1: Overview of TF-ART: a unified force/tactile-aware multi-modal multi-phase framework. The main hierarchical architecture includes multimodal perception, encoding and fusion, primary action generation, action refinement, and low-level robot-end control. The branching modules include input da",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -2388,6 +2472,7 @@
               "comment": "Submitted to IEEE Transactions on Robotics (T-RO). 18 pages, 13 figures",
               "figure_url": "https://arxiv.org/html/2609.01061v1/abstract_fig.png",
               "figure_caption": "Fig. 1 : SG-RL learns an online MPC weight-adaptation policy π ϕ \\pi_{\\phi} by combining environment-based policy-gradient learning ∇ ϕ 𝒥 RL \\nabla_{\\phi}\\mathcal{J}_{\\mathrm{RL}} with model-based solver-gradient guidance ∇ ϕ 𝒥 SG \\nabla_{\\phi}\\mathcal{J}_{\\mathrm{SG}} . The update preserves closed-",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2414,6 +2499,7 @@
               "comment": "This work has been submitted to the IEEE JSSC for possible publication",
               "figure_url": "https://arxiv.org/html/2608.17787v1/Fig_motivation.png",
               "figure_caption": "Fig. 1: (a) Frame- versus event-based edge-vision platforms, and gap in the state of the art. (b) Working principle of EV-GNNs.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -2425,6 +2511,7 @@
     {
       "name": "清华 / 北大 / 上交",
       "short": "清北交",
+      "slug": "cn-universities",
       "researchers": [
         {
           "name": "Yang Gao",
@@ -2453,6 +2540,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.07174v1/physmas_figure1_teaser.png",
               "figure_caption": "Figure 1: Overview of PhysMAS. Each run receives a motion prompt, four calibrated RGB views, their aligned static 3DGS, and prescribed output cameras. PhysMAS constructs persistent object–part state with part-wise simulator profiles; the compiled state is advanced in a shared MPM domain and rendered",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2478,6 +2566,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.04865v1/related_arch.png",
               "figure_caption": "Figure 2: Skill-evolution paradigms. (a) External orchestration decouples skill evolution from policy learning. (b) RL manages skill-library operations at coarse granularity. (c) Fixed meta-skill workflows optimize individual skills without policy co-adaptation. (d) CoSkill jointly trains the Reason",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "code": "https://github.com/jinyuan-cookie/CoSkill"
@@ -2505,8 +2594,9 @@
               "url": "https://arxiv.org/abs/2608.27982",
               "pdf_url": "https://arxiv.org/pdf/2608.27982v1",
               "comment": "",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2608.27982.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {}
             },
@@ -2541,6 +2631,7 @@
               "comment": "12 pages, 7 figures. This work has been submitted to the IEEE for possible publication. Copyright may be transferred without notice, after which this version may no longer be accessible",
               "figure_url": "https://arxiv.org/html/2608.28712v1/method_image.png",
               "figure_caption": "Fig. 1: CMGR framework. CMGR is designed to produce a motion-preserved, artifact-reduced, and continuous-time 4D cardiac CT sequence from a clinical multiphase reconstruction. CMGR uses the cardiac phase with minimal motion artifacts as the reference phase and registers the reference phase to each n",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2565,8 +2656,9 @@
               "url": "https://arxiv.org/abs/2608.27960",
               "pdf_url": "https://arxiv.org/pdf/2608.27960v1",
               "comment": "",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2608.27960.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {}
             },
@@ -2592,6 +2684,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.19013v1/intro.png",
               "figure_caption": "Figure 1: The shift in the object of continual learning. Model-centric methods update model parameters θ \\theta over sequential experience. HCL instead updates harness state around a frozen foundation model. In both settings, adaptation can improve new behavior while interfering with behavior acquir",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2616,6 +2709,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.15060v1/00-teaser.png",
               "figure_caption": "Figure 1 : Overview of EgoTac. EgoTac unifies self-collected tactile data with contact-labeled egocentric hand-object interaction datasets into a shared MANO-aligned representation, and learns a vision-to-tactile model that predicts dense force and contact from egocentric RGB videos. The learned map",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2664,8 +2758,9 @@
               "url": "https://arxiv.org/abs/2608.15045",
               "pdf_url": "https://arxiv.org/pdf/2608.15045v1",
               "comment": "22 pages. Project page: https://openmoss.ai/MOSS-VL/",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2608.15045.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {
                 "code": "https://github.com/OpenMOSS/MOSS-VL",
@@ -2697,6 +2792,7 @@
               "comment": "Accepted by CIKM 2026",
               "figure_url": "https://arxiv.org/html/2608.11980v2/hcgrec_main_figure.png",
               "figure_caption": "Figure 1. Overview of HCGRec. (A) In semantic-ID generative recommendation, unhinted rollouts may enter wrong prefix branches and produce identical rewards, leaving the instance inactive for group-relative optimization. (B) HCGRec diagnoses each instance with an SFT checkpoint, selects the shortest ",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "code": "https://github.com/WncFht/GRec"
@@ -2723,6 +2819,7 @@
               "comment": "code: https://github.com/Neesky/TRCoRSurg",
               "figure_url": "https://arxiv.org/html/2608.04606v1/intro.png",
               "figure_caption": "Figure 1 : Illustration of label dependencies in surgical triplet recognition. Left : representative frames showing multiple triplets co-occurring within the same scene. Right : pairwise triplet co-occurrence matrices, where the highly uneven distribution indicates strong structured dependencies amo",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "code": "https://github.com/Neesky/TRCoRSurg"
@@ -2751,6 +2848,7 @@
               "comment": "Project page: https://neesky.github.io/VoxStruct3D/",
               "figure_url": "https://arxiv.org/html/2608.04557v1/framework.png",
               "figure_caption": "Figure 1: Overview of Stage II . Given a clean volume 𝐱 1 \\mathbf{x}_{1} and class label y y , independent noise is injected into the image and structure streams at times t x t_{x} and t s t_{s} , respectively. The noised volume is patchified into image tokens 𝐳 t \\mathbf{z}_{t} , while the frozen 3",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://neesky.github.io/VoxStruct3D/"
@@ -2780,6 +2878,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.01837v1/Figures/combined_results.png",
               "figure_caption": "Figure 1: Overall performance comparison. Main results on WebShop and ALFWorld with Qwen2.5-3B-Instruct. Left: WebShop Score and Acc; Middle: ALFWorld sub-task radar; Right: ALFWorld Overall success rate.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2806,6 +2905,7 @@
               "comment": "10 pages",
               "figure_url": "https://arxiv.org/html/2607.29019v1/framwork.png",
               "figure_caption": "Figure 1: Overview of the proposed non-interactive encrypted retrieval framework for privacy-preserving RAG.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2834,6 +2934,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2607.25593v1/Experiment.png",
               "figure_caption": "Figure 2: Robot platform, hardware iteration, and tabletop manipulation tasks. (a) The robot comprises dual 7-DoF arms, a 6-DoF waist–leg mechanism, a 2-DoF neck, and a four-wheel omnidirectional base. (b) Gen-2 replaces the monocular RGB cameras and position-controlled gripper of Gen-1 with fisheye",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -2861,6 +2962,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.08638v1/phase_framework.png",
               "figure_caption": "Figure 1: Two-stage privileged semantic distillation in CASD . Offline stage annotations and chunk occupancies define a fixed semantic teacher. Stage A trains the CASD generator to predict these tokens from current inputs. Stage B freezes the generator and conditions the video–action policy on its p",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2890,6 +2992,7 @@
               "comment": "50 pages, including supplementary material",
               "figure_url": "https://arxiv.org/html/2609.05927v1/teaser.png",
               "figure_caption": "Figure 1: Overview of GIF. Left: diverse, interactive and functional task compositions, shown individually and arranged in a kitchen scene. Cyan labels match each composition to its placement in the scene; gray labels identify the independently interactive components within each composition (e.g., a",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2925,6 +3028,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.02546v2/teaser_HD.png",
               "figure_caption": "Figure 1: Overview of our controlled study. We distinguish strict zero-shot transfer , where the target robot is absent from all training data, from pretrain-exposed zero-shot transfer . Under a controlled benchmark, we conduct fine-grained analyses across four embodiment shift categories, covering ",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -2954,6 +3058,7 @@
               "comment": "Accepted at ECCV 2026. Project page: https://RoboGesture.github.io",
               "figure_url": "https://arxiv.org/html/2608.28693v1/pipeline_v3.png",
               "figure_caption": "Figure 1: Overview of RoboGesture. (a) The Semantic-Acoustic Aligner is pre-trained to decouple multi-granular audio cues from streaming tokens. (b) The Motion Generator synthesizes motions via Conditional Flow Matching, jointly conditioned on hierarchical audio features and historical motion to mai",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://RoboGesture.github.io"
@@ -2982,6 +3087,7 @@
               "comment": "26 pages, 12 figures",
               "figure_url": "https://arxiv.org/html/2608.24471v1/fig01_01.png",
               "figure_caption": "Figure 1: Schematic illustration of multi-satellite maritime moving target scheduling with time-varying observation windows, operational constraints, and IQL-guided adaptive ACO optimization.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -3006,6 +3112,7 @@
               "comment": "14 pages, 8 figures",
               "figure_url": "https://arxiv.org/html/2608.24470v1/fig01.png",
               "figure_caption": "Fig. 1: Overall scheduling process for heterogeneous AEOS systems, including visibility analysis, satellite–task assignment, scheduling optimization, and final schedule generation.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -3040,6 +3147,7 @@
               "comment": "Accepted to ECCV 2026",
               "figure_url": "https://arxiv.org/html/2608.13555v1/case-supp.png",
               "figure_caption": "Figure 1 : Motion taxonomy. HumanTracker groups motions into four families according to their dominant tracking and contact regimes. The taxonomy supports category-level diagnosis rather than only a single aggregate score.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -3064,6 +3172,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.10662v1/figures/Fig1.png",
               "figure_caption": "Figure 1 : System overview of the workflow-centred approach. Research intent is first reified as a visual node-flow structure and then formalised into a deterministic, executable data pipeline.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -3091,6 +3200,7 @@
               "comment": "25 pages, 4 main figures, with appendices. Code and data: https://github.com/Imhongyu/Ekphrasis",
               "figure_url": "https://arxiv.org/html/2608.06967v1/figure1_vci_overview.png",
               "figure_caption": "Figure 1: Construct and evaluation workflow of Ekphrasis . Ekphrasis isolates Visual Creative Ideation as a text-only, pre-image planning construct distinct from image quality, writing quality, and general ideation. The workflow elicits visual blueprints across four brief families, scores plans thro",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "code": "https://github.com/Imhongyu/Ekphrasis"
@@ -3129,6 +3239,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.03034v1/pace_overview_v3.png",
               "figure_caption": "Fig. 1 : Overview of the PACE framework. The system interleaves thinking and acting through the ITA loop (top), adapts cognitive budgets via the DBA based on execution time and difficulty (left), and ensures temporal constraints through hybrid budget control (right). The difficulty coefficient α \\al",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -3152,6 +3263,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2607.28953v1/a.png",
               "figure_caption": "",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -3197,8 +3309,9 @@
               "url": "https://arxiv.org/abs/2609.07398",
               "pdf_url": "https://arxiv.org/pdf/2609.07398v1",
               "comment": "Project Page: https://openwam-official.github.io/; Code: https://github.com/OpenWAM-Official/OpenWAM; Model & Data: https://huggingface.co/OpenWAM",
-              "figure_url": null,
-              "figure_caption": "",
+              "figure_url": "thumbs/2609.07398.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
               "video_url": null,
               "links": {
                 "project": "https://openwam-official.github.io/",
@@ -3230,6 +3343,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.03591v1/images/robot_hardware.png",
               "figure_caption": "Fig. 2 : X2W hardware configuration. The robot has 25 degrees of freedom. It is equipped with a variety of sensors, including the RealSense D435i, ZED X Mini and ZED-XONE GS cameras, as well as an inertial measurement unit (IMU) and heterogeneous computing units, supporting the performance of househ",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -3263,6 +3377,7 @@
               "comment": "Accepted by ACM MM 26",
               "figure_url": "https://arxiv.org/html/2608.15863v1/teasor.png",
               "figure_caption": "Figure 1. Capabilities of our AppliancePlan model. Left: AppliancePlan plans manipulation for diverse appliances and updates the plan when interrupted. Right: AppliancePlan outperforms strong large-model baselines on RealAppliance-Bench ( Gao et al., 2026 ) .",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -3289,6 +3404,7 @@
               "comment": "accepted by ACM MM 2026",
               "figure_url": "https://arxiv.org/html/2608.15284v1/teasor.png",
               "figure_caption": "Figure 1. Evolution of navigation instruction generation paradigms. (a)–(c) Prior speakers rely on discrete viewpoint graphs with panoramic images, optionally augmented by external knowledge or 3D representations. (d) VTInstructor generates instructions from ego-centric RGB video in continuous envir",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -3317,6 +3433,7 @@
               "comment": "This paper is accepted to ICML 2026",
               "figure_url": "https://arxiv.org/html/2608.14049v1/img_cover.png",
               "figure_caption": "Figure 1 : Overview of FlatLab: a comprehensive simulation platform for robotic flat object manipulation. The platform offers high-fidelity physical simulation of over 100 flat objects and configurable manipulation scenarios. It includes our unified manipulation framework and supports automated mult",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://flatlab-web.github.io/"
@@ -3342,6 +3459,7 @@
               "comment": "9 pages, 4 figures",
               "figure_url": "https://arxiv.org/html/2608.04933v1/figure/Motivation.jpg",
               "figure_caption": "Figure 1: Motivation of Mimir . Long-horizon embodied tasks require memory of both physical world state and task progress. Flat-history agents can retain past observations yet still lose object locations or confuse completed and pending subgoals. Mimir maintains explicit world and task memories, and",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -3368,6 +3486,7 @@
               "comment": "ICRA 2026 conference paper",
               "figure_url": "https://arxiv.org/html/2608.01083v1/task.png",
               "figure_caption": "Fig. 3 : Task Illustrations. Representative tasks in simulation and the real world.",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -3397,6 +3516,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.04533v1/small_teaser.png",
               "figure_caption": "Figure 1: Task-oriented affordance formulation. A complex task unfolds as a sequence of state-dependent actions. Given the task goal and the current egocentric observation (purple box), the objective is to infer the remaining plan, and grounds three participating components of the next step at part ",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://egoafford.github.io"
@@ -3424,6 +3544,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2608.03727v1/t4a-teaser.png",
               "figure_caption": "Figure 1: Track4Action: Unifying 4D Scene Dynamics with Task Understanding. Flow-tracking models capture how a scene evolves in 4D but lack task awareness, whereas conventional VLA policies understand what to accomplish but do not explicitly model future 4D dynamics. Track4Action bridges these compl",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://wing0night.github.io/track4action-project-page"
@@ -3452,6 +3573,7 @@
               "comment": "14 pages, 13 figures",
               "figure_url": "https://arxiv.org/html/2608.03528v1/teaser.png",
               "figure_caption": "Figure 1: Current controllers could still be unnatural, like replicating treadmill paces on the ground. Inspired by behavioral energetics, we introduce Tired Actor, a fatigue-informed character controller with interesting behaviors. As shown, our Tired Actor learns to cut corners by reducing action ",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             },
@@ -3477,6 +3599,7 @@
               "comment": "Project page: https://fa-rdp.github.io",
               "figure_url": "https://arxiv.org/html/2607.28596v1/teaser.png",
               "figure_caption": "Fig. 1: Multimodality-guided frequency adaptation across manipulation phases. Before contact, low indicator value reflects multiple possible approach trajectories and selects the low-frequency diffusion sampler. After contact, the indicator value rises as physical constraints reduce action ambiguity",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "project": "https://fa-rdp.github.io"
@@ -3504,6 +3627,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2607.26513v1/concept.png",
               "figure_caption": "Figure 1 : Example implementation of Analytic Concepts. Structural Blueprint: higher-level objects are procedurally composed by wiring multiple geometric assets together, forming a parametric graph that captures their spatial layout and structural relationships. Manipulation Blueprint: parameterised",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }
@@ -3519,6 +3643,7 @@
     {
       "name": "工业界研究团队",
       "short": "Industry",
+      "slug": "industry",
       "researchers": [
         {
           "name": "Karol Hausman",
@@ -3558,6 +3683,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.02549v1/figures/fig1.png",
               "figure_caption": "Figure 1. Illustration of local drug–target interactions. The predicted puerarin–NOS3 complex shows how puerarin is accommodated within the binding pocket through local physicochemical complementarity and forms hydrogen-bond contacts with key residues, including ASN338, TRP356, and GLU361.",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "code": "https://github.com/developer-hq/ProbeMatchDTI"
@@ -3585,6 +3711,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.00396v1/Figures/augmented.png",
               "figure_caption": "Figure 1: Visualization of an augmented example. Compared to other mixing-based methods, SlideMix accurately identifies tile and instance boundaries. It further distinguishes effectively between negative and positive samples.",
+              "figure_source": null,
               "video_url": null,
               "links": {
                 "code": "https://github.com/Xia-Research-Lab/SlideMix"
@@ -3618,6 +3745,7 @@
               "comment": "",
               "figure_url": "https://arxiv.org/html/2609.09158v1/teaser_new.png",
               "figure_caption": "Figure 1: Humanoid whole-body navigation in cluttered environments. We propose TANGO , a whole-body foundation model for cluttered indoor scene navigation. TANGO demonstrates strong scene understanding and robust traversal capability, navigating a 30-meter route zero-shot in a real-world cluttered o",
+              "figure_source": null,
               "video_url": null,
               "links": {}
             }

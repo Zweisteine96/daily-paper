@@ -19,6 +19,7 @@ LIBRARY_PATH = DATA_DIR / "library.json"
 SEEN_PAPERS_PATH = DATA_DIR / "seen-papers.json"
 REPO_SNAPSHOT_PATH = DATA_DIR / "repos-seen.json"
 SEARCH_INDEX_PATH = DATA_DIR / "search-index.json"
+THUMBS_DIR = DATA_DIR / "thumbs"  # 没有 HTML 配图时，用 PDF 首页渲染的缩略图
 CACHE_DIR = REPO_ROOT / "pipeline" / ".cache"
 
 

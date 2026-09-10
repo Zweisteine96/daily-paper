@@ -1,5 +1,6 @@
 /** 构建时读取仓库根目录 data/ 下的 JSON 文件（服务端使用）。 */
-import type { CardItem, DailyFile, LabPaper, LabsFile, Paper, Repo } from './types';
+import { resolveMedia } from './base';
+import type { CardItem, DailyFile, Lab, LabPaper, LabsFile, Paper, Repo } from './types';
 
 const paperFiles = import.meta.glob<DailyFile<Paper>>('../../../data/papers/*.json', {
   eager: true,
@@ -18,6 +19,28 @@ function byDateDesc<T extends { date: string }>(files: Record<string, T>): T[] {
 export const paperDays: DailyFile<Paper>[] = byDateDesc(paperFiles);
 export const repoDays: DailyFile<Repo>[] = byDateDesc(repoFiles);
 export const labsData: LabsFile | undefined = Object.values(labsFiles)[0];
+
+/* ---------- 学者追踪：嵌套页面用的 slug 工具 ---------- */
+export function slugify(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+export function labSlug(lab: Lab): string {
+  return lab.slug || slugify(lab.short) || slugify(lab.name) || 'lab';
+}
+export function researcherSlug(name: string): string {
+  return slugify(name) || encodeURIComponent(name);
+}
+export const labs: Lab[] = labsData?.labs ?? [];
+export function findLab(slug: string): Lab | undefined {
+  return labs.find((l) => labSlug(l) === slug);
+}
+/** 一位学者最近的论文按日期倒序 */
+export function sortedPapers(ps: LabPaper[]): LabPaper[] {
+  return [...ps].sort((a, b) => (a.published < b.published ? 1 : -1));
+}
 
 export const latestPapers = paperDays[0];
 export const latestRepos = repoDays[0];
@@ -94,7 +117,7 @@ export function paperToCard(p: Paper): CardItem {
     why: p.why,
     keywords: p.matched_keywords,
     pdf: p.pdf_url,
-    image: p.figure_url ?? null,
+    image: resolveMedia(p.figure_url),
     imageCaption: p.figure_caption ?? '',
     video: p.video_url ?? null,
     links,
@@ -116,7 +139,7 @@ export function labPaperToCard(p: LabPaper, researcher: string): CardItem {
     tags: p.categories,
     date: p.published.slice(0, 10),
     pdf: p.pdf_url,
-    image: p.figure_url ?? null,
+    image: resolveMedia(p.figure_url),
     imageCaption: p.figure_caption ?? '',
     video: p.video_url ?? null,
     links,

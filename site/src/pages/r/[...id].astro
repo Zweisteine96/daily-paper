@@ -32,9 +32,9 @@ const fmt = (n: number) => (n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, ''
       <p class="abs">{repo.description || '（没有描述）'}</p>
       <div class="actions">
         <button class="btn like" data-action="liked">♥ 点赞</button>
-        <button class="btn later" data-action="later">⌚ 稍后读</button>
+        <button class="btn later" data-action="later">🔖 稍后读</button>
         <button class="btn dislike" data-action="disliked">✕ 不感兴趣</button>
-        <button class="btn share" data-action="share">⇪ 分享</button>
+        <button class="btn share" data-action="share">🔗 分享</button>
       </div>
       <div class="links" style="font-size:.95rem">
         <a href={repo.url} target="_blank" rel="noopener">GitHub</a>

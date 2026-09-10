@@ -1,0 +1,51 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Card from '../../../components/Card.astro';
+import { withBase } from '../../../lib/base';
+import { labPaperToCard, labSlug, labs, labsData, researcherSlug, sortedPapers } from '../../../lib/data';
+
+export function getStaticPaths() {
+  return labs.map((lab) => ({ params: { lab: labSlug(lab) }, props: { lab } }));
+}
+
+const { lab } = Astro.props;
+const slug = labSlug(lab);
+const active = [...lab.researchers].sort((a, b) => b.papers.length - a.papers.length);
+---
+
+<Base title={`${lab.name} · 学者追踪`} active="labs">
+  <p class="hint crumbs" style="margin-top:22px">
+    <a href={withBase('labs/')}>学者追踪</a> <span>›</span> <b>{lab.short}</b>
+  </p>
+  <div class="page-head">
+    <h1>{lab.name}</h1>
+    <span class="sub">
+      {lab.researchers.length} 位学者 · 最近 {labsData?.days_back} 天 {lab.total} 篇
+    </span>
+  </div>
+
+  <nav class="lab-nav">
+    {active.map((r) => (
+      <a href={withBase(`labs/${slug}/${researcherSlug(r.name)}/`)} class={r.papers.length ? '' : 'quiet'}>
+        {r.name}<span class="n">{r.papers.length}</span>
+      </a>
+    ))}
+  </nav>
+
+  {active.map((r) => (
+    <section class="researcher" id={researcherSlug(r.name)}>
+      <h3>
+        <a href={withBase(`labs/${slug}/${researcherSlug(r.name)}/`)}>{r.name}</a>
+        <span class="n">{r.papers.length} 篇</span>
+        {r.papers.length > 0 && <a class="more" href={withBase(`labs/${slug}/${researcherSlug(r.name)}/`)}>专属页 →</a>}
+      </h3>
+      {r.papers.length === 0 ? (
+        <p class="empty-line">窗口期内没有新论文</p>
+      ) : (
+        <div class="cards">
+          {sortedPapers(r.papers).map((p) => <Card item={labPaperToCard(p, r.name)} compact />)}
+        </div>
+      )}
+    </section>
+  ))}
+</Base>

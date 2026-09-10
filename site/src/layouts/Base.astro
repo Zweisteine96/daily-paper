@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { withBase } from '../lib/base';
+import { MASCOT } from '../lib/card';
 
 interface Props {
   title: string;
@@ -13,14 +14,16 @@ const { title, description = '每日机器人与 AI 论文、GitHub 项目推荐
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.pathname;
 
 const nav = [
-  { key: 'today', label: '今日论文', href: withBase('') },
-  { key: 'repos', label: 'GitHub 项目', href: withBase('repos/') },
-  { key: 'labs', label: '学者追踪', href: withBase('labs/') },
-  { key: 'archive', label: '归档', href: withBase('archive/') },
-  { key: 'search', label: '搜索', href: withBase('search/') },
-  { key: 'library', label: '我的书库', href: withBase('library/') },
-  { key: 'settings', label: '设置', href: withBase('settings/') },
+  { key: 'today', label: '📄 今日论文', href: withBase('') },
+  { key: 'repos', label: '🐙 GitHub 项目', href: withBase('repos/') },
+  { key: 'labs', label: '🎓 学者追踪', href: withBase('labs/') },
+  { key: 'archive', label: '🗂️ 归档', href: withBase('archive/') },
+  { key: 'search', label: '🔍 搜索', href: withBase('search/') },
+  { key: 'library', label: '📚 我的书库', href: withBase('library/') },
+  { key: 'settings', label: '⚙️ 设置', href: withBase('settings/') },
 ] as const;
+
+const favicon = `data:image/svg+xml,${encodeURIComponent(MASCOT.replace('class="mascot"', 'xmlns="http://www.w3.org/2000/svg"'))}`;
 ---
 
 <!doctype html>
@@ -36,12 +39,15 @@ const nav = [
     <meta property="og:url" content={canonical} />
     {image && <meta property="og:image" content={image} />}
     <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
-    <link rel="icon" href={`data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#c8553d"/><text x="16" y="22" font-size="18" text-anchor="middle" fill="#fff" font-family="sans-serif" font-weight="700">T</text></svg>')}`} />
+    <link rel="icon" href={favicon} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>
     <header class="topbar">
       <div class="inner">
-        <a class="brand" href={withBase('')}>Tech Station</a>
+        <a class="brand" href={withBase('')}><span class="logo" set:html={MASCOT.replace('class="mascot"', '')}></span>Tech Station</a>
         <nav class="main">
           {nav.map((n) => (
             <a href={n.href} class={active === n.key ? 'active' : ''}>{n.label}</a>
@@ -54,7 +60,7 @@ const nav = [
     <main class="container">
       <slot />
       <footer class="site">
-        数据来自 arXiv API 与 GitHub API，每日自动更新。推荐分数由本地 embedding 模型 + 关键词规则计算，全程零成本。
+        🤖 数据来自 arXiv API 与 GitHub API，每日自动更新。推荐分数由本地 embedding 模型 + 关键词规则计算，全程零成本。
       </footer>
     </main>
     <script>

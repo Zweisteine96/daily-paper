@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../lib/base';
+import { labSlug, labs, labsData, researcherSlug, sortedPapers } from '../../lib/data';
+
+const emojis = ['🐻', '🌲', '🤖', '🦫', '🗽', '🐺', '🍑', '🏔️', '🐼', '🏭', '🦊', '🐧'];
+---
+
+<Base title="学者追踪" active="labs">
+  <div class="page-head">
+    <h1>学者追踪</h1>
+    {labsData && (
+      <span class="sub">最近 {labsData.days_back} 天 · 共 {labsData.total} 篇 · 更新于 {labsData.updated.slice(0, 10)}</span>
+    )}
+  </div>
+  <p class="hint">
+    先选一个实验室，或直接点某位学者，进入专属页面深挖。名单在 <code>profile/labs.yaml</code> 里维护，
+    按 arXiv 署名精确匹配并限制在相关分类；每日推荐里命中这些学者的论文会带「追踪学者」徽标并略微加分。
+  </p>
+
+  {labs.length === 0 ? (
+    <div class="empty">还没有数据。运行一次管道后这里会出现各实验室的近期论文。</div>
+  ) : (
+    <div class="lab-grid">
+      {labs.map((lab, i) => {
+        const slug = labSlug(lab);
+        const recent = sortedPapers(lab.researchers.flatMap((r) => r.papers)).slice(0, 3);
+        return (
+          <section class="lab-card">
+            <a class="lab-card-head" href={withBase(`labs/${slug}/`)}>
+              <span class="emoji">{emojis[i % emojis.length]}</span>
+              <span class="grow">
+                <h2>{lab.name}</h2>
+                <span class="sub">{lab.researchers.length} 位学者 · {lab.total} 篇新论文</span>
+              </span>
+              <span class="arrow">→</span>
+            </a>
+            <div class="pi-chips">
+              {lab.researchers.map((r) => (
+                <a href={withBase(`labs/${slug}/${researcherSlug(r.name)}/`)} class={r.papers.length ? '' : 'quiet'}>
+                  {r.name}<span class="n">{r.papers.length}</span>
+                </a>
+              ))}
+            </div>
+            {recent.length > 0 && (
+              <ul class="recent">
+                {recent.map((p) => (
+                  <li>
+                    <a href={withBase(`p/${p.id}/`)}>{p.title}</a>
+                    <span class="d">{p.published.slice(0, 10)}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        );
+      })}
+    </div>
+  )}
+</Base>

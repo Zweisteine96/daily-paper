@@ -12,7 +12,7 @@ import { withBase } from '../lib/base';
   <div class="toolbar">
     <div class="segmented" id="tab">
       <button data-tab="liked" class="active">♥ 点赞</button>
-      <button data-tab="later">⌚ 稍后读</button>
+      <button data-tab="later">🔖 稍后读</button>
       <button data-tab="disliked">✕ 不感兴趣</button>
     </div>
     <div class="segmented" id="kind">
@@ -72,7 +72,7 @@ import { withBase } from '../lib/base';
         );
       }
       if (shown.length === 0) {
-        list.innerHTML = '<div class="empty">这里还是空的。在推荐页给论文或项目点「♥ 点赞」或「⌚ 稍后读」就会出现在这里。</div>';
+        list.innerHTML = '<div class="empty">这里还是空的。在推荐页给论文或项目点「♥ 点赞」或「🔖 稍后读」就会出现在这里。</div>';
         return;
       }
       list.innerHTML = shown.map((it) => cardHtml(it, { removable: true })).join('');

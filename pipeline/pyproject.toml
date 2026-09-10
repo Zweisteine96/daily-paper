@@ -9,6 +9,7 @@ dependencies = [
     "feedparser>=6.0",
     "numpy>=1.26",
     "fastembed>=0.4",
+    "pymupdf>=1.24",
 ]
 
 [project.scripts]

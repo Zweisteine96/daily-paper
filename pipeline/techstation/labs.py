@@ -19,6 +19,13 @@ LABS_PROFILE_PATH = REPO_ROOT / "profile" / "labs.yaml"
 LABS_DATA_PATH = DATA_DIR / "labs.json"
 
 
+def _slugify(s: str) -> str:
+    """生成 URL 友好的 slug（只保留 ASCII 字母数字；中文名请在 labs.yaml 里显式写 slug）。"""
+    import re
+
+    return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+
+
 def load_labs_profile(path: Path = LABS_PROFILE_PATH) -> dict:
     if not path.exists():
         return {"labs": [], "days_back": 45, "max_per_author": 30, "boost": 0.0}
@@ -77,8 +84,8 @@ def _previous_media() -> dict[str, dict]:
     for lab in old.get("labs", []):
         for r in lab.get("researchers", []):
             for p in r.get("papers", []):
-                if "figure_url" in p:
-                    out[p["id"]] = {k: p.get(k) for k in ("figure_url", "figure_caption", "video_url", "links")}
+                if p.get("figure_url"):
+                    out[p["id"]] = {k: p.get(k) for k in ("figure_url", "figure_caption", "figure_source", "video_url", "links")}
     return out
 
 
@@ -119,7 +126,7 @@ def run_labs(profile: dict, day: str, fetch_media: bool = True) -> Path:
         for ps in cache.values():
             for p in ps:
                 src = by_id[p["id"]]
-                for k in ("figure_url", "figure_caption", "video_url", "links"):
+                for k in ("figure_url", "figure_caption", "figure_source", "video_url", "links"):
                     p[k] = src.get(k)
 
     labs_out = []
@@ -131,6 +138,7 @@ def run_labs(profile: dict, day: str, fetch_media: bool = True) -> Path:
             {
                 "name": lab.get("name", ""),
                 "short": lab.get("short", lab.get("name", "")),
+                "slug": lab.get("slug") or _slugify(lab.get("short", lab.get("name", ""))) or f"lab-{len(labs_out) + 1}",
                 "researchers": researchers,
                 "total": sum(len(r["papers"]) for r in researchers),
             }

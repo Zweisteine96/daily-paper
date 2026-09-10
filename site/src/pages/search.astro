@@ -9,14 +9,35 @@ import Base from '../layouts/Base.astro';
   </div>
 
   <div class="toolbar">
-    <input id="q" type="search" placeholder="搜索标题、摘要、作者、分类 / topic…" autocomplete="off" autofocus />
+    <input id="q" type="search" placeholder="例如：humanoid AND diffusion · VLA OR &quot;world model&quot; · manipulation -medical" autocomplete="off" autofocus />
     <div class="segmented" id="type-filter">
       <button data-type="all" class="active">全部</button>
       <button data-type="paper">论文</button>
       <button data-type="repo">项目</button>
     </div>
+    <div class="segmented" id="mode-filter" title="全文：标题 / 摘要 / 作者 / 标签；仅关键词：只匹配标签、兴趣关键词和追踪学者">
+      <button data-mode="full" class="active">全文</button>
+      <button data-mode="kw">仅关键词</button>
+    </div>
   </div>
-  <p class="hint">支持前缀匹配和模糊匹配。结果范围是最近若干天内被推荐过的论文与项目（由 <code>retention_days</code> 控制）。</p>
+
+  <div class="kw-panel">
+    <div class="kw-head">
+      <span class="lbl">关键词筛选</span>
+      <div class="segmented small" id="combine-filter" title="多个关键词之间的组合方式">
+        <button data-combine="AND" class="active">同时满足 (AND)</button>
+        <button data-combine="OR">任一满足 (OR)</button>
+      </div>
+      <button class="btn ghost small" id="kw-clear" hidden>清空</button>
+      <span class="grow"></span>
+      <input id="kw-find" type="text" placeholder="过滤关键词…" autocomplete="off" />
+    </div>
+    <div class="chips" id="chips"></div>
+  </div>
+  <p class="hint">
+    输入框支持 <code>AND</code> / <code>OR</code> / <code>-排除</code> / <code>"短语"</code> 组合；下面的关键词可以多选并与输入框条件叠加。
+    结果范围是最近若干天内被推荐过的论文与项目。
+  </p>
 
   <div id="results" class="cards"></div>
 
@@ -24,14 +45,23 @@ import Base from '../layouts/Base.astro';
     import MiniSearch from 'minisearch';
     import { cardHtml } from '../lib/card';
     import type { CardItem, IndexItem } from '../lib/types';
-    import { BASE } from '../lib/base';
+    import { BASE, resolveMedia } from '../lib/base';
     import { refreshCardStates } from '../scripts/hydrate';
 
     const q = document.getElementById('q') as HTMLInputElement;
     const results = document.getElementById('results')!;
     const info = document.getElementById('index-info')!;
-    const filterEl = document.getElementById('type-filter')!;
+    const typeEl = document.getElementById('type-filter')!;
+    const modeEl = document.getElementById('mode-filter')!;
+    const combineEl = document.getElementById('combine-filter')!;
+    const chipsEl = document.getElementById('chips')!;
+    const kwFind = document.getElementById('kw-find') as HTMLInputElement;
+    const kwClear = document.getElementById('kw-clear') as HTMLButtonElement;
+
     let typeFilter: 'all' | 'paper' | 'repo' = 'all';
+    let mode: 'full' | 'kw' = 'full';
+    let combine: 'AND' | 'OR' = 'AND';
+    const selected = new Set<string>();
 
     // 索引文档：id 加类型前缀保证唯一，tags 拼成字符串供分词
     interface Doc {
@@ -55,6 +85,9 @@ import Base from '../layouts/Base.astro';
     let all: IndexItem[] = [];
     const byKey = new Map<string, IndexItem>();
     const keyOf = (it: IndexItem) => `${it.t}:${it.id}`;
+    /** 每条记录的关键词集合（小写）：分类 / topic、兴趣关键词、追踪学者 */
+    const kwOf = new Map<string, string[]>();
+    const keywordSet = (it: IndexItem) => [...(it.tags ?? []), ...(it.kw ?? []), ...(it.tracked ?? [])].map((s) => s.toLowerCase());
 
     function toCard(it: IndexItem): CardItem {
       return {
@@ -68,44 +101,180 @@ import Base from '../layouts/Base.astro';
         date: it.date,
         score: it.score,
         stars: it.stars,
+        keywords: it.kw,
         pdf: it.t === 'paper' ? `https://arxiv.org/pdf/${it.id}` : undefined,
-        image: it.img ?? null,
+        image: resolveMedia(it.img),
         badges: (it.tracked ?? []).map((n) => `追踪学者 · ${n}`),
       };
     }
 
+    /* ---------------- 查询语法解析 ----------------
+     * 语法：term term  → AND；A OR B → 任一；-term → 排除；"a b" → 短语
+     * 解析成若干 OR 分组，每组包含 must[] 与 not[]。
+     */
+    interface Group { must: string[]; not: string[] }
+    function tokenize(s: string): string[] {
+      const out: string[] = [];
+      const re = /-?"([^"]+)"|(\S+)/g;
+      let m: RegExpExecArray | null;
+      while ((m = re.exec(s))) out.push(m[1] !== undefined ? (m[0].startsWith('-') ? '-' : '') + m[1] : m[2]);
+      return out;
+    }
+    function parseQuery(s: string): Group[] {
+      const groups: Group[] = [];
+      let cur: Group = { must: [], not: [] };
+      for (const tok of tokenize(s)) {
+        const up = tok.toUpperCase();
+        if (up === 'OR' || up === '|') {
+          if (cur.must.length || cur.not.length) groups.push(cur);
+          cur = { must: [], not: [] };
+          continue;
+        }
+        if (up === 'AND' || up === '&' || up === '+') continue;
+        if (tok.startsWith('-') && tok.length > 1) cur.not.push(tok.slice(1));
+        else cur.must.push(tok);
+      }
+      if (cur.must.length || cur.not.length) groups.push(cur);
+      return groups;
+    }
+
+    /** 单个词的命中集合（key -> 分数） */
+    function matchTerm(term: string): Map<string, number> {
+      const out = new Map<string, number>();
+      const t = term.toLowerCase();
+      if (mode === 'kw') {
+        for (const [key, kws] of kwOf) if (kws.some((k) => k === t || k.includes(t))) out.set(key, kws.some((k) => k === t) ? 2 : 1);
+        return out;
+      }
+      for (const r of mini.search(term)) out.set(String(r.id), r.score);
+      return out;
+    }
+
+    function evalQuery(groups: Group[]): Map<string, number> | null {
+      if (groups.length === 0) return null;
+      const union = new Map<string, number>();
+      for (const g of groups) {
+        let acc: Map<string, number> | null = null;
+        if (g.must.length === 0) {
+          acc = new Map(Array.from(byKey.keys(), (k) => [k, 0]));
+        } else {
+          for (const term of g.must) {
+            const m = matchTerm(term);
+            if (!acc) acc = m;
+            else {
+              const next = new Map<string, number>();
+              for (const [k, s] of acc) if (m.has(k)) next.set(k, s + m.get(k)!);
+              acc = next;
+            }
+          }
+        }
+        for (const term of g.not) for (const k of matchTerm(term).keys()) acc!.delete(k);
+        for (const [k, s] of acc!) union.set(k, Math.max(union.get(k) ?? 0, s));
+      }
+      return union;
+    }
+
+    /** 选中的关键词芯片是否满足 */
+    function chipsOk(key: string): boolean {
+      if (selected.size === 0) return true;
+      const kws = kwOf.get(key) ?? [];
+      const has = (c: string) => kws.includes(c);
+      return combine === 'AND' ? Array.from(selected).every(has) : Array.from(selected).some(has);
+    }
+
     function render(items: IndexItem[]) {
       if (items.length === 0) {
-        results.innerHTML = `<div class="empty">${q.value ? '没有匹配的结果' : '输入关键词开始搜索'}</div>`;
+        results.innerHTML = `<div class="empty">${MASCOT_EMPTY}<div>${q.value || selected.size ? '没有匹配的结果，换个词试试？' : '输入关键词，或点上面的标签开始搜索'}</div></div>`;
         return;
       }
       results.innerHTML = items.slice(0, 100).map((it) => cardHtml(toCard(it))).join('');
       refreshCardStates(results);
     }
+    const MASCOT_EMPTY = '<div class="big-emoji">🔍</div>';
 
     function run() {
-      const term = q.value.trim();
+      const groups = parseQuery(q.value.trim());
+      const scored = evalQuery(groups);
       let hits: IndexItem[];
-      if (!term) {
-        hits = all.slice(0, 50);
-      } else {
-        hits = mini
-          .search(term)
-          .map((r) => byKey.get(String(r.id)))
-          .filter((it): it is IndexItem => Boolean(it));
-      }
+      if (!scored) hits = all.slice();
+      else
+        hits = Array.from(scored.entries())
+          .sort((a, b) => b[1] - a[1])
+          .map(([k]) => byKey.get(k)!)
+          .filter(Boolean);
+      hits = hits.filter((h) => chipsOk(keyOf(h)));
       if (typeFilter !== 'all') hits = hits.filter((h) => h.t === typeFilter);
+      if (!scored && selected.size === 0) hits = hits.slice(0, 50);
+      updateInfo(hits.length, Boolean(scored) || selected.size > 0);
       render(hits);
     }
 
-    filterEl.addEventListener('click', (e) => {
-      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-type]');
-      if (!btn) return;
-      filterEl.querySelectorAll('button').forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      typeFilter = btn.dataset.type as typeof typeFilter;
+    let baseInfo = '';
+    function updateInfo(n: number, filtered: boolean) {
+      info.textContent = filtered ? `${n} 条结果 · ${baseInfo}` : baseInfo;
+    }
+
+    /* ---------------- 关键词芯片 ---------------- */
+    interface ChipStat { kw: string; n: number; kind: 'tag' | 'kw' | 'tracked' }
+    let chipStats: ChipStat[] = [];
+    function buildChips() {
+      const count = new Map<string, ChipStat>();
+      for (const it of all) {
+        const add = (k: string, kind: ChipStat['kind']) => {
+          const key = k.toLowerCase();
+          const cur = count.get(key) ?? { kw: k, n: 0, kind };
+          cur.n++;
+          count.set(key, cur);
+        };
+        for (const t of it.tags ?? []) add(t, 'tag');
+        for (const k of it.kw ?? []) add(k, 'kw');
+        for (const t of it.tracked ?? []) add(t, 'tracked');
+      }
+      chipStats = Array.from(count.values()).sort((a, b) => b.n - a.n || a.kw.localeCompare(b.kw));
+      renderChips();
+    }
+    function renderChips() {
+      const f = kwFind.value.trim().toLowerCase();
+      const shown = chipStats.filter((c) => (f ? c.kw.toLowerCase().includes(f) : true)).slice(0, f ? 200 : 48);
+      chipsEl.innerHTML = shown
+        .map((c) => {
+          const k = c.kw.toLowerCase();
+          const on = selected.has(k) ? ' on' : '';
+          return `<button class="chip ${c.kind}${on}" data-kw="${k.replace(/"/g, '&quot;')}">${c.kw}<span class="n">${c.n}</span></button>`;
+        })
+        .join('');
+      kwClear.hidden = selected.size === 0;
+    }
+    chipsEl.addEventListener('click', (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-kw]');
+      if (!b) return;
+      const k = b.dataset.kw!;
+      if (selected.has(k)) selected.delete(k);
+      else selected.add(k);
+      renderChips();
       run();
     });
+    kwFind.addEventListener('input', renderChips);
+    kwClear.addEventListener('click', () => {
+      selected.clear();
+      renderChips();
+      run();
+    });
+
+    /* ---------------- 分段按钮 ---------------- */
+    function segmented(el: HTMLElement, attr: string, onChange: (v: string) => void) {
+      el.addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(`button[data-${attr}]`);
+        if (!btn) return;
+        el.querySelectorAll('button').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        onChange(btn.dataset[attr]!);
+        run();
+      });
+    }
+    segmented(typeEl, 'type', (v) => (typeFilter = v as typeof typeFilter));
+    segmented(modeEl, 'mode', (v) => (mode = v as typeof mode));
+    segmented(combineEl, 'combine', (v) => (combine = v as typeof combine));
 
     let timer: number | undefined;
     q.addEventListener('input', () => {
@@ -113,26 +282,35 @@ import Base from '../layouts/Base.astro';
       timer = window.setTimeout(run, 120);
     });
 
-    // 支持 ?q= 参数
-    const initial = new URLSearchParams(location.search).get('q');
-    if (initial) q.value = initial;
+    // 支持 ?q= 与 ?kw=a,b 参数
+    const params = new URLSearchParams(location.search);
+    if (params.get('q')) q.value = params.get('q')!;
+    for (const k of (params.get('kw') ?? '').split(',').map((s) => s.trim().toLowerCase()).filter(Boolean)) selected.add(k);
+    if (params.get('mode') === 'kw') {
+      mode = 'kw';
+      modeEl.querySelectorAll('button').forEach((b) => b.classList.toggle('active', b.dataset.mode === 'kw'));
+    }
 
     fetch(`${BASE}data/search-index.json`)
       .then((r) => r.json())
       .then((idx: { updated: string; items: IndexItem[] }) => {
         all = idx.items ?? [];
-        for (const it of all) byKey.set(keyOf(it), it);
+        for (const it of all) {
+          byKey.set(keyOf(it), it);
+          kwOf.set(keyOf(it), keywordSet(it));
+        }
         mini.addAll(
           all.map((it) => ({
             key: keyOf(it),
             title: it.title,
             text: it.text,
             authors: it.authors,
-            tagsText: (it.tags ?? []).join(' '),
+            tagsText: [...(it.tags ?? []), ...(it.kw ?? [])].join(' '),
           })),
         );
         const nPaper = all.filter((i) => i.t === 'paper').length;
-        info.textContent = `索引 ${nPaper} 篇论文 · ${all.length - nPaper} 个项目 · 更新于 ${(idx.updated || '').slice(0, 10)}`;
+        baseInfo = `索引 ${nPaper} 篇论文 · ${all.length - nPaper} 个项目 · 更新于 ${(idx.updated || '').slice(0, 10)}`;
+        buildChips();
         run();
       })
       .catch((err: Error) => {

@@ -82,6 +82,7 @@ labs:
 
   - name: 清华 / 北大 / 上交
     short: 清北交
+    slug: cn-universities   # 非 ASCII 名称需要手写 URL slug
     researchers:
       - Yang Gao
       - He Wang

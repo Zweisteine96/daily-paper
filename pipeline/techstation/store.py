@@ -8,12 +8,14 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from .config import (
+    DATA_DIR,
     LIBRARY_PATH,
     PAPERS_DIR,
     REPO_SNAPSHOT_PATH,
     REPOS_DIR,
     SEARCH_INDEX_PATH,
     SEEN_PAPERS_PATH,
+    THUMBS_DIR,
 )
 
 log = logging.getLogger(__name__)
@@ -122,6 +124,29 @@ def prune_daily_files(kind: str, retention_days: int) -> None:
             path.unlink()
 
 
+def prune_thumbnails() -> None:
+    """删除不再被任何每日文件 / 学者追踪引用的 PDF 缩略图，控制仓库体积。"""
+    if not THUMBS_DIR.exists():
+        return
+    referenced: set[str] = set()
+    for path in list_daily_files("papers"):
+        for p in read_json(path, {}).get("items", []):
+            if p.get("figure_source") == "pdf":
+                referenced.add(p["id"])
+    for lab in read_json(DATA_DIR / "labs.json", {}).get("labs", []):
+        for r in lab.get("researchers", []):
+            for p in r.get("papers", []):
+                if p.get("figure_source") == "pdf":
+                    referenced.add(p["id"])
+    removed = 0
+    for f in THUMBS_DIR.glob("*.jpg"):
+        if f.stem not in referenced:
+            f.unlink()
+            removed += 1
+    if removed:
+        log.info("清理了 %d 张不再引用的缩略图", removed)
+
+
 # ---------------------------------------------------------------------------
 # 搜索索引（网站端用 MiniSearch 加载）
 # ---------------------------------------------------------------------------
@@ -140,6 +165,7 @@ def _compact_paper(p: dict, day: str) -> dict:
         "day": day,
         "score": p.get("score", 0),
         "img": p.get("figure_url"),
+        "kw": p.get("matched_keywords") or [],
         "tracked": p.get("tracked_authors") or [],
     }
 
@@ -158,6 +184,7 @@ def _compact_repo(r: dict, day: str) -> dict:
         "score": r.get("score", 0),
         "stars": r.get("stars", 0),
         "img": r.get("image_url") or r.get("og_image"),
+        "kw": r.get("matched_keywords") or [],
     }
 
 

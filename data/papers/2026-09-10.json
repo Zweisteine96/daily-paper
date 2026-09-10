@@ -1,6 +1,6 @@
 {
   "date": "2026-09-10",
-  "generated_at": "2026-09-10T21:14:36+00:00",
+  "generated_at": "2026-09-10T21:53:23+00:00",
   "total_fetched": 1175,
   "total_new": 1175,
   "categories": [
@@ -64,8 +64,9 @@
         "Hao Dong"
       ],
       "rank": 1,
-      "figure_url": null,
-      "figure_caption": "",
+      "figure_url": "thumbs/2609.07398.jpg",
+      "figure_caption": "论文首页预览",
+      "figure_source": "pdf",
       "video_url": null,
       "links": {
         "project": "https://openwam-official.github.io/",
@@ -105,6 +106,7 @@
       "rank": 2,
       "figure_url": "https://arxiv.org/html/2609.07470v1/figs/fig_doseladder.png",
       "figure_caption": "Figure 4: Generation from the same held-out Greek caption (mid-clip frame). The English-tower model produces no Greek-conditioned structure even at full learning rate and triple duration (left); the multilingual-tower model, given the identical recipe, produces a recognizable manipulation scene (cen",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://huggingface.co/KIEFERSA/Sophea-Nano-Policy-LIBERO-Greek-v1"
@@ -149,6 +151,7 @@
       "rank": 3,
       "figure_url": "https://arxiv.org/html/2609.06251v1/cot_data.png",
       "figure_caption": "Fig. 1: Multi-granularity CoT data engine. Given multimodal observations, language instructions, and optional state–action histories, the engine generates episode-, step-, and navigation-level reasoning traces together with executable targets, followed by automatic parsing and semi-automatic quality",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "code": "https://github.com/AIGeeksGroup/MobileVLA-R1-2.0",
@@ -194,6 +197,7 @@
       "rank": 4,
       "figure_url": "https://arxiv.org/html/2609.09158v1/teaser_new.png",
       "figure_caption": "Figure 1: Humanoid whole-body navigation in cluttered environments. We propose TANGO , a whole-body foundation model for cluttered indoor scene navigation. TANGO demonstrates strong scene understanding and robust traversal capability, navigating a 30-meter route zero-shot in a real-world cluttered o",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -240,8 +244,9 @@
       "why": "兴趣：vision-language-action (VLA) models and foundation models for robots",
       "tracked_authors": [],
       "rank": 5,
-      "figure_url": null,
-      "figure_caption": "",
+      "figure_url": "thumbs/2609.05324.jpg",
+      "figure_caption": "论文首页预览",
+      "figure_source": "pdf",
       "video_url": null,
       "links": {
         "code": "https://github.com/fanzhenxuan/RoboSPA"
@@ -282,6 +287,7 @@
       "rank": 6,
       "figure_url": "https://arxiv.org/html/2609.07581v1/Motivation.png",
       "figure_caption": "Figure 1: Task Adaptation Paradigms. (a) Conventional VLAs collect task-specific data and update policy parameters for each new task. (b) ICI-VLA conditions a fixed policy on the current observation and retrieved relative demonstrations, requiring no test-time gradient updates.",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -321,6 +327,7 @@
       "rank": 7,
       "figure_url": "https://arxiv.org/html/2609.09808v1/Figures/gta2.png",
       "figure_caption": "Fig. 2: Overview of GTA-2. GTA-2 takes a task prompt, scene image, and controller library as inputs. Specialized agents process these inputs to decompose the task, generate abstract skill recipes, set task-specific parameters, and produce 3D visual groundings. These outputs are combined into an exec",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://gta2-project.github.io/"
@@ -357,6 +364,7 @@
       "rank": 8,
       "figure_url": "https://arxiv.org/html/2609.05260v1/fig1_hybrid.png",
       "figure_caption": "",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -398,6 +406,7 @@
       "rank": 9,
       "figure_url": "https://arxiv.org/html/2609.07002v1/pipeline.png",
       "figure_caption": "Figure 1: Overview of WM-Craftnet. A Dreamer-style recurrent state-space model (RSSM) learns a denoised recurrent state from multimodal observations and provides it as predictive context for the manipulation policy.",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://wmcraftnet.github.io/"
@@ -435,6 +444,7 @@
       "rank": 10,
       "figure_url": "https://arxiv.org/html/2609.09492v1/figures/cover/cover_sim.png",
       "figure_caption": "(a) Simulation",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -475,6 +485,7 @@
       "rank": 11,
       "figure_url": "https://arxiv.org/html/2609.09630v1/figures/fig1.jpg",
       "figure_caption": "Fig. 1: Schematic comparison of design paradigms (architecture only, not a performance comparison). Red numbers mark a limitation of each prior design; the four boxes below show how JEPA Policy addresses them. Flames mark encoders trained by gradient descent. All encoders are trained from scratch be",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "code": "https://github.com/jiejie567/JEPA-Policy",
@@ -524,6 +535,7 @@
       "rank": 12,
       "figure_url": "https://arxiv.org/html/2609.07747v2/system.png",
       "figure_caption": "Figure 1: Dex-X Overview . Dex-X learns deployable visual-tactile dexterous manipulation policies from human video demonstrations. Reconstructed human hand-object references guide interaction learning in simulation, where contact dynamics provide the missing force-level tactile supervision. The resu",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://dexx-code.github.io/dexx-code/"
@@ -564,6 +576,7 @@
       "rank": 13,
       "figure_url": "https://arxiv.org/html/2609.06508v1/VLA.drawio.png",
       "figure_caption": "Figure 1: Overview of VLA-Corrector. The frozen VLA policy interacts with the environment using observable visual, proprioceptive, action, and language histories. A stage-aware verifier estimates execution risk and task stage, after which the trigger gate and recovery adapter generate a stage-specif",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -605,6 +618,7 @@
       "rank": 14,
       "figure_url": "https://arxiv.org/html/2609.06256v1/teaser.png",
       "figure_caption": "Fig. 1: Comparison between existing VLA [ 5 , 30 , 9 , 18 , 22 , 23 , 3 , 4 , 24 , 2 ] (left) and GloVLA (right). Existing VLAs typically rely on a single policy to handle both long-range geometric transport and local contact-rich manipulation, making them brittle to unstructured environments, data ",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://glovla-project.github.io/"
@@ -646,6 +660,7 @@
       "rank": 15,
       "figure_url": "https://arxiv.org/html/2609.04893v1/figures/architecture.png",
       "figure_caption": "Fig. 2 : Dense LSS architecture (Stage 2, training only). A frozen DINO+SigLIP encoder and a frozen T5-XXL command encoder condition the 2B diffusion-transformer backbone, which produces K = 16 K{=}16 action tokens Z t ∈ ℝ 2176 Z_{t}\\in\\mathbb{R}^{2176} supervised by the flow-matching loss L flow L_",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -692,6 +707,7 @@
       "rank": 16,
       "figure_url": "https://arxiv.org/html/2609.10522v1/top_demo.png",
       "figure_caption": "Figure 1 : Show-Harness unlocks generalizable embodied manipulation with foundation VLMs across diverse tasks, scenes, and robot embodiments, enabling direct zero-shot deployment with frontier models and capable, efficient control via lightweight adaptation of compact open-source models.",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://showlab.github.io/Show-Harness"
@@ -733,6 +749,7 @@
       "rank": 17,
       "figure_url": "https://arxiv.org/html/2609.05369v1/fig/TG2_raw.png",
       "figure_caption": "Figure 2 : Representative action-conditioned attention visualization. Left: the unmodified observation. Right: the same frame with the attention-regularized policy’s heatmap overlaid. The concentration around the task-relevant region illustrates alignment with procedural saliency; it serves as a qua",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -769,6 +786,7 @@
       "rank": 18,
       "figure_url": "https://arxiv.org/html/2609.06302v1/figs/introchange.png",
       "figure_caption": "Figure 1 : Causal structure of action-conditioned prediction in embodied visual tracking. Given an egocentric observation and candidate action sequences (A: forward, turn-left; B: forward, turn-right), the model must imagine which sequence preserves target observability and following distance. Conve",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -806,6 +824,7 @@
       "rank": 19,
       "figure_url": "https://arxiv.org/html/2609.08638v1/phase_framework.png",
       "figure_caption": "Figure 1: Two-stage privileged semantic distillation in CASD . Offline stage annotations and chunk occupancies define a fixed semantic teacher. Stage A trains the CASD generator to predict these tokens from current inputs. Stage B freezes the generator and conditions the video–action policy on its p",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -847,6 +866,7 @@
       "rank": 20,
       "figure_url": "https://arxiv.org/html/2609.05985v1/figures/fig1.png",
       "figure_caption": "Fig. 1: Overview of ActionReasoning 2.0. (A) A natural-language command specifies the robot task. (B) A brain-inspired hierarchy organizes perception and state inference, language grounding and atomic-action composition, and cost-based plan selection through functional analogies to the visual cortex",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -888,6 +908,7 @@
       "rank": 21,
       "figure_url": "https://arxiv.org/html/2609.06221v1/figure/Figure1.jpg",
       "figure_caption": "Fig. 1: In cluttered tabletop manipulation, identity switches arise when ambiguity over the target, anchor, or reference frame is collapsed into hard choices before execution. RefGuard models these variables jointly, preserves their uncertainty, and routes the posterior through a decision module tha",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -930,6 +951,7 @@
       "rank": 22,
       "figure_url": "https://arxiv.org/html/2609.08224v1/teaser.png",
       "figure_caption": "Figure 1 : Comparison between our 3DWay representation and existing intermediate representations. While 2D waypoints suffer from depth ambiguity, 2.5D (obtained by depth back-projection of 2DWay) waypoints still lack uniqueness in free space, underscoring the superior spatial localization and action",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "code": "https://github.com/ziqin-h/3DWay"
@@ -969,6 +991,7 @@
       "rank": 23,
       "figure_url": "https://arxiv.org/html/2609.10405v1/t1_strip_1col_b.png",
       "figure_caption": "Figure 1: Measured action power spectra. Top: log 10 ⁡ P k , d \\log_{10}P_{k,d} per bin k k and smooth dimension d d , normalized by the corpus maximum; headers give the dynamic range in decades. Bottom: the aggregate P k P_{k} , normalized by P 0 P_{0} . Horizon H = 10 H=10 for LIBERO and VLA-Arena",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1010,6 +1033,7 @@
       "rank": 24,
       "figure_url": "https://arxiv.org/html/2609.08444v1/fig1_7.png",
       "figure_caption": "Figure 1: An example of VLM planning risks under partial observability. The instruction is “ Water the plant with the watering can. Water is in a container inside the cabinet. ”.",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://sites.google.com/view/safemem"
@@ -1050,6 +1074,7 @@
       "rank": 25,
       "figure_url": "https://arxiv.org/html/2609.06958v1/Fig1.png",
       "figure_caption": "Figure 1: Background: locomotion rollouts for the three simulated embodiments studied here, two quadrupeds and a humanoid. Center: real deployment on a Boston Dynamics Spot, walking on flat terrain. Website: https://felipe-tommaselli.github.io/MindThePhase/",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1089,6 +1114,7 @@
       "rank": 26,
       "figure_url": "https://arxiv.org/html/2609.06279v1/pipeline_v3.png",
       "figure_caption": "Figure 2: Our pipeline consists of four stages: (a) image generation edits a simulator-rendered scene according to the task, producing a visual proposal for either a functional grasp or a target goal arrangement; (b) perception lifts the edited image into a structured 3D state using simulator priors",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1125,6 +1151,7 @@
       "rank": 27,
       "figure_url": "https://arxiv.org/html/2609.06114v1/motivation.png",
       "figure_caption": "Figure 1: Failure-Boundary Learning for Flow-based VLAs. Three bottlenecks cripple current post-SFT adaptation: asymmetric supervision , missing progress signal , and generation-aware mismatch (top). Our DLS pipeline resolves them in turn (bottom): scalable on-policy rollouts of a real-grounded prio",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1168,6 +1195,7 @@
       "rank": 28,
       "figure_url": "https://arxiv.org/html/2609.09119v1/pipeline.png",
       "figure_caption": "Figure 2: DeCAL is built upon a MoT architecture that unifies scene understanding, visuo-tactile dynamics foresight, and action generation. The Action Expert employs Factorized Flow Matching to decouple arm and hand motion, enabling better coordination and dexterous manipulation.",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://aureleopku.github.io/DeCAL"
@@ -1206,6 +1234,7 @@
       "rank": 29,
       "figure_url": "https://arxiv.org/html/2609.09918v1/figures/overview.png",
       "figure_caption": "Figure 1: Visual behavior adaptation. A single post-training recipe adapts a pre-trained humanoid tracker to perceptive parkour, dodgeball, loco-manipulation and cube reorientation.",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://lok-i.github.io/vibe-control/"
@@ -1247,6 +1276,7 @@
       "rank": 30,
       "figure_url": "https://arxiv.org/html/2609.07006v1/fig1.png",
       "figure_caption": "Figure 1: Overview of the proposed GIFT framework. The image editing model first generates a goal image based on the initial observation and given instruction. The generated goal is then reused throughout policy execution to guide the VLA model at each timestep.",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1324,6 +1354,7 @@
       "rank": 31,
       "figure_url": "https://arxiv.org/html/2609.05588v1/fig_system_v04.png",
       "figure_caption": "Figure 1: GE-Act 2.0 system architecture. The SVP grounds the instruction in the current observation and fully denoises multi-view future visual latents in a single flow-generator pass; the IDM combines current and predicted latents with proprioception to produce dense and sparse action sequences.",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://ge-act-v2.github.io/"
@@ -1376,6 +1407,7 @@
       "rank": 32,
       "figure_url": "https://arxiv.org/html/2609.05585v1/intro-fig-composite.png",
       "figure_caption": "Figure 1 : (a) A manipulation task demonstrating direct manipulation of chopsticks and indirect manipulation of the dumpling through tools (the chopsticks). This task also demonstrates the three major types of manipulation: nonprehensile manipulation (pushing the dumpling with chopsticks), fixed gra",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://hand-erc.github.io/benchmarking/"
@@ -1414,6 +1446,7 @@
       "rank": 33,
       "figure_url": "https://arxiv.org/html/2609.08123v1/architecture.png",
       "figure_caption": "",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1455,6 +1488,7 @@
       "rank": 34,
       "figure_url": "https://arxiv.org/html/2609.06852v1/Fig_Motivation.png",
       "figure_caption": "Figure 1 : Autoregressive (a) vs. Flow Matching (b) for In-Context Imitation Learning on action decoding and compounding errors. In-context imitation learning refers to performing a task conditioned on in-context demonstrations without updating model parameters. (a) In-context autoregressive models ",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://dingjiansw101.github.io/contextflow-page/"
@@ -1497,6 +1531,7 @@
       "rank": 35,
       "figure_url": "https://arxiv.org/html/2609.08209v2/figure_1.png",
       "figure_caption": "Figure 1: Overview – RoboReel consists of real-world data collected by six participants using a calibrated, tabletop setup across ten distinct tasks with over seven hours of data. To facilitate equitable lateral comparisons of multiple Learning from Observation (LfO) algorithms, we constructed a pai",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://roboreel.github.io"
@@ -1537,6 +1572,7 @@
       "rank": 36,
       "figure_url": "https://arxiv.org/html/2609.07096v1/teaser.png",
       "figure_caption": "Figure 1: RoboDreamer studies anticipatory humanoid tracking under imperfect sensing. Randomized temporal masking trains the policy to infer missing recent observations from history; the same masking interface is reused at inference for closed-loop refinement and optional action chunking. Mamba serv",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1577,6 +1613,7 @@
       "rank": 37,
       "figure_url": "https://arxiv.org/html/2609.10283v1/head_figure.png",
       "figure_caption": "Figure 1: Overview of SwingBot. Inspired by primate brachiation, the high-DoF humanoid robot performs release, swing and capture transitions on overhead bars, enabling continuous whole-body brachiation.",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1613,6 +1650,7 @@
       "rank": 38,
       "figure_url": "https://arxiv.org/html/2609.05282v1/fig_pipeline.png",
       "figure_caption": "Fig. 2: System overview. The robot’s camera, fingertip forces F F (estimated from the raw Xela taxels), and joint states feed either the teleoperation interface (Meta Quest 3, during demonstration collection) or the learned policy (GR00T with the temporal tactile encoder TTE, at evaluation time). Bo",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1643,8 +1681,9 @@
       "why": "兴趣：vision-language-action (VLA) models and foundation models for robots",
       "tracked_authors": [],
       "rank": 39,
-      "figure_url": null,
-      "figure_caption": "",
+      "figure_url": "thumbs/2609.08602.jpg",
+      "figure_caption": "论文首页预览",
+      "figure_source": "pdf",
       "video_url": null,
       "links": {}
     },
@@ -1687,6 +1726,7 @@
       "rank": 40,
       "figure_url": "https://arxiv.org/html/2609.10506v1/figures/DUET-DINO-COVER.png",
       "figure_caption": "Fig. 1: Comparison of goal-conditioned 7-DoF action planning toward the target object (banana) between our proposed DUET-DINO world model and V-JEPA 2-AC. DUET-DINO progressively moves the end-effector toward the goal, while V-JEPA 2-AC fails to approach the target.",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://utn-air.github.io/DUET-DINO"
@@ -1726,6 +1766,7 @@
       "rank": 41,
       "figure_url": "https://arxiv.org/html/2609.09941v1/overall.png",
       "figure_caption": "Figure 1: Illustration of the proposed hallucination‑aware VLA reinforcement learning pipeline. (a) In standard world model-based RL, the VLA policy interacts with a learned world model to generate imagined trajectory rollouts, while hallucinated visual predictions may introduce biased reward signal",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1772,6 +1813,7 @@
       "rank": 42,
       "figure_url": "https://arxiv.org/html/2609.06718v1/teaser.png",
       "figure_caption": "Figure 1: Our framework SkillX enables a humanoid robot to execute diverse soccer skills and compose them into long-horizon behaviors. (A) The robot learns atomic skills such as trapping, dribbling, shooting, and additional soccer skills. (B) The learned policy achieves robust sim-to-real deployment",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://yzc0731.github.io/SkillX/"
@@ -1811,6 +1853,7 @@
       "rank": 43,
       "figure_url": "https://arxiv.org/html/2609.05994v1/image/figure1.png",
       "figure_caption": "Fig. 1: (a) The local pose reference specifies how the motion should be performed but not where it should be placed. (b) Local-only tracking can preserve plausible motion while accumulating global root and hand errors, leading to a missed grasp. (c) Global-local reference interaction enables closed-",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1844,8 +1887,9 @@
       "why": "兴趣：imitation learning and diffusion policies for robot control",
       "tracked_authors": [],
       "rank": 44,
-      "figure_url": null,
-      "figure_caption": "",
+      "figure_url": "thumbs/2609.09148.jpg",
+      "figure_caption": "论文首页预览",
+      "figure_source": "pdf",
       "video_url": null,
       "links": {}
     },
@@ -1886,6 +1930,7 @@
       "rank": 45,
       "figure_url": "https://arxiv.org/html/2609.05832v1/overall_structure2.png",
       "figure_caption": "Figure 1: The CC-VLA framework overview: the VLA model (slow policy) integrates vision, language, force sequences and proprioceptive states to infer action chunks. Meanwhile, the VLA-guided compliance controller (VG-ACC) ensures effective tracking of both the feedforward force and the desired pose.",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -1929,6 +1974,7 @@
       "rank": 46,
       "figure_url": "https://arxiv.org/html/2609.10243v1/fig1.png",
       "figure_caption": "Figure 1: FolDeX and the FoldChallenge. FolDeX organizes real-robot data along recovery augmentation, task, scene, and embodiment axes. These diagnostic tracks standardize how future methods can study robustness and data reuse by holding the target evaluation protocol fixed while varying either the ",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://ai.midea.com/#/fold-challenge"
@@ -1974,6 +2020,7 @@
       "rank": 47,
       "figure_url": "https://arxiv.org/html/2609.08511v2/MotionTracker.png",
       "figure_caption": "Fig. 2: Overview of PGMT. PGMT is trained in two stages: a Tracking Pretraining Stage that establishes a general whole-body motion tracking and recovery prior, followed by a Perception Injection Stage that selectively fuses local geometry with motion intent, enabling terrain adaptation without terra",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://luyili.github.io/pgmt/"
@@ -2012,6 +2059,7 @@
       "rank": 48,
       "figure_url": "https://arxiv.org/html/2609.06591v1/chained_task.png",
       "figure_caption": "Figure 1. CHIP enables multi-stage humanoid interaction in complex 3D environments. Representative rollouts demonstrate whole-body collision avoidance when passing sideways through narrow gaps, contact-rich object manipulation, and compositional capabilities such as obstacle-aware object carrying wi",
+      "figure_source": null,
       "video_url": null,
       "links": {
         "project": "https://jiann-li.github.io/chip-project/"
@@ -2058,6 +2106,7 @@
       "rank": 49,
       "figure_url": "https://arxiv.org/html/2609.05927v1/teaser.png",
       "figure_caption": "Figure 1: Overview of GIF. Left: diverse, interactive and functional task compositions, shown individually and arranged in a kitchen scene. Cyan labels match each composition to its placement in the scene; gray labels identify the independently interactive components within each composition (e.g., a",
+      "figure_source": null,
       "video_url": null,
       "links": {}
     },
@@ -2090,8 +2139,9 @@
       "why": "兴趣：reinforcement learning for legged locomotion and sim-to-real transfer",
       "tracked_authors": [],
       "rank": 50,
-      "figure_url": null,
-      "figure_caption": "",
+      "figure_url": "thumbs/2609.10273.jpg",
+      "figure_caption": "论文首页预览",
+      "figure_source": "pdf",
       "video_url": null,
       "links": {}
     }

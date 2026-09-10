@@ -12,9 +12,12 @@ const { paper, day } = Astro.props;
 const item = paperToCard(paper);
 const yt = youtubeId(item.video);
 const payload = JSON.stringify(item);
+// 分享预览图需要绝对地址（站内缩略图补上 site）
+const ogImage =
+  item.image && !/^https?:/i.test(item.image) && Astro.site ? new URL(item.image, Astro.site).toString() : item.image;
 ---
 
-<Base title={paper.title} description={paper.abstract.slice(0, 200)} image={item.image} active="today">
+<Base title={paper.title} description={paper.abstract.slice(0, 200)} image={ogImage} active="today">
   <p class="hint" style="margin-top:22px">
     {day ? <a href={withBase(`archive/${day}/`)}>← {day} 的推荐</a> : <a href={withBase('labs/')}>← 学者追踪</a>}
   </p>
@@ -31,9 +34,9 @@ const payload = JSON.stringify(item);
       {paper.comment && <p class="hint">{paper.comment}</p>}
       <div class="actions">
         <button class="btn like" data-action="liked">♥ 点赞</button>
-        <button class="btn later" data-action="later">⌚ 稍后读</button>
+        <button class="btn later" data-action="later">🔖 稍后读</button>
         <button class="btn dislike" data-action="disliked">✕ 不感兴趣</button>
-        <button class="btn share" data-action="share">⇪ 分享</button>
+        <button class="btn share" data-action="share">🔗 分享</button>
       </div>
       <p class="abs">{paper.abstract}</p>
       <div class="links" style="font-size:.95rem">
@@ -58,7 +61,8 @@ const payload = JSON.stringify(item);
         <Fragment set:html={mediaHtml(item, { large: true })} />
       )}
       {item.imageCaption && <p class="caption">{item.imageCaption}</p>}
-      {!item.image && !item.video && <p class="caption">这篇论文暂无 HTML 版本，因此没有抓到配图。</p>}
+      {paper.figure_source === 'pdf' && <p class="caption">这篇论文没有 arXiv HTML 版本，这里显示的是 PDF 首页的预览。</p>}
+      {!item.image && !item.video && <p class="caption">这篇论文暂时没有抓到配图（下一次运行会再试一次）。</p>}
     </aside>
   </article>
 </Base>

@@ -20,6 +20,8 @@ export interface Paper {
   rank: number;
   figure_url?: string | null;
   figure_caption?: string;
+  /** html：arXiv HTML 里的图；pdf：PDF 首页渲染的缩略图（站内 thumbs/<id>.jpg） */
+  figure_source?: 'html' | 'pdf' | null;
   video_url?: string | null;
   links?: { project?: string; code?: string };
   tracked_authors?: string[];
@@ -64,6 +66,8 @@ export interface LabsFile {
 export interface Lab {
   name: string;
   short: string;
+  /** URL slug（管道生成，labs.yaml 可覆盖） */
+  slug?: string;
   total: number;
   researchers: { name: string; papers: LabPaper[] }[];
 }
@@ -79,6 +83,7 @@ export interface LabPaper {
   comment?: string;
   figure_url?: string | null;
   figure_caption?: string;
+  figure_source?: 'html' | 'pdf' | null;
   video_url?: string | null;
   links?: { project?: string; code?: string };
 }
@@ -153,5 +158,7 @@ export interface IndexItem {
   score: number;
   stars?: number;
   img?: string | null;
+  /** 命中的兴趣关键词 */
+  kw?: string[];
   tracked?: string[];
 }

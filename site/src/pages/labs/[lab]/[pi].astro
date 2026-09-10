@@ -1,0 +1,59 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Card from '../../../components/Card.astro';
+import { withBase } from '../../../lib/base';
+import { labPaperToCard, labSlug, labs, labsData, researcherSlug, sortedPapers } from '../../../lib/data';
+
+export function getStaticPaths() {
+  return labs.flatMap((lab) =>
+    lab.researchers.map((r) => ({
+      params: { lab: labSlug(lab), pi: researcherSlug(r.name) },
+      props: { lab, researcher: r },
+    })),
+  );
+}
+
+const { lab, researcher } = Astro.props;
+const slug = labSlug(lab);
+const papers = sortedPapers(researcher.papers);
+const scholar = `https://scholar.google.com/scholar?q=${encodeURIComponent(researcher.name)}`;
+const arxivSearch = `https://arxiv.org/a/${encodeURIComponent(researcher.name.toLowerCase().replace(/\s+/g, '_'))}`;
+const others = lab.researchers.filter((r) => r.name !== researcher.name);
+---
+
+<Base title={`${researcher.name} · ${lab.short}`} active="labs">
+  <p class="hint crumbs" style="margin-top:22px">
+    <a href={withBase('labs/')}>学者追踪</a> <span>›</span>
+    <a href={withBase(`labs/${slug}/`)}>{lab.short}</a> <span>›</span> <b>{researcher.name}</b>
+  </p>
+  <div class="page-head">
+    <h1>{researcher.name}</h1>
+    <span class="sub">{lab.name} · 最近 {labsData?.days_back} 天 {papers.length} 篇</span>
+    <span class="grow"></span>
+    <div class="links">
+      <a href={arxivSearch} target="_blank" rel="noopener">arXiv 作者页</a>
+      <a href={scholar} target="_blank" rel="noopener">Google Scholar</a>
+    </div>
+  </div>
+
+  {papers.length === 0 ? (
+    <div class="empty">窗口期内没有新论文，过几天再来看看～</div>
+  ) : (
+    <div class="cards">
+      {papers.map((p, i) => <Card item={labPaperToCard(p, researcher.name)} rank={i + 1} />)}
+    </div>
+  )}
+
+  {others.length > 0 && (
+    <>
+      <div class="section-head"><h2>同实验室的其他学者</h2></div>
+      <nav class="lab-nav">
+        {others.map((r) => (
+          <a href={withBase(`labs/${slug}/${researcherSlug(r.name)}/`)} class={r.papers.length ? '' : 'quiet'}>
+            {r.name}<span class="n">{r.papers.length}</span>
+          </a>
+        ))}
+      </nav>
+    </>
+  )}
+</Base>

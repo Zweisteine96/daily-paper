@@ -6,3 +6,9 @@ export const BASE = raw.endsWith('/') ? raw : raw + '/';
 export function withBase(path: string): string {
   return BASE + path.replace(/^\/+/, '');
 }
+
+/** 媒体地址：绝对 URL 原样返回；相对地址（如管道生成的 thumbs/<id>.jpg）补上 base。 */
+export function resolveMedia(url?: string | null): string | null {
+  if (!url) return null;
+  return /^(https?:)?\/\//i.test(url) || url.startsWith('data:') ? url : withBase(url);
+}

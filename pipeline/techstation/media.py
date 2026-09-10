@@ -18,6 +18,8 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 
+from .config import THUMBS_DIR
+
 log = logging.getLogger(__name__)
 
 USER_AGENT = "techstation-daily-paper/0.1 (personal research feed)"
@@ -135,21 +137,65 @@ def find_project_links(*texts: str) -> dict[str, str]:
     return links
 
 
-def enrich_papers(papers: list[dict]) -> None:
+def render_pdf_thumbnail(session: requests.Session, arxiv_id: str, width: int = 520) -> str | None:
+    """没有 HTML 版时的兜底：下载 PDF，用 PyMuPDF 把首页渲染成小 JPEG，存到 data/thumbs/。
+
+    返回相对站点根的路径（thumbs/<id>.jpg），失败返回 None。单张约 30~50KB。
+    """
+    THUMBS_DIR.mkdir(parents=True, exist_ok=True)
+    out = THUMBS_DIR / f"{arxiv_id}.jpg"
+    if out.exists():
+        return f"thumbs/{arxiv_id}.jpg"
+    try:
+        import pymupdf as fitz
+    except ImportError:
+        log.warning("未安装 pymupdf，跳过 PDF 缩略图")
+        return None
+    try:
+        resp = session.get(f"https://arxiv.org/pdf/{arxiv_id}", timeout=60)
+        if resp.status_code != 200 or not resp.content.startswith(b"%PDF"):
+            return None
+        doc = fitz.open(stream=resp.content, filetype="pdf")
+        if doc.page_count == 0:
+            return None
+        page = doc[0]
+        rect = page.rect
+        # 只取首页上半部分（标题 + 摘要 + 常见的 teaser 图），既省体积也更像一张「配图」
+        clip = fitz.Rect(rect.x0, rect.y0, rect.x1, rect.y0 + rect.height * 0.62)
+        zoom = width / rect.width
+        pix = page.get_pixmap(matrix=fitz.Matrix(zoom, zoom), clip=clip, alpha=False)
+        pix.save(str(out), output="jpeg", jpg_quality=62)
+        doc.close()
+        return f"thumbs/{arxiv_id}.jpg"
+    except Exception as exc:  # noqa: BLE001
+        log.debug("PDF 缩略图失败 %s: %s", arxiv_id, exc)
+        return None
+
+
+def enrich_papers(papers: list[dict], pdf_fallback: bool = True) -> None:
     """原地给论文加上 figure / video / links 字段。"""
     session = requests.Session()
     session.headers["User-Agent"] = USER_AGENT
-    hits = 0
+    hits = fallbacks = 0
     for i, p in enumerate(papers):
         if i > 0:
             time.sleep(ARXIV_HTML_INTERVAL)
         fig = fetch_arxiv_figure(session, p["id"])
         p["figure_url"] = fig["url"] if fig else None
         p["figure_caption"] = fig["caption"] if fig else ""
+        p["figure_source"] = "html" if fig else None
+        if not fig and pdf_fallback:
+            time.sleep(ARXIV_HTML_INTERVAL)
+            thumb = render_pdf_thumbnail(session, p["id"])
+            if thumb:
+                p["figure_url"] = thumb
+                p["figure_caption"] = "论文首页预览"
+                p["figure_source"] = "pdf"
+                fallbacks += 1
         p["video_url"] = find_video_url(p.get("abstract", ""), p.get("comment", ""))
         p["links"] = find_project_links(p.get("abstract", ""), p.get("comment", ""))
         hits += bool(fig)
-    log.info("论文配图：%d/%d 篇找到图片", hits, len(papers))
+    log.info("论文配图：%d/%d 篇有 HTML 配图，%d 篇用 PDF 首页兜底", hits, len(papers), fallbacks)
 
 
 # ---------------------------------------------------------------------------

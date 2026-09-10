@@ -79,8 +79,8 @@ def run_papers(cfg: Config, day: str, profile, embedder, kw, labs_profile: dict,
         todo = []
         for p in top:
             old = existing.get(p["id"])
-            if old and "figure_url" in old:
-                for k in ("figure_url", "figure_caption", "video_url", "links"):
+            if old and old.get("figure_url"):
+                for k in ("figure_url", "figure_caption", "figure_source", "video_url", "links"):
                     p[k] = old.get(k)
             else:
                 todo.append(p)
@@ -202,6 +202,7 @@ def main() -> None:
 
     store.prune_daily_files("papers", cfg.retention_days)
     store.prune_daily_files("repos", cfg.retention_days)
+    store.prune_thumbnails()
     store.rebuild_search_index(cfg.retention_days)
     log.info("完成")
 

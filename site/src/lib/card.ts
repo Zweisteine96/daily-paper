@@ -52,14 +52,33 @@ export function mediaHtml(item: CardItem, opts: { large?: boolean } = {}): strin
     const poster = item.image ? ` poster="${esc(item.image)}"` : '';
     return `<div class="media video"><video src="${esc(item.video!)}"${poster} controls muted loop playsinline preload="none"></video></div>`;
   }
-  if (item.image) {
-    return `<a class="media" href="${href}" title="查看详情">
-      <img src="${esc(item.image)}" alt="${alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('broken')" />
-      <span class="media-fallback">${esc(item.type === 'paper' ? item.tags?.[0] ?? 'arXiv' : item.subtitle || 'GitHub')}</span></a>`;
-  }
   const label = item.type === 'paper' ? item.tags?.[0] ?? 'arXiv' : item.subtitle || 'GitHub';
-  return `<a class="media placeholder" href="${href}" title="查看详情"><span>${esc(label)}</span></a>`;
+  const fallback = `<span class="media-fallback">${MASCOT}<span>${esc(label)}</span></span>`;
+  if (item.image) {
+    const cls = /\/thumbs\/[^/]+\.jpg$/.test(item.image) ? 'media pdf-thumb' : 'media';
+    return `<a class="${cls}" href="${href}" title="查看详情">
+      <img src="${esc(item.image)}" alt="${alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('broken')" />
+      ${fallback}</a>`;
+  }
+  return `<a class="media placeholder" href="${href}" title="查看详情">${fallback}</a>`;
 }
+
+/** 没图时的小机器人吉祥物（内联 SVG，零依赖） */
+export const MASCOT = `<svg class="mascot" viewBox="0 0 64 64" aria-hidden="true">
+  <line x1="32" y1="6" x2="32" y2="14" stroke="#b58fd6" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="6" r="3.5" fill="#ff9ec4"/>
+  <rect x="10" y="14" width="44" height="36" rx="12" fill="#fff" stroke="#b58fd6" stroke-width="3"/>
+  <rect x="4" y="26" width="6" height="12" rx="3" fill="#ffd6a5"/>
+  <rect x="54" y="26" width="6" height="12" rx="3" fill="#ffd6a5"/>
+  <circle cx="24" cy="30" r="4" fill="#5b4b6e"/>
+  <circle cx="40" cy="30" r="4" fill="#5b4b6e"/>
+  <circle cx="25.5" cy="28.5" r="1.3" fill="#fff"/>
+  <circle cx="41.5" cy="28.5" r="1.3" fill="#fff"/>
+  <circle cx="18" cy="37" r="3" fill="#ffb7c5" opacity=".8"/>
+  <circle cx="46" cy="37" r="3" fill="#ffb7c5" opacity=".8"/>
+  <path d="M26 39 Q32 44 38 39" stroke="#5b4b6e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <rect x="22" y="52" width="20" height="8" rx="4" fill="#cdeaff"/>
+</svg>`;
 
 export interface CardOptions {
   /** 显示排名序号 */
@@ -111,9 +130,9 @@ export function cardHtml(item: CardItem, opts: CardOptions = {}): string {
       <div class="meta">${meta.join('')}</div>
       <div class="actions">
         <button class="btn like" data-action="liked" title="点赞：加入书库并作为推荐正样本">♥ 点赞</button>
-        <button class="btn later" data-action="later" title="稍后读">⌚ 稍后读</button>
+        <button class="btn later" data-action="later" title="稍后读">🔖 稍后读</button>
         <button class="btn dislike" data-action="disliked" title="不感兴趣：作为推荐负样本">✕</button>
-        <button class="btn share" data-action="share" title="复制分享链接">⇪ 分享</button>
+        <button class="btn share" data-action="share" title="复制分享链接">🔗 分享</button>
         ${removeBtn}
       </div>
     </div>
