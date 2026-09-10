@@ -1,0 +1,112 @@
+---
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../lib/base';
+import { allTopics, moduleHours, modules, totalHours } from '../../content/foundations';
+
+const allIds = allTopics.map((t) => t.id).join(',');
+const byId = new Map(modules.map((m) => [m.id, m]));
+/* 学习路线的分组：主干 + 三条支线 + 工程闭环 */
+const tracks = [
+  { title: '主干：建模 → 控制', ids: ['math', 'modeling', 'control'] },
+  { title: '支线：规划 · 学习 · 感知', ids: ['planning', 'rl', 'estimation'] },
+  { title: '工程闭环：仿真 → 迁移 → 真机', ids: ['simulation', 'sim2real', 'deployment'] },
+];
+---
+
+<Base title="理论基础" description="从零开始的机器人学学习路线：建模、控制与 MPC、规划、强化学习、状态估计、仿真、Sim-to-Real、真机部署" active="foundations">
+  <div class="page-head">
+    <h1>理论基础</h1>
+    <span class="sub">{modules.length} 个领域 · {allTopics.length} 个主题 · 约 {totalHours} 小时</span>
+    <span class="grow"></span>
+    <div class="progress-box" data-total-progress data-topics={allIds}>
+      <span class="lbl">已掌握 <b class="done-n">0</b>/{allTopics.length}</span>
+      <div class="progress"><div class="bar" style="width:0%"></div></div>
+    </div>
+  </div>
+  <p class="hint">
+    一条给「完全不懂机器人」的人的学习路线。点进任一领域，进入它的完整课程：核心概念、关键公式、免费的经典资料
+    （Russ Tedrake 的 Underactuated / Manipulation、CMU 16-745、Berkeley CS285 等）与自测题。
+    勾选「已掌握」保存在本地浏览器里。
+  </p>
+
+  <!-- 路线图 -->
+  <div class="tracks">
+    {tracks.map((tr) => (
+      <section class="track">
+        <h2 class="track-title">{tr.title}</h2>
+        <div class="track-flow">
+          {tr.ids.map((id, i) => {
+            const m = byId.get(id)!;
+            return (
+              <>
+                <a class="road-node" href={withBase(`foundations/${m.id}/`)} data-module-progress={m.id} data-topics={m.topics.map((t) => t.id).join(',')}>
+                  <span class="emoji">{m.emoji}</span>
+                  <span class="t">{m.title}</span>
+                  <span class="n"><span class="done-n">0</span>/{m.topics.length}</span>
+                </a>
+                {i < tr.ids.length - 1 && <span class="road-arrow">→</span>}
+              </>
+            );
+          })}
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <!-- 领域卡片 -->
+  <div class="domain-grid">
+    {modules.map((m) => (
+      <article class="domain-card" data-module-progress={m.id} data-topics={m.topics.map((t) => t.id).join(',')}>
+        <a class="domain-head" href={withBase(`foundations/${m.id}/`)}>
+          <span class="emoji">{m.emoji}</span>
+          <span class="grow">
+            <h2>{m.title}</h2>
+            <span class="en">{m.en}</span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+        <p class="tagline">{m.tagline}</p>
+        <div class="domain-meta">
+          <span>{m.topics.length} 个主题</span>
+          <span>约 {moduleHours(m)} 小时</span>
+          {m.prereq && m.prereq.length > 0 && (
+            <span>先修：{m.prereq.map((p) => byId.get(p)?.title).join('、')}</span>
+          )}
+        </div>
+        <ol class="topic-list">
+          {m.topics.map((t) => (
+            <li data-topic={t.id}>
+              <a href={withBase(`foundations/${m.id}/#${t.id}`)}><span class="tick">✓</span>{t.title}</a>
+              <span class="h">{t.hours}h</span>
+            </li>
+          ))}
+        </ol>
+        <div class="domain-foot">
+          <div class="progress"><div class="bar" style="width:0%"></div></div>
+          <span class="lbl"><b class="done-n">0</b>/{m.topics.length}</span>
+          <a class="btn primary small" href={withBase(`foundations/${m.id}/`)}>进入课程</a>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <section class="module" id="how-to">
+    <div class="module-head">
+      <span class="emoji">🧭</span>
+      <div>
+        <h2>怎么走这条路 <span class="en">How to Use</span></h2>
+        <ul class="points intro-list">
+          <li><b>顺序：</b>数学准备只需先过一遍线性代数与优化，其余在用到时回头补。建模 → 控制是主干；规划、学习、估计三条支线可按兴趣并行；仿真 → Sim-to-Real → 真机部署是把一切落地的工程闭环，建议从「仿真工具」开始就动手。</li>
+          <li><b>动手：</b>每个领域至少复现一个例子——用 MuJoCo / Pinocchio 验证推出的动力学；用 CasADi 写一个倒立摆的直接配点；用 legged_gym 训练一个四足策略并做一次 sim2sim；用 Labbe 的 notebook 跑一遍 EKF；用 SO-100 + LeRobot 采集一次示教数据并部署。</li>
+          <li><b>主线资料：</b>Russ Tedrake 的 <a href="https://underactuated.mit.edu/" target="_blank" rel="noopener">Underactuated Robotics</a> 与 CMU 的 <a href="https://optimalcontrol.ri.cmu.edu/" target="_blank" rel="noopener">16-745</a> 覆盖了建模到 MPC 的绝大部分内容；Berkeley 的 <a href="https://rail.eecs.berkeley.edu/deeprlcourse/" target="_blank" rel="noopener">CS285</a> 与 Barfoot 的 <a href="http://asrl.utias.utoronto.ca/~tdb/bib/barfoot_ser17.pdf" target="_blank" rel="noopener">State Estimation for Robotics</a> 分别是学习与估计的主线；MuJoCo 文档与 ETH RSL 的开源代码是仿真与部署的主线。</li>
+          <li><b>与每日推荐联动：</b>每个主题末尾的关键词可以直接跳到搜索页，看看这个方向今天有什么新论文。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import { bindProgress } from '../../scripts/foundations';
+    bindProgress();
+  </script>
+</Base>

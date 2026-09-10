@@ -1,0 +1,163 @@
+---
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../lib/base';
+import { kindMeta, moduleHours, modules } from '../../content/foundations';
+
+export function getStaticPaths() {
+  return modules.map((m, i) => ({ params: { module: m.id }, props: { m, prev: modules[i - 1] ?? null, next: modules[i + 1] ?? null } }));
+}
+
+const { m, prev, next } = Astro.props;
+const tex = (s: string) => katex.renderToString(s, { throwOnError: false, displayMode: true, strict: 'ignore' });
+const byId = new Map(modules.map((x) => [x.id, x]));
+const searchHref = (q: string) => withBase(`search/?q=${encodeURIComponent(q)}`);
+const topicIds = m.topics.map((t) => t.id).join(',');
+---
+
+<Base title={`${m.title} · 理论基础`} description={m.tagline} active="foundations">
+  <p class="hint crumbs" style="margin-top:22px">
+    <a href={withBase('foundations/')}>理论基础</a> <span>›</span> <b>{m.emoji} {m.title}</b>
+  </p>
+
+  <div class="module-head hero">
+    <span class="emoji">{m.emoji}</span>
+    <div class="grow">
+      <h1>{m.title} <span class="en">{m.en}</span></h1>
+      <p class="intro">{m.intro}</p>
+      <div class="domain-meta">
+        <span>{m.topics.length} 个主题</span>
+        <span>约 {moduleHours(m)} 小时</span>
+        {m.prereq && m.prereq.length > 0 && (
+          <span class="prereq">
+            先修：{m.prereq.map((p) => <a href={withBase(`foundations/${p}/`)}>{byId.get(p)?.emoji} {byId.get(p)?.title}</a>)}
+          </span>
+        )}
+      </div>
+      <div class="progress-box" data-module-progress={m.id} data-topics={topicIds}>
+        <span class="lbl">已掌握 <b class="done-n">0</b>/{m.topics.length}</span>
+        <div class="progress"><div class="bar" style="width:0%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="outcomes">
+    <h4>学完你将能够</h4>
+    <ul>{m.outcomes.map((o) => <li>{o}</li>)}</ul>
+  </div>
+
+  <div class="found-layout">
+    <aside class="toc" id="toc">
+      <div class="toc-mod">
+        <a href="#top">{m.emoji} {m.title}</a>
+        <ul>
+          {m.topics.map((t) => (
+            <li><a href={`#${t.id}`} data-topic={t.id}><span class="tick">✓</span>{t.title}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div class="toc-mod">
+        <a href={withBase('foundations/')}>← 全部领域</a>
+        <ul>
+          {modules.filter((x) => x.id !== m.id).map((x) => (
+            <li><a href={withBase(`foundations/${x.id}/`)}>{x.emoji} {x.title}</a></li>
+          ))}
+        </ul>
+      </div>
+    </aside>
+
+    <div class="found-main">
+      {m.topics.map((t, i) => (
+        <article class="topic" id={t.id} data-topic={t.id}>
+          <header class="topic-head">
+            <label class="done-toggle" title="标记为已掌握">
+              <input type="checkbox" data-topic-check={t.id} />
+              <span class="box"></span>
+              <span class="txt">已掌握</span>
+            </label>
+            <h3><span class="idx">{i + 1}</span>{t.title} <span class="en">{t.en}</span></h3>
+            <span class="hours">⏱ 约 {t.hours} 小时</span>
+          </header>
+          <p class="summary">{t.summary}</p>
+
+          <div class="topic-grid">
+            <div>
+              <h4>核心要点</h4>
+              <ul class="points">{t.points.map((p) => <li>{p}</li>)}</ul>
+
+              {t.formulas && t.formulas.length > 0 && (
+                <>
+                  <h4>关键公式</h4>
+                  <div class="formulas">
+                    {t.formulas.map((f) => (
+                      <figure class="formula">
+                        <Fragment set:html={tex(f.latex)} />
+                        <figcaption>{f.caption}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {t.quiz && t.quiz.length > 0 && (
+                <details class="quiz">
+                  <summary>自测：学完应该能回答</summary>
+                  <ol>{t.quiz.map((q) => <li>{q}</li>)}</ol>
+                </details>
+              )}
+            </div>
+
+            <div>
+              <h4>推荐资料（全部免费）</h4>
+              <ul class="resources">
+                {t.resources.map((r) => (
+                  <li class={r.primary ? 'primary' : ''}>
+                    <span class="kind" title={kindMeta[r.kind].label}>{kindMeta[r.kind].icon}</span>
+                    <div class="res-body">
+                      <a href={r.url} target="_blank" rel="noopener">{r.title}</a>
+                      {r.primary && <span class="badge track">首选</span>}
+                      <div class="by">{r.by}</div>
+                      {r.note && <div class="note">{r.note}</div>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              {t.papers && t.papers.length > 0 && (
+                <p class="related">
+                  在本站找相关新论文：
+                  {t.papers.map((k) => <a class="chip kw" href={searchHref(k)}>{k}</a>)}
+                </p>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+
+      <nav class="module-nav">
+        {prev ? <a href={withBase(`foundations/${prev.id}/`)}>← {prev.emoji} {prev.title}</a> : <span></span>}
+        <a href={withBase('foundations/')}>全部领域</a>
+        {next ? <a href={withBase(`foundations/${next.id}/`)}>{next.emoji} {next.title} →</a> : <span></span>}
+      </nav>
+    </div>
+  </div>
+
+  <script>
+    import { bindProgress } from '../../scripts/foundations';
+    bindProgress();
+
+    // 滚动时高亮目录
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('#toc a[data-topic]'));
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          const id = (e.target as HTMLElement).dataset.topic;
+          links.forEach((l) => l.classList.toggle('active', l.dataset.topic === id));
+        }
+      },
+      { rootMargin: '-20% 0px -70% 0px' },
+    );
+    document.querySelectorAll<HTMLElement>('.topic[data-topic]').forEach((el) => obs.observe(el));
+  </script>
+</Base>
