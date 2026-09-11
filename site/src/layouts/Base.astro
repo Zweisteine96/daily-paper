@@ -9,9 +9,14 @@ interface Props {
   /** 分享预览图（详情页用） */
   image?: string | null;
   active?: 'today' | 'repos' | 'labs' | 'foundations' | 'archive' | 'search' | 'library' | 'settings';
+  /** 不让搜索引擎收录（设置、书库等只对本人有意义的页面） */
+  noindex?: boolean;
 }
-const { title, description = '每日机器人与 AI 论文、GitHub 项目推荐', image, active } = Astro.props;
+const { title, description = '每日机器人与 AI 论文、GitHub 项目推荐', image, active, noindex = false } = Astro.props;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : Astro.url.pathname;
+const sitemapHref = Astro.site ? new URL(withBase('sitemap-index.xml'), Astro.site).toString() : null;
+// Google Search Console「HTML 标签」验证码，通过仓库变量 GOOGLE_SITE_VERIFICATION 注入
+const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || '';
 
 const nav = [
   { key: 'today', label: '📄 今日论文', href: withBase('') },
@@ -34,6 +39,11 @@ const favicon = `data:image/svg+xml,${encodeURIComponent(MASCOT.replace('class="
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · Tech Station</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {sitemapHref && <link rel="sitemap" type="application/xml" href={sitemapHref} />}
+    {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
+    <meta property="og:site_name" content="Tech Station" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="article" />

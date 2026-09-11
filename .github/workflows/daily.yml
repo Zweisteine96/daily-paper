@@ -134,6 +134,8 @@ jobs:
           SITE_URL: ${{ steps.site.outputs.url }}
           BASE_PATH: ${{ steps.site.outputs.base }}
           PUBLIC_REPO: ${{ github.repository }}
+          # 可选：仓库 Settings -> Secrets and variables -> Actions -> Variables 里设置 GOOGLE_SITE_VERIFICATION
+          PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.GOOGLE_SITE_VERIFICATION }}
         run: |
           npm ci
           npm run build
