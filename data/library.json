@@ -1,4 +1,39 @@
 {
-  "updated": "2026-09-10T20:37:53+00:00",
-  "items": []
+  "updated": "2026-09-10T23:31:58.722Z",
+  "items": [
+    {
+      "type": "paper",
+      "id": "2609.09158",
+      "title": "TANGO: Humanoid Navigation in Cluttered Environments with a Whole-Body Vision-Language-Action Model",
+      "url": "https://arxiv.org/abs/2609.09158",
+      "subtitle": "Anqi Li, Yuxin Chen, Zhaobo Li, Zhuo Cao, Junli Ren, Masayoshi Tomizuka 等",
+      "text": "We study the problem of navigating cluttered indoor environments with a humanoid robot. Unlike conventional methods that model navigation as a 2D path planning problem, humanoid traversal in cluttered environments requires continuous geometry-aware whole-body adaptation, including coordinated arm placement, torso adjustment, and gait modulation for collision-free movement through complex 3D spaces. We introduce TANGO, the first whole-body vision-language navigation framework for language-conditioned humanoid traversal in cluttered environments. Given a natural-language instruction and egocentric RGB observations, TANGO directly predicts 29-DoF joint-space actions for downstream whole-body control. We train TANGO entirely in simulation by synthesizing diverse collision-free traversal behaviors via global path planning, kinematic whole-body motion generation, obstacle-aware motion editing, and RL-based tracking. This pipeline provides dynamically feasible action supervision for learning language-conditioned whole-body policies. In extensive simulation experiments, TANGO demonstrates state-of-the-art performance in vision-language navigation, while outperforming strong modular baselines in navigating challenging scenes requiring obstacle negotiation. Lastly, we deploy TANGO zero-shot on a Unitree G1 humanoid robot, and observe robust language-guided traversal in cluttered real-world scenes without training on any real-world navigation data.",
+      "tags": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "date": "2026-09-08",
+      "score": 0.9699,
+      "why": "追踪学者：Dhruv Shah；兴趣：humanoid robots and whole-body control",
+      "keywords": [
+        "robot",
+        "vision-language-action",
+        "humanoid"
+      ],
+      "pdf": "https://arxiv.org/pdf/2609.09158v1",
+      "image": "https://arxiv.org/html/2609.09158v1/teaser_new.png",
+      "imageCaption": "Figure 1: Humanoid whole-body navigation in cluttered environments. We propose TANGO , a whole-body foundation model for cluttered indoor scene navigation. TANGO demonstrates strong scene understanding and robust traversal capability, navigating a 30-meter route zero-shot in a real-world cluttered o",
+      "video": null,
+      "links": [],
+      "badges": [
+        "追踪学者 · Dhruv Shah"
+      ],
+      "liked": true,
+      "later": false,
+      "disliked": false,
+      "status": "liked",
+      "added_at": "2026-09-10T23:31:56.465Z",
+      "updated_at": "2026-09-10T23:31:56.465Z"
+    }
+  ]
 }
