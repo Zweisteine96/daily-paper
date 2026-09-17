@@ -1,8 +1,8 @@
 {
-  "updated": "2026-09-16T12:04:52+00:00",
-  "day": "2026-09-16",
+  "updated": "2026-09-17T12:03:29+00:00",
+  "day": "2026-09-17",
   "days_back": 45,
-  "total": 105,
+  "total": 107,
   "labs": [
     {
       "name": "UC Berkeley",
@@ -225,61 +225,7 @@
         },
         {
           "name": "Jitendra Malik",
-          "papers": [
-            {
-              "id": "2608.07558",
-              "title": "Learning Physical Interaction: A Survey of Tactile- and Force-aware Robot Learning",
-              "authors": [
-                "Shilin Shan",
-                "Chuhao Zhou",
-                "Ruize Wang",
-                "Xinyan Chen",
-                "Xiangyu Chen",
-                "Xinyu Zhou",
-                "Boyu Ma",
-                "Iris Yuxuan Hu",
-                "Jingliang Li",
-                "Celeste Yuxuan Hu",
-                "Geng Li",
-                "Guohao Chen",
-                "Tianrui Zhu",
-                "Zhe Li",
-                "Yanjie Ze",
-                "Haoran Geng",
-                "Zhiyang Dou",
-                "Jianxin Bi",
-                "Yuejiang Liu",
-                "Jianshu Zhou",
-                "Jiachen Li",
-                "Paul Liang",
-                "Tatsuya Harada",
-                "Robert Katzschmann",
-                "Harold Soh",
-                "Na Li",
-                "Edward Johns",
-                "Danica Kragic",
-                "Jan Peters",
-                "Wojciech Matusik",
-                "Masayoshi Tomizuka",
-                "Jitendra Malik",
-                "Jianfei Yang"
-              ],
-              "abstract": "Physically grounded robot intelligence requires robots to perceive, reason about, and regulate their interactions with the physical world. This capability is particularly critical in contact-sensitive manipulation, where successful task execution depends not only on visual perception and motion generation, but also on force regulation and adaptive control. In this context, recent robot learning methods have made substantial progress by integrating force, tactile, vision, language, and proprioceptive sensing into learned manipulation policies. In parallel, many systems adopt multi-phase architectures that combine high-level policies, action-refinement modules, and low-level controllers to bridge semantic task understanding with reactive physical execution. Despite these advances, existing surveys have not explicitly reviewed force- and tactile-aware robot learning from a unified perspective that jointly captures multimodal sensing and multi-phase system design. This survey addresses this gap by proposing TF-ART, a Tactile/Force-Aware Robot learning Taxonomy for multimodal and multi-phase frameworks, which maps individual methods into a unified hierarchical structure. The framework characterizes how recent works organize observation modalities, encode and fuse heterogeneous sensory inputs, generate and refine actions across multiple phases, and connect learned policies to reactive robot-end control. Building on this methodological view, we further examine the task settings and infrastructure requirements of physical interaction, thereby integrating both algorithmic and practical perspectives on force- and tactile-aware robot learning.",
-              "categories": [
-                "cs.RO",
-                "cs.CV"
-              ],
-              "published": "2026-08-02T14:22:01Z",
-              "url": "https://arxiv.org/abs/2608.07558",
-              "pdf_url": "https://arxiv.org/pdf/2608.07558v1",
-              "comment": "53 pages, 7 figures",
-              "figure_url": "https://arxiv.org/html/2608.07558v1/teaser.png",
-              "figure_caption": "Figure 1: Overview of TF-ART: a unified force/tactile-aware multi-modal multi-phase framework. The main hierarchical architecture includes multimodal perception, encoding and fusion, primary action generation, action refinement, and low-level robot-end control. The branching modules include input da",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
-            }
-          ]
+          "papers": []
         },
         {
           "name": "Koushil Sreenath",
@@ -403,7 +349,7 @@
           ]
         }
       ],
-      "total": 12
+      "total": 11
     },
     {
       "name": "Stanford",
@@ -413,6 +359,32 @@
         {
           "name": "Chelsea Finn",
           "papers": [
+            {
+              "id": "2609.18207",
+              "title": "Reinforcement Learning for Real-Time Vision-Language-Action Policies",
+              "authors": [
+                "Perry Dong",
+                "Kuo-Han Hung",
+                "Dorsa Sadigh",
+                "Chelsea Finn"
+              ],
+              "abstract": "Reinforcement learning fine-tuning on top of large, pretrained Vision-Language-Action (VLA) models offers promise for highly reliable robot deployment. However, because of their scale, modern VLA models suffer from high inference latency, so the observation used to select an action is often stale by execution time, creating a distribution shift that can substantially degrade reliability and performance. Prior work has explored asynchronous policy execution to reduce the effect of latency, but these methods are mostly built on imitation learning and offer no mechanism for moving beyond the training distribution toward higher reliability. We close this gap by enabling RL fine-tuning that meets the real-time control requirements of dynamic real-world manipulation. Our approach builds on EXPO-FT, a framework for sample-efficient, reliable VLA fine-tuning with reinforcement learning, and decouples slow, expressive action generation from fast, reactive action edits: a large pretrained VLA proposes action chunks using its strong behavior prior, while a lightweight edit policy performs fast, reactive decision-making by editing actions in response to changes in state, conditioned on the latest observation. We instantiate this as Real-Time EXPO-FT, an RL framework for finetuning real-time VLA policies. On the Kinetix benchmark, Real-Time EXPO-FT enables a delayed policy to achieve the best performance among delayed and non-delayed methods in 10 out of 10 environments. On four dynamic real-world tasks, robot object passing, ball balancing, table soccer kicking, and dynamic object picking, with online robot data capped at 10 minutes, Real-Time EXPO-FT improves average policy performance from 42% to 97%, all without human intervention, demonstrating rapid, sample-efficient adaptation to challenging real-world dynamics. Website: https://pd-perry.github.io/real-time-expo-ft",
+              "categories": [
+                "cs.RO",
+                "cs.LG"
+              ],
+              "published": "2026-09-16T06:38:36Z",
+              "url": "https://arxiv.org/abs/2609.18207",
+              "pdf_url": "https://arxiv.org/pdf/2609.18207v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2609.18207v1/all_levels_grid_sim.png",
+              "figure_caption": "Fig. 3 : Training success across all 10 Kinetix [ 35 ] simulation tasks. The vertical dashed lines indicate the evaluation performance of two BC baselines, one with no inference delay and one with a 4-step delay. Each setting is run with 4 seeds.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "project": "https://pd-perry.github.io/real-time-expo-ft"
+              }
+            },
             {
               "id": "2609.00196",
               "title": "WHALE: A Simple Recipe for Joint Harness-Weight Optimization",
@@ -883,6 +855,32 @@
           "name": "Dorsa Sadigh",
           "papers": [
             {
+              "id": "2609.18207",
+              "title": "Reinforcement Learning for Real-Time Vision-Language-Action Policies",
+              "authors": [
+                "Perry Dong",
+                "Kuo-Han Hung",
+                "Dorsa Sadigh",
+                "Chelsea Finn"
+              ],
+              "abstract": "Reinforcement learning fine-tuning on top of large, pretrained Vision-Language-Action (VLA) models offers promise for highly reliable robot deployment. However, because of their scale, modern VLA models suffer from high inference latency, so the observation used to select an action is often stale by execution time, creating a distribution shift that can substantially degrade reliability and performance. Prior work has explored asynchronous policy execution to reduce the effect of latency, but these methods are mostly built on imitation learning and offer no mechanism for moving beyond the training distribution toward higher reliability. We close this gap by enabling RL fine-tuning that meets the real-time control requirements of dynamic real-world manipulation. Our approach builds on EXPO-FT, a framework for sample-efficient, reliable VLA fine-tuning with reinforcement learning, and decouples slow, expressive action generation from fast, reactive action edits: a large pretrained VLA proposes action chunks using its strong behavior prior, while a lightweight edit policy performs fast, reactive decision-making by editing actions in response to changes in state, conditioned on the latest observation. We instantiate this as Real-Time EXPO-FT, an RL framework for finetuning real-time VLA policies. On the Kinetix benchmark, Real-Time EXPO-FT enables a delayed policy to achieve the best performance among delayed and non-delayed methods in 10 out of 10 environments. On four dynamic real-world tasks, robot object passing, ball balancing, table soccer kicking, and dynamic object picking, with online robot data capped at 10 minutes, Real-Time EXPO-FT improves average policy performance from 42% to 97%, all without human intervention, demonstrating rapid, sample-efficient adaptation to challenging real-world dynamics. Website: https://pd-perry.github.io/real-time-expo-ft",
+              "categories": [
+                "cs.RO",
+                "cs.LG"
+              ],
+              "published": "2026-09-16T06:38:36Z",
+              "url": "https://arxiv.org/abs/2609.18207",
+              "pdf_url": "https://arxiv.org/pdf/2609.18207v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2609.18207v1/all_levels_grid_sim.png",
+              "figure_caption": "Fig. 3 : Training success across all 10 Kinetix [ 35 ] simulation tasks. The vertical dashed lines indicate the evaluation performance of two BC baselines, one with no inference delay and one with a 4-step delay. Each setting is run with 4 seeds.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "project": "https://pd-perry.github.io/real-time-expo-ft"
+              }
+            },
+            {
               "id": "2609.01938",
               "title": "One Demonstration, Many Objects: Generalizing Manipulation via Local Contact Geometry",
               "authors": [
@@ -1051,31 +1049,6 @@
               "figure_source": "html",
               "video_url": null,
               "links": {}
-            },
-            {
-              "id": "2608.01402",
-              "title": "Demystifying When and Why VLAs Fail in Contact-Rich Tasks and How to Fix Them",
-              "authors": [
-                "Carlota Parés-Morlans",
-                "Nils Kuhn",
-                "Isabel Liu",
-                "Alberta Longhini",
-                "Jeannette Bohg"
-              ],
-              "abstract": "We address the problem of understanding when and why Vision-Language-Action models struggle with contact-rich manipulation tasks that require precise physical interaction. Prior work has primarily focused on addressing contact failures through force-augmented architectures and training-time regularizers, yet the root causes of these failures remain underexplored. We identify two distinct failure modes underlying this gap. Precision failures are rooted in a flow-matching policy training mismatch, and force failures arise from the distinctive structure of force signals. We address each failure mode with a targeted mechanism and combine them into FACT, which achieves 66% average success rate across five contact-rich tasks against 41% for the best prior baseline, in an evaluation spanning almost 2,500 real-world rollouts.",
-              "categories": [
-                "cs.RO",
-                "cs.AI"
-              ],
-              "published": "2026-08-02T17:34:19Z",
-              "url": "https://arxiv.org/abs/2608.01402",
-              "pdf_url": "https://arxiv.org/pdf/2608.01402v1",
-              "comment": "16 pages",
-              "figure_url": "https://arxiv.org/html/2608.01402v1/failure-profile-usb.png",
-              "figure_caption": "",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
             }
           ]
         },
@@ -1142,7 +1115,7 @@
           ]
         }
       ],
-      "total": 24
+      "total": 25
     },
     {
       "name": "Carnegie Mellon University",
@@ -1225,7 +1198,7 @@
               "title": "GeomVLA: Unifying Scene, Motion, and Action in 3D",
               "authors": [
                 "Ziyin Xiong",
-                "Nikos Gkanatsios",
+                "Nikolaos Gkanatsios",
                 "Moritz Reuss",
                 "Katerina Fragkiadaki"
               ],
@@ -1235,7 +1208,7 @@
               ],
               "published": "2026-09-12T08:51:52Z",
               "url": "https://arxiv.org/abs/2609.13812",
-              "pdf_url": "https://arxiv.org/pdf/2609.13812v1",
+              "pdf_url": "https://arxiv.org/pdf/2609.13812v2",
               "comment": "Accepted to CoRL 2026. Project page: https://ziyin-xiong.github.io/geomvla.io/",
               "figure_url": "https://arxiv.org/html/2609.13812v1/teaser_new4.png",
               "figure_caption": "Figure 1: GeomVLA enables motion-guided 3D visual-language-action learning by bridging perception, latent future motion, and robot control in a shared 3D space. It lifts pretrained 2D VLM features into a geometrically grounded 3D representation, predicts latent 3D scene trajectories as an intermedia",
@@ -1605,11 +1578,110 @@
       "researchers": [
         {
           "name": "Lerrel Pinto",
-          "papers": []
+          "papers": [
+            {
+              "id": "2609.18435",
+              "title": "WetRobo: A Reproducible Robot Kit for Coding Agents in Biological Laboratories",
+              "authors": [
+                "Yuna Oikawa",
+                "Kei Endo",
+                "Takanori Uzawa",
+                "Yunzhe Zhang",
+                "Manan Anjaria",
+                "Lerrel Pinto",
+                "Sherry Yang",
+                "Koji Tsuda"
+              ],
+              "abstract": "Automating biological research requires general-purpose, reproducible robot systems that allow individual wet-lab researchers to delegate robot tasks without performing teleoperation or neural-network training. Vision-language-action policies have been proposed for general-purpose arms, but can lose performance when their operating environment changes. We therefore built WetRobo, a robot kit that can readily transfer between laboratories. It consists of one robot arm, laboratory equipment (an incubator, a reagent bottle with a cap, and a Petri dish), the existing code that moves the arm, teleoperation demonstrations of each task that we recorded, and a general AGENTS.md skill file. A biological experimentalist provides natural-language tasks without collecting local teleoperation training data or training a neural network. The coding agent observes the local laboratory and writes and executes programs, using external tools as needed for adaptation. We demonstrate use of WetRobo with OpenAI Codex (gpt-5.6-sol) on three successful tasks: lifting a Petri dish lid, removing a bottle cap, and opening the incubator door, all in real-world laboratories. The coding agent achieved the cap task in both laboratories, Lab X and Lab Y, whereas a VLA fine-tuned on Lab X demonstrations succeeded there but failed to transfer to Lab Y. These results point to a practical route for laboratory robotics: instead of training a policy for each laboratory, distribute a kit and let a coding agent adapt it in each laboratory. Code, demonstrations, and the evolved programs are available at https://github.com/tsudalab/WetRobo.",
+              "categories": [
+                "cs.AI",
+                "cs.RO"
+              ],
+              "published": "2026-09-16T10:27:32Z",
+              "url": "https://arxiv.org/abs/2609.18435",
+              "pdf_url": "https://arxiv.org/pdf/2609.18435v1",
+              "comment": "9 pages, 11 figures, 2 tables. Code and demonstrations: https://github.com/tsudalab/WetRobo",
+              "figure_url": "https://arxiv.org/html/2609.18435v1/assets/fig_agent_control_flow.png",
+              "figure_caption": "Fig. 3: How the coding agent observes and controls the robot during task performance.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "code": "https://github.com/tsudalab/WetRobo",
+                "project": "https://github.com/tsudalab/WetRobo"
+              }
+            }
+          ]
         },
         {
           "name": "Yann LeCun",
           "papers": [
+            {
+              "id": "2609.17895",
+              "title": "TabPFN-3.5: Technical Report",
+              "authors": [
+                "Benjamin Jäger",
+                "Nick Erickson",
+                "Léo Grinsztajn",
+                "Felix Birkel",
+                "Klemens Flöge",
+                "Oscar Key",
+                "Kürşat Kaya",
+                "Jonas Kübler",
+                "Adèle Frankel",
+                "Tobias Schröder",
+                "Anurag Garg",
+                "Jan Hendrik Metzen",
+                "David Salinas",
+                "Simon Bing",
+                "Kristina Collins",
+                "Tuana Çelik",
+                "Vahid Balazadeh",
+                "Lydia Sidhoum",
+                "Tomás Pereda",
+                "Brendan Roof",
+                "Andrej Tschalzev",
+                "Siyuan Guo",
+                "Philipp Singer",
+                "Lennart Purucker",
+                "Jake Robertson",
+                "Marie Salmon",
+                "Philipp Jund",
+                "Jerry Chen",
+                "Diana Kriuchkova",
+                "Arthur Cahu",
+                "Eliott Kalfon",
+                "Adrian Hayler",
+                "Georg Grab",
+                "Vitor Monteiro",
+                "Lilly Wehrhahn",
+                "Dominik Safaric",
+                "Clara Cornu",
+                "Alan Arazi",
+                "Rylee Grace",
+                "Simone Alessi",
+                "Mihir Manium",
+                "Bernhard Schölkopf",
+                "Yann LeCun",
+                "Madelon Hulsebos",
+                "Sauraj Gambhir",
+                "Noah Hollmann",
+                "Frank Hutter"
+              ],
+              "abstract": "We introduce TabPFN-3.5, our new flagship Tabular Foundation Model. It significantly outperforms its predecessor, TabPFN-3, and all existing baselines across a broad range of tabular problems. TabPFN-3.5 sets a new state of the art on standard tabular prediction in TabArena, and extends it to the data practitioners encounter in practice: non-i.i.d. data with temporal or grouped splits, tables with strings, text and images, high-cardinality categorical features, and wide tables with many features. These gains carry over to our task-specific harnesses: state of the art on relational data and stronger time-series forecasting. For faster inference, our variant TabPFN-3.5-Fast runs up to 3x faster than TabPFN-3 while keeping most of the accuracy gains. In addition, we upgrade TabPFN-3.5-Plus, expanding our multimodal capabilities with advanced text and date handling alongside proprietary inference optimizations. Finally, we release a new version of our Thinking mode, TabPFN-3.5-Thinking, which scales inference-time computation to push the state of the art further. It benefits from our stronger base model and from inference-time improvements that make it up to 12x faster than TabPFN-3-Thinking.",
+              "categories": [
+                "cs.LG",
+                "stat.ML"
+              ],
+              "published": "2026-09-15T22:38:29Z",
+              "url": "https://arxiv.org/abs/2609.17895",
+              "pdf_url": "https://arxiv.org/pdf/2609.17895v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2609.17895v1/winrate_matrix.png",
+              "figure_caption": "Figure 10 : Pairwise win rates on TabArena for the strongest models on TabArena: the share of the 816 tasks on which the row method beats the column method. See Section C.1.2 for the full results.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {}
+            },
             {
               "id": "2608.27395",
               "title": "LeVJEPA: Efficient & Scalable Video Pretraining without the Heuristics",
@@ -1831,7 +1903,7 @@
           ]
         }
       ],
-      "total": 6
+      "total": 8
     },
     {
       "name": "University of Washington",
@@ -1900,34 +1972,6 @@
               "figure_source": "html",
               "video_url": null,
               "links": {}
-            },
-            {
-              "id": "2608.01582",
-              "title": "LieStoNet: Learning Lie Symmetries from Spatiotemporal Data for Stochastic Dynamical Systems",
-              "authors": [
-                "Shida Liu",
-                "Abhishek Gupta",
-                "Sumit Sinha",
-                "L. Mahadevan"
-              ],
-              "abstract": "Symmetry is central to modern machine learning and physics: invariances and equivariances improve sample efficiency, robustness, and out-of-distribution generalization, while symmetry principles guide scientific modeling. Yet for stochastic dynamical systems the relevant continuous symmetries are rarely known, and symmetry discovery for SDEs has remained essentially unexplored. We introduce LieStoNet, an end-to-end, template-free framework for discovering Lie-point symmetries of SDEs directly from spatiotemporal trajectories, without prespecifying symmetry groups, templates, or canonical coordinates. Building on the seminal SDE Lie-symmetry theory of Gaeta and Quintero (1999), which formalizes Lie-point SDE symmetries and their relation to Fokker-Planck symmetries, LieStoNet learns neural surrogates for drift and diffusion from increments, then learns projectable generators by enforcing the SDE determining equations, separately regularizing for closure under Lie brackets, adherence to the Lie algebra axioms (bilinearity, antisymmetry, Jacobi), and a non-redundant independent basis. The surrogate also defines an associated Fokker-Planck equation, enabling optional discovery of its Lie-point symmetries in parallel. Across multiple canonical SDEs with known analytic symmetries, LieStoNet recovers generators consistent with the ground-truth symmetry algebra, providing interpretable symmetry discovery for noisy dynamics. Code is available at \\href{https://github.com/sumit-sinha-seas/LieStoNet_Final.git}{this link}.",
-              "categories": [
-                "cond-mat.stat-mech",
-                "cond-mat.dis-nn",
-                "cs.LG",
-                "math-ph"
-              ],
-              "published": "2026-08-03T01:34:13Z",
-              "url": "https://arxiv.org/abs/2608.01582",
-              "pdf_url": "https://arxiv.org/pdf/2608.01582v1",
-              "comment": "25 Pages, 7 figures. Accepted to the International Conference on Machine Learning (ICML 2026)",
-              "figure_url": "https://arxiv.org/html/2608.01582v1/sde_pipeline_updated_2.png",
-              "figure_caption": "Figure 1 : Pipeline for LieStoNet",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "code": "https://github.com/sumit-sinha-seas/LieStoNet_Final.git}{this"
-              }
             }
           ]
         },
@@ -1936,7 +1980,7 @@
           "papers": []
         }
       ],
-      "total": 3
+      "total": 2
     },
     {
       "name": "Georgia Tech / UT Austin",
@@ -1982,6 +2026,35 @@
         {
           "name": "Peter Stone",
           "papers": [
+            {
+              "id": "2609.18929",
+              "title": "Social Laws for Multi-agent Coordination in Stochastic Environments",
+              "authors": [
+                "Rolando Fernandez",
+                "Caleb Probine",
+                "Tyler Lee",
+                "Jeffrey Chen",
+                "Erez Karpas",
+                "Muhammad Arrasy Rahman",
+                "Peter Stone",
+                "Ufuk Topcu"
+              ],
+              "abstract": "In multi-agent environments, coordinating agents to prevent interference and ensure robust individual performance is a critical challenge. Previous research on social laws for multi-agent systems has primarily focused on deterministic, goal-based settings. This paper extends the concept of social laws to stochastic, reward-based environments, proposing a formalism for defining and verifying their robustness under various conditions. We introduce the notion of $α$-robustness, a measure of the guaranteed utility each agent retains while pursuing its optimal single agent policy, assuming all agents obey the social law. We then present an approach for robustness verification of social laws in stochastic settings, based on a reduction to solving a series of Markov decision processes. Empirical evaluations on toy environments illustrate the potential of our framework.",
+              "categories": [
+                "cs.MA",
+                "cs.AI",
+                "cs.LG"
+              ],
+              "published": "2026-09-16T17:05:03Z",
+              "url": "https://arxiv.org/abs/2609.18929",
+              "pdf_url": "https://arxiv.org/pdf/2609.18929v1",
+              "comment": "Appeared at the RIPL Workshop as part of ICAPS 2026",
+              "figure_url": "thumbs/2609.18929.jpg",
+              "figure_caption": "论文首页预览",
+              "figure_source": "pdf",
+              "video_url": null,
+              "links": {}
+            },
             {
               "id": "2609.13716",
               "title": "JaxAHT: A JAX-Based Library for Ad Hoc Teamwork",
@@ -2060,7 +2133,7 @@
           ]
         }
       ],
-      "total": 3
+      "total": 4
     },
     {
       "name": "ETH Zürich / TU Darmstadt",
@@ -2285,6 +2358,33 @@
           "name": "Jan Peters",
           "papers": [
             {
+              "id": "2609.18455",
+              "title": "ForwardDLO: Model-Based Bimanual Shape Matching of Unconstrained Deformable Linear Objects",
+              "authors": [
+                "Tim Missal",
+                "Berk Guler",
+                "Lucas Domingues",
+                "Simon Manschitz",
+                "Jan Peters",
+                "Paula Dornhofer Paro Costa"
+              ],
+              "abstract": "Ropes, cables, and other deformable linear objects appear in tasks from untangling to cable routing and suturing, yet controlling their shape remains a challenge in robot manipulation. We study model-based shape control in a general setting: the object lies unfixated on a support surface and two arms may grasp and move it anywhere along its length. Because each arm chooses a grasp point, direction, and magnitude, the joint action space is combinatorially large, and the dynamics model's per-prediction cost bounds how much of it a planner can search. We present ForwardDLO, a recurrent latent dynamics model for this unfixated bimanual setting that predicts per-segment displacements grounded in the observed rope state at every step. Our model reaches accuracy comparable to more expensive baselines while containing no explicit segment-to-segment operations, which makes batched evaluation of candidate actions cheap. On open-loop prediction of real rope motion it reaches the lowest error of the learned models we evaluate, 13% below the strongest baseline. Within a fixed time budget it scores 8 to 22 times more candidate actions than models of comparable accuracy while matching them in real-world shape matching; and on a simulated routing task at a 30Hz control rate, this throughput converts into 98% task success versus at most 30% for the baselines at their own budgets. We release the model, code, and a dataset of 2.42 million simulated and 14,107 real rope transitions at https://anonymous.4open.science/r/ForwardDLO/",
+              "categories": [
+                "cs.RO"
+              ],
+              "published": "2026-09-16T10:47:33Z",
+              "url": "https://arxiv.org/abs/2609.18455",
+              "pdf_url": "https://arxiv.org/pdf/2609.18455v1",
+              "comment": "Submitted to ICRA 2027. 8 pages, 5 figures",
+              "figure_url": "https://arxiv.org/html/2609.18455v1/reallifempc_column.png",
+              "figure_caption": "Fig. 4: Real-World Model Predictive Control Rollout of our Model to achieve an S and a U shape.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "project": "https://anonymous.4open.science/r/ForwardDLO/"
+              }
+            },
+            {
               "id": "2608.29487",
               "title": "Blind Dexterity: Whole-Body Humanoid Manipulation via Pure Proprioception",
               "authors": [
@@ -2308,86 +2408,6 @@
               "links": {
                 "project": "https://aditya.bhatts.org/BlindDexterity/"
               }
-            },
-            {
-              "id": "2608.01506",
-              "title": "Rapid Embodiment Adaptation for Quadrupedal Locomotion",
-              "authors": [
-                "Dichen Li",
-                "Bo Ai",
-                "Nico Bohlinger",
-                "Jan Peters",
-                "Hao Su",
-                "Henrik I. Christensen"
-              ],
-              "abstract": "Humans readily adapt their movements as their bodies change through aging, injury, or load carrying, but learning-based robot policies often break when hardware properties shift. We introduce an online embodiment adaptation framework for quadrupedal locomotion that infers embodiment parameters from short interaction histories and conditions control on the inferred hardware state. Our method pairs a generalist policy trained under embodiment randomization with a lightweight adaptation module that identifies physical changes within half a second. We evaluate two representative forms of embodiment variation: joint-range constraints and trunk-mass changes, corresponding to joint-level kinematic degradation and body-level dynamic variation. In simulation, the module accurately estimates these changes and enables closed-loop control that substantially outperforms policies conditioned directly on interaction history. On a real Unitree Go2 robot, our system maintains stable locomotion under severe instances of the evaluated changes, including a fully locked leg and a 5 kg payload, where non-adaptive methods fail. These results demonstrate the practicality of explicit online embodiment identification for rapid adaptation to joint-limit and payload-mass changes, and provide a step toward handling broader forms of uncertain, degraded, or changing robot hardware.",
-              "categories": [
-                "cs.RO",
-                "cs.AI",
-                "cs.LG"
-              ],
-              "published": "2026-08-02T21:31:49Z",
-              "url": "https://arxiv.org/abs/2608.01506",
-              "pdf_url": "https://arxiv.org/pdf/2608.01506v2",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2608.01506v2/pipeline_diagram.png",
-              "figure_caption": "Fig. 1: Pipeline of the proposed online embodiment adaptation framework. The cross-embodiment base policy π base \\pi_{\\text{base}} is trained to handle locomotion tasks across different embodiments with the ground-truth embodiment description. The adaptation module f f is trained to infer embodiment",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
-            },
-            {
-              "id": "2608.07558",
-              "title": "Learning Physical Interaction: A Survey of Tactile- and Force-aware Robot Learning",
-              "authors": [
-                "Shilin Shan",
-                "Chuhao Zhou",
-                "Ruize Wang",
-                "Xinyan Chen",
-                "Xiangyu Chen",
-                "Xinyu Zhou",
-                "Boyu Ma",
-                "Iris Yuxuan Hu",
-                "Jingliang Li",
-                "Celeste Yuxuan Hu",
-                "Geng Li",
-                "Guohao Chen",
-                "Tianrui Zhu",
-                "Zhe Li",
-                "Yanjie Ze",
-                "Haoran Geng",
-                "Zhiyang Dou",
-                "Jianxin Bi",
-                "Yuejiang Liu",
-                "Jianshu Zhou",
-                "Jiachen Li",
-                "Paul Liang",
-                "Tatsuya Harada",
-                "Robert Katzschmann",
-                "Harold Soh",
-                "Na Li",
-                "Edward Johns",
-                "Danica Kragic",
-                "Jan Peters",
-                "Wojciech Matusik",
-                "Masayoshi Tomizuka",
-                "Jitendra Malik",
-                "Jianfei Yang"
-              ],
-              "abstract": "Physically grounded robot intelligence requires robots to perceive, reason about, and regulate their interactions with the physical world. This capability is particularly critical in contact-sensitive manipulation, where successful task execution depends not only on visual perception and motion generation, but also on force regulation and adaptive control. In this context, recent robot learning methods have made substantial progress by integrating force, tactile, vision, language, and proprioceptive sensing into learned manipulation policies. In parallel, many systems adopt multi-phase architectures that combine high-level policies, action-refinement modules, and low-level controllers to bridge semantic task understanding with reactive physical execution. Despite these advances, existing surveys have not explicitly reviewed force- and tactile-aware robot learning from a unified perspective that jointly captures multimodal sensing and multi-phase system design. This survey addresses this gap by proposing TF-ART, a Tactile/Force-Aware Robot learning Taxonomy for multimodal and multi-phase frameworks, which maps individual methods into a unified hierarchical structure. The framework characterizes how recent works organize observation modalities, encode and fuse heterogeneous sensory inputs, generate and refine actions across multiple phases, and connect learned policies to reactive robot-end control. Building on this methodological view, we further examine the task settings and infrastructure requirements of physical interaction, thereby integrating both algorithmic and practical perspectives on force- and tactile-aware robot learning.",
-              "categories": [
-                "cs.RO",
-                "cs.CV"
-              ],
-              "published": "2026-08-02T14:22:01Z",
-              "url": "https://arxiv.org/abs/2608.07558",
-              "pdf_url": "https://arxiv.org/pdf/2608.07558v1",
-              "comment": "53 pages, 7 figures",
-              "figure_url": "https://arxiv.org/html/2608.07558v1/teaser.png",
-              "figure_caption": "Figure 1: Overview of TF-ART: a unified force/tactile-aware multi-modal multi-phase framework. The main hierarchical architecture includes multimodal perception, encoding and fusion, primary action generation, action refinement, and low-level robot-end control. The branching modules include input da",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
             }
           ]
         },
@@ -2481,7 +2501,7 @@
           ]
         }
       ],
-      "total": 14
+      "total": 13
     },
     {
       "name": "清华 / 北大 / 上交",
@@ -2854,40 +2874,51 @@
               "links": {
                 "project": "https://neesky.github.io/VoxStruct3D/"
               }
-            },
-            {
-              "id": "2608.01837",
-              "title": "PCSD: Persistent Consistency for Self-Distillation in Agentic Reinforcement Learning",
-              "authors": [
-                "Chunji Lv",
-                "Yangguang Wei",
-                "Junlin Liu",
-                "Yang Gao",
-                "Ming Liu",
-                "Xinming Wang",
-                "Jinyang Wu",
-                "Guoren Wang",
-                "Changsheng Li"
-              ],
-              "abstract": "Large language model agents have shown strong potential in complex interactive tasks, yet their reinforcement learning (RL) is often hindered by sparse rewards, as a long multi-turn trajectory may receive only a single outcome-level signal. On-policy self-distillation (OPSD) provides dense token-level supervision from a privileged teacher, but the teacher may not be reliable at every position. Existing methods commonly rely on isolated token-level discrepancies, which can be sensitive to noise, or assign a shared step-level weight that may overlook positional variation. We propose Persistent Consistency Self-Distillation (PCSD), which derives token-level distillation weights from the local persistence of teacher-favoring signals. PCSD combines adaptive windows with exponentially decayed aggregation to capture persistent relative teacher support, applies trend-aware modulation to attenuate locally declining support, and produces continuous weights through sigmoid gating. The resulting objective is jointly optimized with GRPO, combining dense teacher guidance with sparse environmental feedback. Without inference-time skills, PCSD achieves the best ALFWorld Overall results among all baselines on both backbones, exceeding GRPO by 15.6 and 13.3 points and SDAR by 6.2 and 5.5 points, while remaining competitive on WebShop and gaining 15.8 points over GRPO on unseen ALFWorld split.",
-              "categories": [
-                "cs.AI"
-              ],
-              "published": "2026-08-03T07:47:59Z",
-              "url": "https://arxiv.org/abs/2608.01837",
-              "pdf_url": "https://arxiv.org/pdf/2608.01837v1",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2608.01837v1/Figures/combined_results.png",
-              "figure_caption": "Figure 1: Overall performance comparison. Main results on WebShop and ALFWorld with Qwen2.5-3B-Instruct. Left: WebShop Score and Acc; Middle: ALFWorld sub-task radar; Right: ALFWorld Overall success rate.",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
             }
           ]
         },
         {
           "name": "He Wang",
           "papers": [
+            {
+              "id": "2609.18732",
+              "title": "PASSAGE: Scaling Scene-Aligned Motion Learning for Perceptive Humanoid Traversal in Cluttered Environments",
+              "authors": [
+                "Yuxuan Ma",
+                "Zicheng Zeng",
+                "Chunlin Peng",
+                "Zhoujian Li",
+                "Zetong Zhao",
+                "Zhikai Zhang",
+                "Yunrui Lian",
+                "Han Xue",
+                "Sikai Liang",
+                "Weiyi Zhu",
+                "Mulin Chen",
+                "Chenghuai Lin",
+                "Jiayu Zeng",
+                "Yanwei An",
+                "Songan Zhang",
+                "Jiayuan Gu",
+                "Jilong Wang",
+                "Jingbo Wang",
+                "He Wang",
+                "Li Yi"
+              ],
+              "abstract": "Humanoid robots can step over, squeeze past, and duck under obstacles, but learning to select and coordinate these behaviors from onboard perception remains challenging. Many existing approaches rely on task-specific reinforcement-learning objectives or curated motion libraries, making broad behavioral coverage costly. We present PASSAGE, a perception-conditioned planner--tracker framework for humanoid traversal. Using virtual reality and inertial motion capture, we collect 100 h of scene-aligned human motion across 1,500 cluttered scenes. A conditional flow-matching planner generates short-horizon references from motion history, a local destination, and a robot-centric multi-layer elevation map, while a perceptive whole-body tracker executes them at 50 Hz with geometric feedback. Real-time chunking promotes inter-chunk consistency, and planner-side RL post-training under the frozen tracker further improves closed-loop performance. Without skill annotations or obstacle-specific policies, one planner--tracker pair selects and composes traversal behaviors across unseen geometries. In simulation, component ablations quantify the contribution of each stage. Across three independent training seeds, scaling captured data from 6 to 100 h increases mean contact-free success from 48.1% to 68.9% on held-out scenes, while the final model with validated scene augmentation reaches 70.3%. The fully onboard system integrates egocentric 3D LiDAR perception, online occupancy mapping, 6.25 Hz planning, and 50 Hz control on a Jetson AGX Orin; tests across 50 unseen physical layouts demonstrate traversal without prebuilt maps or offboard computation.",
+              "categories": [
+                "cs.RO"
+              ],
+              "published": "2026-09-16T14:30:52Z",
+              "url": "https://arxiv.org/abs/2609.18732",
+              "pdf_url": "https://arxiv.org/pdf/2609.18732v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2609.18732v1/PASSAGE_publish.png",
+              "figure_caption": "Fig. 2 : Slow–fast plan-and-control architecture: the flow-matching planner (6.25 Hz) outputs reference motions from the elevation map, and the perceptive controller (50 Hz) executes them at the joint level.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {}
+            },
             {
               "id": "2609.15726",
               "title": "Bench2Dex: Benchmarking Visuo-Tactile Bimanual Dexterous Manipulation Across Dexterous Hands",
@@ -3297,6 +3328,34 @@
           "name": "Hao Dong",
           "papers": [
             {
+              "id": "2609.18117",
+              "title": "OpenDexGrasp: Open-vocabulary Task-Oriented Dexterous Grasping",
+              "authors": [
+                "Jiyao Zhang",
+                "Junhan Wang",
+                "Tianyu Wang",
+                "Zeyuan Chen",
+                "Anthony Bolten",
+                "Yitong Peng",
+                "Hao Dong"
+              ],
+              "abstract": "Dexterous grasp synthesis has advanced rapidly in generating stable and physically plausible hand poses, but real-world manipulation requires grasps that preserve the function implied by the task. We study open-vocabulary task-oriented dexterous grasp generation, where a robot must infer functional intent from free-form language, ground it in multi-view visual observations and object geometry, and generate an executable high-degree-of-freedom grasp. We present OpenDexGrasp, a unified data and generative modeling framework for this setting. OpenDexVerse provides dual-source supervision organized by the Coverage-to-Alignment (C2A) Recipe: OpenDex-Scale offers large-scale semantic and geometric coverage through automatic grasp synthesis and vision-language annotation, while OpenDex-Align supplies high-quality embodied alignment through human teleoperation and category-level transfer. OpenDexGrasp learns a shared perception-action latent representation that couples open-vocabulary vision-language context with dexterous action generation. Affordance grounding and grasp generation provide complementary supervision over this latent space, enabling direct generation of task-consistent dexterous grasps without a separate affordance-to-pose inference stage. Extensive simulation and real-robot experiments demonstrate improved functional alignment, physical feasibility, generalization to unseen categories, and real-world execution success. Additional details and videos are available at https://opendexgrasp.github.io/.",
+              "categories": [
+                "cs.RO"
+              ],
+              "published": "2026-09-16T04:51:35Z",
+              "url": "https://arxiv.org/abs/2609.18117",
+              "pdf_url": "https://arxiv.org/pdf/2609.18117v1",
+              "comment": "Accepted at CoRL2026",
+              "figure_url": "https://arxiv.org/html/2609.18117v1/teaser.png",
+              "figure_caption": "Figure 1: Overview of OpenDexGrasp . OpenDexGrasp learns from OpenDexVerse through the Coverage-to-Alignment (C2A) Recipe , coupling large-scale semantic-geometric coverage with high-quality embodied functional alignment. As shown by the real-world demonstrations on the right, OpenDexGrasp supports ",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "project": "https://opendexgrasp.github.io/"
+              }
+            },
+            {
               "id": "2609.07398",
               "title": "OpenWAM: An Open, Modular Exploration Towards Systematic World-Action Model Pretraining",
               "authors": [
@@ -3703,7 +3762,7 @@
           "papers": []
         }
       ],
-      "total": 38
+      "total": 39
     },
     {
       "name": "工业界研究团队",
