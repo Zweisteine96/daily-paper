@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-17T12:03:29+00:00",
-  "day": "2026-09-17",
+  "updated": "2026-09-18T11:44:09+00:00",
+  "day": "2026-09-18",
   "days_back": 45,
   "total": 107,
   "labs": [
@@ -105,31 +105,6 @@
               "comment": "42 pages, 29 figures",
               "figure_url": "https://arxiv.org/html/2608.12253v2/figures/human_study/fig_human_study_tau2_landing.png",
               "figure_caption": "Figure 10: τ 2 \\tau^{2} -bench landing view. The right panel renders the structured task profile (goal, role information, conditional behaviors, style notes, and a sky-blue Travelers callout when the scenario involves multiple passengers). The left panel is a single-message-per-turn streaming chat w",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
-            },
-            {
-              "id": "2608.02547",
-              "title": "Why Does Action Chunking Improve Behavioral Cloning Performance in Robotic Control?",
-              "authors": [
-                "Filippo Lazzati",
-                "Kyle Stachowicz",
-                "William Chen",
-                "Alberto Maria Metelli",
-                "Andrew Wagenmaker",
-                "Sergey Levine"
-              ],
-              "abstract": "Action chunking---predicting and executing multiple actions instead of a single action---has proven to be a critical component for learning effective robotic control policies. However, our precise understanding of why action chunking improves performance has remained limited. In this work we seek to close this gap. Through rigorous experimental evaluations in both simulated and real-world settings, we show that existing hypotheses for the success of action chunking---temporal consistency, horizon reduction, and representation learning---fail to explain the success of action chunking. Instead, we find that action chunking benefits from greater non-Markovian expressivity and reduced compounding error compared to Markovian policies, but, in many settings of interest, these effects can be fully captured by delayed policies, which at each step predict a single action based on the observation $k$ steps in the past. We then show that there exists an additional benefit of action chunking that we refer to as implicit ensembling. In particular, by learning a diversity of temporal relationships (that is, $a_t | o_t, a_t | o_{t-1}, \\ldots$), action-chunked policies exhibit behavior matching that of a model ensemble, increasing their robustness and generalization ability over policies that only learn a single temporal relationship. Building on these insights, we show that in simulated and real-world robotic control settings, we can match the performance of action chunking without action chunking---by deploying an action chunking policy as an ensemble of policies with randomized delays. Furthermore, we propose a policy class that amplifies the benefits of action chunking by explicitly instantiating an ensemble, and which we show significantly improves over the performance of action chunking in many domains.",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-08-03T17:32:45Z",
-              "url": "https://arxiv.org/abs/2608.02547",
-              "pdf_url": "https://arxiv.org/pdf/2608.02547v1",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2608.02547v1/paper_fig.png",
-              "figure_caption": "Figure 1: In this work we investigate why action chunking improves the performance of behavioral cloning in robotic control. We show that common hypothesis—temporal consistency, horizon reduction, and representation learning—are not able to explain the performance of action chunking. Instead, we dem",
               "figure_source": "html",
               "video_url": null,
               "links": {}
@@ -349,7 +324,7 @@
           ]
         }
       ],
-      "total": 11
+      "total": 10
     },
     {
       "name": "Stanford",
@@ -1126,6 +1101,34 @@
           "name": "Deepak Pathak",
           "papers": [
             {
+              "id": "2609.19463",
+              "title": "ParticleSplat: Self-supervised Object-centric Latent Particle Splatting",
+              "authors": [
+                "Lyuxing He",
+                "Daniel Guo",
+                "Elizabeth Terveen",
+                "Deepak Pathak",
+                "David Held",
+                "Tal Daniel"
+              ],
+              "abstract": "We present ParticleSplat, a self-supervised object-centric learning method that decomposes scenes into a set of latent ''particles'' representing semantic entities through feedforward 3D Gaussian Splatting. Building on the Deep Latent Particles (DLP) framework, which represents images as a set of particles with attributes such as position, scale, and visual appearance, we address a key limitation of DLP: its inherently 2D nature, which prevents explicit 3D spatial and geometric reasoning that are critical for downstream tasks such as robotic manipulation. Leveraging the structural similarity between latent particles and 3D Gaussian primitives, we introduce a 3D latent particle space trained with a novel view synthesis objective. Our model jointly encodes multiple views with camera poses into a shared 3D object-centric latent space, then transforms particles into particle-aligned 3D Gaussians whose composition reconstructs the full scene. On simulated and real-world datasets, we show that this formulation inherently learns object masks without supervision and supports controllable 3D scene editing, such as moving objects by modifying particles in the latent space. We further establish that the learned 3D representation improves downstream performance on robotic manipulation tasks.",
+              "categories": [
+                "cs.CV",
+                "cs.RO"
+              ],
+              "published": "2026-09-16T22:05:05Z",
+              "url": "https://arxiv.org/abs/2609.19463",
+              "pdf_url": "https://arxiv.org/pdf/2609.19463v1",
+              "comment": "Project page: https://lyuxinghe.github.io/ParticleSplat-website/",
+              "figure_url": "https://arxiv.org/html/2609.19463v1/figs/arch_main_c.png",
+              "figure_caption": "Figure 1 : ParticleSplat architecture. Given multi-view context observations (RGB images, camera poses encoded as Plücker ray coordinates, and optional depth maps), the view-aware encoder infers a set of object-centric latent particles. The decoder transforms these particles into world-space 3D Gaus",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "project": "https://lyuxinghe.github.io/ParticleSplat-website/"
+              }
+            },
+            {
               "id": "2609.03497",
               "title": "BRIDGE: An Open-Source Humanoid Platform via Morphology-Control Co-Design for Physical AI",
               "authors": [
@@ -1216,31 +1219,6 @@
               "video_url": null,
               "links": {
                 "project": "https://ziyin-xiong.github.io/geomvla.io/"
-              }
-            },
-            {
-              "id": "2608.02980",
-              "title": "Qwen-3D: A Generalist 3D Vision-Language Model for Spatial Understanding",
-              "authors": [
-                "Lucy Lin",
-                "Ayush Jain",
-                "Yifan Liu",
-                "Katerina Fragkiadaki"
-              ],
-              "abstract": "Large Multimodal Models (LMMs) have achieved remarkable success on images and short videos, yet scaling them to long videos remains challenging due to frame-centric tokenization and limited context windows. 3D geometry provides a natural compression mechanism for visual streams: depth and camera pose enable observations from multiple views and time steps to be fused into a persistent, world-aligned representation. While recent 3D LMMs leverage geometry-aware representations to improve spatial reasoning, they continue to lag behind specialist 3D perception systems on grounding and segmentation tasks. We argue that a key limitation is geometry-aware decoding: existing methods communicate 3D predictions through language tokens, proposal selection, or lightweight grounding queries, creating a bottleneck between language reasoning and dense geometric prediction. Building on these insights, we introduce Qwen-3D, a geometry-aware LMM that compresses visual information within the Qwen backbone using multi-view geometric cues, enabling efficient long-horizon visual reasoning over static scenes. Qwen-3D augments visual tokens with 3D Rotary Positional Embeddings, allowing attention to operate directly in 3D scene space rather than across independent image frames and thereby facilitating scalable cross-view and temporal reasoning. To bridge language and geometry, Qwen-3D incorporates a query-based segmentation decoder that grounds language directly in the underlying 3D scene representation, unifying referential grounding, instance segmentation, and visual question answering across both images and videos. Across a diverse set of benchmarks, Qwen-3D surpasses existing 3D LMMs and outperforms several large proprietary 2D models. Notably, Qwen-3D achieves these improvements while maintaining strong performance on standard 2D vision-language benchmarks by jointly training on 2D and 3D data.",
-              "categories": [
-                "cs.CV"
-              ],
-              "published": "2026-08-04T00:32:09Z",
-              "url": "https://arxiv.org/abs/2608.02980",
-              "pdf_url": "https://arxiv.org/pdf/2608.02980v1",
-              "comment": "Project Page: https://qwen-3d.github.io/",
-              "figure_url": "https://arxiv.org/html/2608.02980v1/teaser_v6.png",
-              "figure_caption": "Figure 1 : Qwen-3D performs attention directly in 3D world space rather than over independent image frames. Given multi-view RGB observations, depth, and camera poses, Qwen-3D maps visual tokens into a shared 3D coordinate system and applies geometry-aware attention through 3D Rotary Positional Embe",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://qwen-3d.github.io/"
               }
             }
           ]
@@ -1464,6 +1442,32 @@
           "name": "Pulkit Agrawal",
           "papers": [
             {
+              "id": "2609.20820",
+              "title": "Workspace Models: Lightweight Robotic Memory via Saliency-Driven Supervision",
+              "authors": [
+                "Nitish Dashora",
+                "Douglas Chen",
+                "Idan Shenfeld",
+                "John Marangola",
+                "Pulkit Agrawal",
+                "Max Simchowitz"
+              ],
+              "abstract": "Complex robotic manipulation tasks frequently require a long-term memory of past events and actions. As conditioning on full histories renders policies prone to spurious correlations and degrades performance, many approaches to policy memory involve compressing historical information through expensive VLM queries in-the-loop to process only task-salient information. In this paper, we propose an alternative approach in which computationally intensive VLM queries are made during train-time to learn a lightweight latent memory that can be efficiently queried at deployment time. Our representation, which we call the workspace token, is trained by (1) using a VLM to identify current and historical information necessary for completing a task, then (2) distilling these into the workspace token using a set-reconstruction decoder loss. In both simulation and hardware, we show that the workspace token can be used as a drop-in replacement for observations during deployment, enabling policies to solve memory-intensive tasks without the need for VLM reasoning in-the-loop. Interestingly, we found that workspace tokens are not only more lightweight but also lead to better policy performance.",
+              "categories": [
+                "cs.RO",
+                "cs.AI"
+              ],
+              "published": "2026-09-17T17:59:53Z",
+              "url": "https://arxiv.org/abs/2609.20820",
+              "pdf_url": "https://arxiv.org/pdf/2609.20820v1",
+              "comment": "26 pages; CoRL 2026; 11 figures",
+              "figure_url": "https://arxiv.org/html/2609.20820v1/wsm_teaser_2_cropped.png",
+              "figure_caption": "Figure 1 : We propose the Workspace Model , an architecture trained to produce compressed latent representations of history used for downstream policy learning. Workspace Models are trained by encoding raw histories and reconstructing high-level salient information, as judged by a VLM, thus amortizi",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {}
+            },
+            {
               "id": "2608.17896",
               "title": "Dynamic Compression in Recurrent Networks",
               "authors": [
@@ -1569,7 +1573,7 @@
           ]
         }
       ],
-      "total": 5
+      "total": 6
     },
     {
       "name": "NYU / Columbia / Princeton",
@@ -1799,38 +1803,6 @@
               "figure_source": "pdf",
               "video_url": null,
               "links": {}
-            },
-            {
-              "id": "2608.02208",
-              "title": "Self-supervised DXA representations encode multi-system disease risk, biological aging and heritability",
-              "authors": [
-                "Gil Sasson",
-                "Zachary Levine",
-                "Smadar Shilo",
-                "Sarah Kohn",
-                "Guy Lutsker",
-                "Anastasia Godneva",
-                "Adam Gabet",
-                "David Krongauz",
-                "Adina Weinberger",
-                "Yann LeCun",
-                "Randall Balestriero",
-                "Eran Segal"
-              ],
-              "abstract": "Whole-body dual-energy X-ray absorptiometry (DXA) scans are routinely acquired to measure bone density and regional body composition, leaving their spatial structure largely unused. Here, we show that self-supervised learning (SSL) can convert raw DXA images into representations of systemic health. We introduce LeDXA, a vision model based on a joint-embedding predictive architecture (JEPA) that learns by predicting latent representations rather than reconstructing pixels. Trained from scratch on 11,540 unlabeled Human Phenotype Project scans, LeDXA was evaluated internally and on 47,400 external UK Biobank (UKBB) scans. It improved cross-cohort prediction of prevalent diseases and biomarkers beyond scanner-derived DXA measurements and DINOv3, a state-of-the-art general-purpose model, despite approximately 150,000-fold fewer training images and nearly 40-fold fewer parameters. Over a median 4.3-year UKBB follow-up, LeDXA improved incident disease prediction over tabular DXA measures, with the largest gains for hip and knee arthrosis and type 2 diabetes. For hip arthrosis, 66% of incident cases occurred in the highest-risk quartile versus 41% for tabular measures. Its representations predicted chronological age externally (r = 0.88; mean absolute error = 2.90 years), and the biological-age gap tracked broader disease burden and a 45% higher mortality hazard in the oldest-appearing quartile. The gap also decreased in women after starting hormone-replacement therapy, suggesting it may be modifiable. Genome-wide associations recovered mostly known body-composition and bone-density loci, and LeDXA embeddings were more heritable than DINOv3's. These findings reveal prognostic information in DXA images that conventional readouts discard, learnable with relatively little data and modest compute.",
-              "categories": [
-                "cs.CV",
-                "q-bio.QM"
-              ],
-              "published": "2026-08-03T13:33:04Z",
-              "url": "https://arxiv.org/abs/2608.02208",
-              "pdf_url": "https://arxiv.org/pdf/2608.02208v1",
-              "comment": "Preprint Version",
-              "figure_url": "thumbs/2608.02208.jpg",
-              "figure_caption": "论文首页预览",
-              "figure_source": "pdf",
-              "video_url": null,
-              "links": {}
             }
           ]
         },
@@ -1903,7 +1875,7 @@
           ]
         }
       ],
-      "total": 8
+      "total": 7
     },
     {
       "name": "University of Washington",
@@ -1948,6 +1920,35 @@
           "name": "Abhishek Gupta",
           "papers": [
             {
+              "id": "2609.20477",
+              "title": "Visual Sim-to-Real Learning for Robotic Insertion under Geometric Variations: Application to Rebar Installation",
+              "authors": [
+                "Tao Sun",
+                "Beining Han",
+                "Patrick Yin",
+                "Rui Xu",
+                "Harry He",
+                "Abhishek Gupta",
+                "Szymon Rusinkiewicz",
+                "Yi Shao"
+              ],
+              "abstract": "Rebar insertion is among the most repetitive and physically demanding tasks on construction sites, and a contact-rich problem at 1.4 mm clearance. The parts, however, vary at two levels: a nominal design per structural member, and fabrication tolerance around each nominal design. Real-world data therefore has to be re-collected as designs and batches change. We present RebarSim, a visual sim-to-real system trained entirely in simulation. A privileged state-based teacher is trained with reinforcement learning over procedurally generated rebar geometries, then distilled into a multi-view student that maps raw RGB and proprioception directly to actions under extensive domain randomization. The student transfers to the real world zero-shot, seating rebars taken from a real factory production run in 91.3% of real-robot rollouts. Underlying that result, geometry diversity and pretraining both bring benefits. Training across a diverse set of nominal designs rather than one lifts the zero-shot success of both the teacher and the student on unseen designs, and the student policy outperforms a single-design specialist on that specialist's own design. A pretrained student then adapts to a new design with 4--6x fewer distillation samples than one trained from scratch. Visual sim-to-real transfer depends on appearance randomization and the DAgger mixture: removing either one sharply lowers success. Videos, code, and task assets are available at https://rebarsim.github.io.",
+              "categories": [
+                "cs.RO"
+              ],
+              "published": "2026-09-17T14:32:30Z",
+              "url": "https://arxiv.org/abs/2609.20477",
+              "pdf_url": "https://arxiv.org/pdf/2609.20477v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2609.20477v1/figures_src/Rebar_task_human_robot.jpg",
+              "figure_caption": "Fig. 1: Manual rebar insertion on site (left, middle): the worker lifts each rebar, then forces it down into the slots, thousands of times a day. Our robot setup for the same task (right).",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "project": "https://rebarsim.github.io"
+              }
+            },
+            {
               "id": "2608.05326",
               "title": "QEvict: Recoverable Quantized KV Eviction for Attention-Drift-Robust Long-Context Decoding",
               "authors": [
@@ -1980,7 +1981,7 @@
           "papers": []
         }
       ],
-      "total": 2
+      "total": 3
     },
     {
       "name": "Georgia Tech / UT Austin",
@@ -2374,8 +2375,8 @@
               ],
               "published": "2026-09-16T10:47:33Z",
               "url": "https://arxiv.org/abs/2609.18455",
-              "pdf_url": "https://arxiv.org/pdf/2609.18455v1",
-              "comment": "Submitted to ICRA 2027. 8 pages, 5 figures",
+              "pdf_url": "https://arxiv.org/pdf/2609.18455v2",
+              "comment": "8 pages, 5 figures",
               "figure_url": "https://arxiv.org/html/2609.18455v1/reallifempc_column.png",
               "figure_caption": "Fig. 4: Real-World Model Predictive Control Rollout of our Model to achieve an S and a U shape.",
               "figure_source": "html",
@@ -3284,49 +3285,44 @@
               "links": {
                 "code": "https://github.com/Imhongyu/Ekphrasis"
               }
-            },
-            {
-              "id": "2608.03034",
-              "title": "PACE: Adaptive Budget Allocation for Time-Efficient Embodied Planning",
-              "authors": [
-                "Yuchen Huang",
-                "Xijiang Ying",
-                "Zhenhua Ma",
-                "Xiaxiang Yuan",
-                "Zhijie Gao",
-                "Jiayi Huang",
-                "Ruichi Mao",
-                "Jiazheng Zhang",
-                "Hongsheng Ti",
-                "Maotao Tian",
-                "Rong Shi",
-                "Lu Zhao",
-                "Shizhuang Zhang",
-                "Zhuo Cui",
-                "He Wang",
-                "Ling Liu",
-                "Wei Zhang"
-              ],
-              "abstract": "Reasoning-enhanced large language models have achieved remarkable improvements in planning tasks, yet their deployment in embodied systems remains impractical due to prohibitive inference delays-often exceeding minutes per planning instance. The fundamental bottleneck stems from the serial nature of existing paradigms: models must complete all reasoning before any action execution, leaving execution time windows entirely unexploited. We introduce PACE (Planning with Adaptive Cognitive Effort), a framework that enables interleaved reasoning and execution through two key innovations: an Interleaved Think-Act architecture that pipelines cognitive processing with action execution, and a Dynamic Budget Allocator that adapts reasoning token budgets to available execution time windows. On the Robotouille benchmark using Qwen3-8B-AWQ, PACE achieves a 10% success rate-representing a 67% improvement over the ReAct+Think baseline-while delivering 6.9 times acceleration in thinking time compared to unconstrained reasoning. The framework hides 66.8% of thinking time within execution windows, demonstrating that strategic cognitive effort allocation can simultaneously improve both planning quality and time efficiency. These results provide evidence that time-aware architectural innovations enable reasoning models to operate in latency-sensitive embodied domains where they were previously impractical.",
-              "categories": [
-                "cs.RO",
-                "cs.AI"
-              ],
-              "published": "2026-08-04T02:29:46Z",
-              "url": "https://arxiv.org/abs/2608.03034",
-              "pdf_url": "https://arxiv.org/pdf/2608.03034v1",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2608.03034v1/pace_overview_v3.png",
-              "figure_caption": "Fig. 1 : Overview of the PACE framework. The system interleaves thinking and acting through the ITA loop (top), adapts cognitive budgets via the DBA based on execution time and difficulty (left), and ensures temporal constraints through hybrid budget control (right). The difficulty coefficient α \\al",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
             }
           ]
         },
         {
           "name": "Hao Dong",
           "papers": [
+            {
+              "id": "2609.20659",
+              "title": "HIL-UMI: Bringing Human-in-the-Loop Post-Training of Vision-Language-Action Models to Universal Manipulation Interface",
+              "authors": [
+                "Zimu Han",
+                "Yiming Zeng",
+                "Jiyao Zhang",
+                "Zihao Zhao",
+                "Yuanfei Wang",
+                "Yixiang Jin",
+                "Shiqi Li",
+                "Shuangben Chen",
+                "Wei Huang",
+                "Ruodai Li",
+                "Hui Shen",
+                "Hao Dong"
+              ],
+              "abstract": "Large-scale vision-language-action (VLA) models provide powerful priors for robot manipulation, yet adapting them to a specific deployment remains challenging. Supervised fine-tuning (SFT) on task-specific demonstrations provides a step toward deployment, but faces two persistent limitations: static data provide limited coverage of out-of-distribution states, and standard imitation objectives do not distinguish progressing behavior from less useful data. Interactive post-training can address these limitations, but typically requires repeated policy execution and human intervention on a physical robot. We introduce HIL-UMI, a policy-guided Universal Manipulation Interface (UMI) framework for robot-free human-in-the-loop VLA post-training. During handheld UMI demonstrations, HIL-UMI queries the current policy on the same observation stream without executing its predictions. The Energy Score compares the human action trajectory with policy inference and triggers collection when their discrepancy indicates an out-of-distribution region. In a separate feedback loop, low online advantage predictions identify essential segments for refining a progress-based advantage estimator. The updated estimator then guides advantage-conditioned behavioral cloning using a balanced mixture of base demonstrations and new policy data. This design preserves the iterative and policy-aware nature of human-in-the-loop learning while decoupling data collection from robot deployment. Experiments on four real-world tasks spanning long-horizon and precise manipulation show that HIL-UMI achieves consistent improvement over SFT and benefits from both targeted collection and advantage refinement. Moreover, HIL-UMI outperforms HG-DAgger on Clean Up Table with lower per-frame collection time, suggesting a scalable path for VLA post-training across operators and locations.",
+              "categories": [
+                "cs.RO",
+                "cs.AI"
+              ],
+              "published": "2026-09-17T16:38:37Z",
+              "url": "https://arxiv.org/abs/2609.20659",
+              "pdf_url": "https://arxiv.org/pdf/2609.20659v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2609.20659v1/framework.png",
+              "figure_caption": "Fig. 2: Overview of HIL-UMI. In each round, we first run advantage OOD detector online to collect advantage data. We then run the current policy OOD detector and collect policy data from segments. Next, we update the advantage estimator then using it to construct the advantage-labeled training datas",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {}
+            },
             {
               "id": "2609.18117",
               "title": "OpenDexGrasp: Open-vocabulary Task-Oriented Dexterous Grasping",
@@ -3335,7 +3331,7 @@
                 "Junhan Wang",
                 "Tianyu Wang",
                 "Zeyuan Chen",
-                "Anthony Bolten",
+                "Anthony Bolton",
                 "Yitong Peng",
                 "Hao Dong"
               ],
@@ -3345,7 +3341,7 @@
               ],
               "published": "2026-09-16T04:51:35Z",
               "url": "https://arxiv.org/abs/2609.18117",
-              "pdf_url": "https://arxiv.org/pdf/2609.18117v1",
+              "pdf_url": "https://arxiv.org/pdf/2609.18117v2",
               "comment": "Accepted at CoRL2026",
               "figure_url": "https://arxiv.org/html/2609.18117v1/teaser.png",
               "figure_caption": "Figure 1: Overview of OpenDexGrasp . OpenDexGrasp learns from OpenDexVerse through the Coverage-to-Alignment (C2A) Recipe , coupling large-scale semantic-geometric coverage with high-quality embodied functional alignment. As shown by the real-world demonstrations on the right, OpenDexGrasp supports ",
