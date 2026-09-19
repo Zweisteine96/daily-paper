@@ -1,8 +1,8 @@
 {
-  "updated": "2026-09-18T11:44:09+00:00",
-  "day": "2026-09-18",
+  "updated": "2026-09-19T11:24:20+00:00",
+  "day": "2026-09-19",
   "days_back": 45,
-  "total": 107,
+  "total": 102,
   "labs": [
     {
       "name": "UC Berkeley",
@@ -2819,62 +2819,6 @@
               "links": {
                 "code": "https://github.com/WncFht/GRec"
               }
-            },
-            {
-              "id": "2608.04606",
-              "title": "TRCoRSurg: Temporal-Relational Co-Reasoning for Surgical Video Triplet Recognition",
-              "authors": [
-                "Fang Li",
-                "Shihao Zou",
-                "Weixin Si",
-                "Yang Gao",
-                "Shuai Li",
-                "Aimin Hao"
-              ],
-              "abstract": "Understanding complex surgical scenes requires recognizing multiple interdependent entities, such as instruments, actions, and targets, while maintaining their relational consistency across time. Existing surgical triplet recognition methods struggle to jointly model intra-frame label dependencies and inter-frame temporal semantics in a unified manner. To address these limitations, we propose a unified framework that integrates spatial, relational, and temporal cues for robust surgical triplet recognition. Specifically, class-specific spatial priors are first extracted through a multi-scale encoder. These priors are then refined by a Label Correlation Modeling module with multi-scale class activation map-guided relational extraction (MS-CAMRE), enabling the model to capture both static co-occurrence patterns and dynamic contextual dependencies among triplet components. Furthermore, a Bidirectional Temporal-Relational Fusion Attention (BTRFA) module harmonizes temporal and relational representations to achieve coherent temporal reasoning. We also introduce a new evaluation metric, the Triplet Consistency Error Rate (TCER), which quantitatively measures the model's ability to preserve causal and semantic consistency across triplets. Extensive experiments on the CholecT45 and ProstaTD datasets show that our method achieves state-of-the-art performance, improving AP_IVT by 5.1 percent and 7.8 percent, respectively. Moreover, according to TCER, our approach achieves relative reductions of more than 36 percent and 25 percent on the two datasets, respectively, demonstrating the effectiveness of our framework in temporal-relational co-reasoning.",
-              "categories": [
-                "cs.CV"
-              ],
-              "published": "2026-08-05T09:13:31Z",
-              "url": "https://arxiv.org/abs/2608.04606",
-              "pdf_url": "https://arxiv.org/pdf/2608.04606v1",
-              "comment": "code: https://github.com/Neesky/TRCoRSurg",
-              "figure_url": "https://arxiv.org/html/2608.04606v1/intro.png",
-              "figure_caption": "Figure 1 : Illustration of label dependencies in surgical triplet recognition. Left : representative frames showing multiple triplets co-occurring within the same scene. Right : pairwise triplet co-occurrence matrices, where the highly uneven distribution indicates strong structured dependencies amo",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "code": "https://github.com/Neesky/TRCoRSurg"
-              }
-            },
-            {
-              "id": "2608.04557",
-              "title": "VoxStruct3D: Structure-Leading Flow Matching for Voxel-Space 3D MRI Synthesis",
-              "authors": [
-                "Fang Li",
-                "Yang Gao",
-                "Shihao Zou",
-                "Weixin Si",
-                "Hongyu Wu",
-                "Qing Xia",
-                "Shuai Li",
-                "Aimin Hao"
-              ],
-              "abstract": "High-fidelity 3D MRI synthesis requires both globally coherent anatomy and fine-grained voxel-level detail. Although latent diffusion makes volumetric generation tractable, its image autoencoder introduces a reconstruction bottleneck that can limit the fine detail recoverable in the final volume. We present VoxStruct3D, a voxel-space flow-matching framework that directly models full-resolution MRI volumes using a clean-data prediction objective. Its Volumetric Voxel Generator (VVG) combines factorized 3D patch embedding with overlapping upsampling, time-modulated residual refinement, and skip fusion, enabling neighboring tokens to jointly reconstruct shared voxel regions and suppress patch-boundary artifacts. To complement direct voxel-space modeling with an explicit anatomical prior, we further introduce a Structure-First, Image-Follows (SFIF) strategy. A frozen pretrained 3D medical encoder and a StructVAE extract compact structure tokens that preserve dominant anatomy, while a structure-leading schedule keeps their trajectory ahead of the image trajectory. Patch-Aligned RoPE spatially aligns the unequal token grids, and asymmetric attention enforces one-way guidance from structure to image. Experiments on pathological and healthy T1-weighted brain MRI datasets show that VoxStruct3D achieves the strongest overall performance across feature-distribution alignment, sample diversity, and perceptual quality, producing anatomically coherent and visually realistic volumes.",
-              "categories": [
-                "cs.CV"
-              ],
-              "published": "2026-08-05T07:51:35Z",
-              "url": "https://arxiv.org/abs/2608.04557",
-              "pdf_url": "https://arxiv.org/pdf/2608.04557v1",
-              "comment": "Project page: https://neesky.github.io/VoxStruct3D/",
-              "figure_url": "https://arxiv.org/html/2608.04557v1/framework.png",
-              "figure_caption": "Figure 1: Overview of Stage II . Given a clean volume 𝐱 1 \\mathbf{x}_{1} and class label y y , independent noise is injected into the image and structure streams at times t x t_{x} and t s t_{s} , respectively. The noised volume is patchified into image tokens 𝐳 t \\mathbf{z}_{t} , while the frozen 3",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://neesky.github.io/VoxStruct3D/"
-              }
             }
           ]
         },
@@ -3668,88 +3612,6 @@
               "links": {
                 "project": "https://tonyfang.net/ved"
               }
-            },
-            {
-              "id": "2608.04533",
-              "title": "EgoAfford: Task-Oriented Affordance Grounding via Egocentric Referring Segmentation",
-              "authors": [
-                "Xinyuan Guan",
-                "Feifan Chen",
-                "Xinyu Zhan",
-                "Fu-Cheng Zhang",
-                "Cewu Lu",
-                "Lixin Yang"
-              ],
-              "abstract": "Part-level affordance grounding has advanced the localization of functional object regions associated with elemental actions. Extending this capability to complex tasks calls for connecting the semantic roles of participating objects with task-state-aligned visual observations and multi-step planning. We introduce EgoAfford, a benchmark designed to connect these three aspects. Given an egocentric observation and a high-level tabletop task, a model must generate the remaining plan and segment the functional regions of up to three components of the next action: the direct object, instrument, and destination. EgoAfford comprises approximately 15.5k human-verified images from 2,000 generated multi-step scenes, organized as semantically aligned, task-complete image series, together with EgoAfford-Real, 102 manually captured images spanning 26 tasks. We further present EgoLens, a 3B multimodal large language model with role-specific mask decoders, as an in-domain reference model for this joint task. Evaluations of recent referring-segmentation MLLMs, commercial-VLM--SAM2 pipelines, and EgoLens highlight the complementary challenges of next-step inference and action-role-conditioned part grounding. EgoLens establishes strong reference performance on both generated and manually captured observations. Together, EgoAfford and EgoLens provide a foundation for jointly studying perception and planning in multi-step tabletop tasks. Our project page is available at: https://egoafford.github.io",
-              "categories": [
-                "cs.CV"
-              ],
-              "published": "2026-08-05T07:08:53Z",
-              "url": "https://arxiv.org/abs/2608.04533",
-              "pdf_url": "https://arxiv.org/pdf/2608.04533v1",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2608.04533v1/small_teaser.png",
-              "figure_caption": "Figure 1: Task-oriented affordance formulation. A complex task unfolds as a sequence of state-dependent actions. Given the task goal and the current egocentric observation (purple box), the objective is to infer the remaining plan, and grounds three participating components of the next step at part ",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://egoafford.github.io"
-              }
-            },
-            {
-              "id": "2608.03727",
-              "title": "Track4Action: Distilling World-Centric 3D Tracker into Vision-Language-Action Policies",
-              "authors": [
-                "Chenyi Wang",
-                "Xinkai Wang",
-                "Bokai Lin",
-                "Jialin Tian",
-                "Fucheng Zhang",
-                "Cewu Lu",
-                "Lixin Yang"
-              ],
-              "abstract": "Action labels tell a vision-language-action (VLA) policy which robot commands to imitate, but not how those commands change the 3D world. The aligned demonstration clip contains this missing supervision because its $K$ frame transitions record the geometry, motion, visibility, and camera change produced during the corresponding $K$ actions. We introduce Track4Action, a framework that distills this realized transition from a frozen world-centric 3D tracker into a current-observation VLA policy. During training, Track4World encodes the clip $V_{t:t+K}$ into a pooled tracker feature. Learnable track queries infer this feature from current VLA hidden states, match it in a shared space, and condition a flow-matching action head through a feature-wise gate. The tracker feature only defines the alignment target, so neither the clip nor the tracker is used at deployment. Track4Action reaches 82.3% on zero-shot LIBERO-Plus, improving the alignment-free variant by 7.6 points and LaMP by 3.0 points. It obtains 80.44% and 81.48% on the clean and randomized RoboTwin 2.0 splits, and 67.5% average success across four physical bimanual tasks, 25.0 points above the alignment-free variant. The gains across simulation and physical tasks support action-aligned 3D tracker features as privileged supervision for tracker-free VLA deployment. Our project page is available at https://wing0night.github.io/track4action-project-page.",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-08-04T14:25:13Z",
-              "url": "https://arxiv.org/abs/2608.03727",
-              "pdf_url": "https://arxiv.org/pdf/2608.03727v1",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2608.03727v1/t4a-teaser.png",
-              "figure_caption": "Figure 1: Track4Action: Unifying 4D Scene Dynamics with Task Understanding. Flow-tracking models capture how a scene evolves in 4D but lack task awareness, whereas conventional VLA policies understand what to accomplish but do not explicitly model future 4D dynamics. Track4Action bridges these compl",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://wing0night.github.io/track4action-project-page"
-              }
-            },
-            {
-              "id": "2608.03528",
-              "title": "Tired Actor: Fatigue-Informed Character Control",
-              "authors": [
-                "Shengyuan Zhang",
-                "Xinpeng Liu",
-                "Muchun Niu",
-                "Yulong Chen",
-                "Lizhuang Ma",
-                "Yue Gao",
-                "Cewu Lu",
-                "Yong-Lu Li"
-              ],
-              "abstract": "Replicating human behavior with physics simulation has been a long-expected goal in character animation. Existing efforts have achieved impressive performance in imitating a wide span of general motions. However, most existing efforts could still suffer from unnatural movements due to the lack of biomechanical and physiological priors. Given this, we project our sights to advances in behavioral energetics, which demonstrate how energy use shapes human movements. In contrast, current character controllers typically assume the character is equipped with infinite energy over time. Inspired by these, we propose to adopt fatigue as a proxy of the finite energy limit, inject it into general character animation, and thoroughly investigate how fatigue introduces new characteristics to physics-based character control. Leveraging the Three-Compartment Controller (3CC) model, we managed to obtain a policy for general motion imitation under different fatigue statuses. Furthermore, extensive analyses are conducted to demonstrate how fatigue could influence the naturalness, scalability, and robustness of character animation. Our code will be made public.",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-08-04T12:12:09Z",
-              "url": "https://arxiv.org/abs/2608.03528",
-              "pdf_url": "https://arxiv.org/pdf/2608.03528v1",
-              "comment": "14 pages, 13 figures",
-              "figure_url": "https://arxiv.org/html/2608.03528v1/teaser.png",
-              "figure_caption": "Figure 1: Current controllers could still be unnatural, like replicating treadmill paces on the ground. Inspired by behavioral energetics, we introduce Tired Actor, a fatigue-informed character controller with interesting behaviors. As shown, our Tired Actor learns to cut corners by reducing action ",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
             }
           ]
         },
@@ -3758,7 +3620,7 @@
           "papers": []
         }
       ],
-      "total": 39
+      "total": 34
     },
     {
       "name": "工业界研究团队",
