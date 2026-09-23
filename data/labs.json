@@ -1,8 +1,8 @@
 {
-  "updated": "2026-09-22T12:02:46+00:00",
-  "day": "2026-09-22",
+  "updated": "2026-09-23T12:03:09+00:00",
+  "day": "2026-09-23",
   "days_back": 45,
-  "total": 110,
+  "total": 111,
   "labs": [
     {
       "name": "UC Berkeley",
@@ -2710,6 +2710,33 @@
           "name": "Yang Gao",
           "papers": [
             {
+              "id": "2609.25492",
+              "title": "RGSQ: Riemannian Geometry-Sensitive Quantization for Large Vision-Language Models",
+              "authors": [
+                "Zhiping Wu",
+                "Dongdong Ren",
+                "Yangchengyu Zhou",
+                "Zhengjie Zhang",
+                "Wenbin Li",
+                "Hongbing Pan",
+                "Yang Gao"
+              ],
+              "abstract": "Large vision-language models (VLMs) can be efficiently deployed under stringent memory and latency constraints through post training quantization (PTQ). However, most PTQ methods are designed for unimodal large language models (LLMs). These methods treat quantization errors as isotropic perturbations under the Euclidean assumption, which provides weak guidance on directions most sensitive to quantization in VLMs. Consequently, directly adapting unimodal PTQ approaches or solely employing modality-specific scaling often leads to uneven bit-width distribution and inconsistent performance in low-bit settings. To address these challenges, we propose Riemannian Geometry-Sensitive Quantization (RGSQ), which formulates quantization as a reconstruction problem under a unified Fisher-Riemannian metric. RGSQ identifies modality-specific sensitive directions via Riemannian manifold mappings built from modality-partitioned empirical Fisher factors and fused into a modality-aware Kronecker-structured metric. We then apply geometry-aligned rotations to reorient the local tangent frame, steering low-bit perturbations toward loss-insensitive axes. Finally, we apply a whitening transformation that maps the Riemannian objective to an equivalent Euclidean form, enabling standard unimodal PTQ methods to evaluate multimodal quantization error under their original assumptions. Across an extensive and diverse set of mainstream VLM benchmarks, RGSQ achieves the highest accuracy and stability under extremely low-bit settings (W2A8 and W3A8). It outperforms VLM-aware baselines, such as MBQ and MQuant, by up to 5.9% and surpasses single-modality improvements by up to 8.6%.",
+              "categories": [
+                "cs.CV",
+                "cs.AI"
+              ],
+              "published": "2026-09-21T23:42:52Z",
+              "url": "https://arxiv.org/abs/2609.25492",
+              "pdf_url": "https://arxiv.org/pdf/2609.25492v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2609.25492v1/Framework.png",
+              "figure_caption": "Fig. 1: Illustration of the RGSQ framework: Rather than assuming multimodal quantization error is Euclidean and isotropic, we characterize each layer with a modality-aware Riemannian metric that reveals anisotropic, loss-sensitive directions. RGSQ then applies geometry-aligned rotations to reorient ",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {}
+            },
+            {
               "id": "2609.11155",
               "title": "DRG-MAPPO: Hierarchical Dynamic Role-Graph Multi-Agent Reinforcement Learning for Cooperative Air Combat",
               "authors": [
@@ -3855,7 +3882,7 @@
           "papers": []
         }
       ],
-      "total": 35
+      "total": 36
     },
     {
       "name": "工业界研究团队",
