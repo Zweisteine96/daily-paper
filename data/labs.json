@@ -1,8 +1,8 @@
 {
-  "updated": "2026-10-12T16:00:07+00:00",
-  "day": "2026-10-12",
+  "updated": "2026-10-13T14:31:21+00:00",
+  "day": "2026-10-13",
   "days_back": 45,
-  "total": 185,
+  "total": 184,
   "labs": [
     {
       "name": "UC Berkeley",
@@ -1017,38 +1017,11 @@
               "links": {
                 "project": "https://dhruvpendharkar.github.io/dwm/"
               }
-            },
-            {
-              "id": "2608.28958",
-              "title": "CoVA-SFT: A Large-Scale Dataset for Chain of Visual Abstractions",
-              "authors": [
-                "Tsung-Han Wu",
-                "Heekyung Lee",
-                "Anya Ji",
-                "Haoming Chen",
-                "Trevor Darrell",
-                "Joseph E. Gonzalez",
-                "David M. Chan"
-              ],
-              "abstract": "Chain-of-thought (CoT) reasoning has dramatically improved large language models (LLMs) by allowing them to decompose problems into intermediate steps. While CoT is widely effective for linguistic tasks, text-only CoT forces models to serialize visual problems into awkward prose. Although architectural solutions exist to process visual inputs, the community lacks a massive, multi-step, self-corrected dataset to teach models how to build and maintain internal visual workspaces when solving purely textual reasoning problems. To address this limitation, we introduce CoVA-SFT, a highly structured corpus of 51.9K samples containing over 222K multimodal reasoning steps across 5 distinct layout families and 17 complex tasks, and CoVA-Bench, a companion benchmark of 1,700 held-out test samples spanning the same tasks for reproducible evaluation. By providing explicit rationale formulations, agentic renderings, and verification loops, CoVA-SFT teaches multimodal language models to interleave text and visual abstractions. We validate the dataset by demonstrating that models fine-tuned on CoVA-SFT outperform all interleaved CoT baselines by more than 2x on average on CoVA-Bench, though they still fall short of strong text-only CoT baselines, highlighting open challenges for future work.",
-              "categories": [
-                "cs.CL",
-                "cs.CV"
-              ],
-              "published": "2026-08-29T00:03:13Z",
-              "url": "https://arxiv.org/abs/2608.28958",
-              "pdf_url": "https://arxiv.org/pdf/2608.28958v1",
-              "comment": "Accepted to EMNLP 2026 Findings",
-              "figure_url": "thumbs/2608.28958.jpg",
-              "figure_caption": "论文首页预览",
-              "figure_source": "pdf",
-              "video_url": null,
-              "links": {}
             }
           ]
         }
       ],
-      "total": 35
+      "total": 34
     },
     {
       "name": "Stanford",
