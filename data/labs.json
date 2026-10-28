@@ -1,8 +1,8 @@
 {
-  "updated": "2026-10-27T12:40:57+00:00",
-  "day": "2026-10-27",
+  "updated": "2026-10-28T13:27:24+00:00",
+  "day": "2026-10-28",
   "days_back": 45,
-  "total": 253,
+  "total": 262,
   "labs": [
     {
       "name": "UC Berkeley",
@@ -744,6 +744,37 @@
           "name": "Jitendra Malik",
           "papers": [
             {
+              "id": "2610.36539",
+              "title": "CARD: Contact-Anchored Retargeting for Dexterous Manipulation",
+              "authors": [
+                "Cunxi Dai",
+                "Botao He",
+                "Francois R Hogan",
+                "Wei Pan",
+                "Rao Fu",
+                "Wen-Han Hsieh",
+                "Ruoshi Liu",
+                "Jitendra Malik",
+                "Guanya Shi",
+                "Akash Sharma"
+              ],
+              "abstract": "Humans are dexterous, but traditional data collection paradigms such as teleoperation, kinesthetic teaching, and wearable exoskeletons force humans to act through the robot embodiment, bottlenecking their dexterity. Retargeting can avoid this. However, existing methods purely translate kinematics and ignore the real-world contact dynamics essential for task success. We present CARD: Contact-Anchored Retargeting for Dexterous Manipulation, a simulator and object-free framework that retargets human demonstrations to robot actions by explicitly preserving contact force targets. CARD unifies human data sources including video, motion capture, and tactile gloves via a shared hand--contact representation and generates explicit contact force targets in addition to kinematics. To maintain these contact targets during hardware open-loop replay, CARD also introduces a tactile tracking controller. For video which does not contain an explicit tactile source, we present Vid-HACO, our video-to-contact model that sets a new state of the art. Across our video, glove, motion-capture data and the GRAB dataset, CARD maintains contact on $43$--$78%$ of contact frames, while kinematic and object-aware retargeting methods maintain contact on $<10%$ and $22.5%$ of the frames respectively. Further, integrating our formulation into physics-based retargeting improves strict task success from 12% to 32% on GRAB dataset. Finally, we show that our tactile tracker is critical to reproduce demonstrated forces during hardware replay. These results establish that contact preservation via CARD is a scalable interface for transferring human dexterity to robots.",
+              "categories": [
+                "cs.RO"
+              ],
+              "published": "2026-10-27T02:51:20Z",
+              "url": "https://arxiv.org/abs/2610.36539",
+              "pdf_url": "https://arxiv.org/pdf/2610.36539v1",
+              "comment": "Project webpage: https://card-retargeting.github.io/",
+              "figure_url": "https://arxiv.org/html/2610.36539v1/fig_source_data.png",
+              "figure_caption": "Figure 2 : CARD overview. Video, glove, and motion capture are converted into a unified hand–contact representation, a MANO mesh with one contact force target per semantic link ( Sec. 3.1 ). Geometric initialization maps human joint angles to the robot skeleton, followed by contact-anchored retarget",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "project": "https://card-retargeting.github.io/"
+              }
+            },
+            {
               "id": "2610.22340",
               "title": "PlayPolicy: Dexterity from Supervised Play",
               "authors": [
@@ -1086,13 +1117,13 @@
                 "Max Simchowitz",
                 "Guanya Shi"
               ],
-              "abstract": "Though modern AI models like LLMs predict discrete tokens, today's robotic foundation models represent actions as continuous vectors. In this paper, we challenge this common consensus by asking if continuous action parametrizations are superior to their discrete counterparts. We conduct an extensive comparison of single-step regression and multi-step flow variants of both continuous and discrete policies in both from-scratch single-task and multi-task VLA training, in both simulation and on real hardware. In all regimes, we find that discrete action prediction, even the most naive, uniform-bin quantization, can match or even outperform continuous-action policies in task success rate. Moreover, we find that the challenge to discrete action policies is not action precision, but rather factorization error introduced by product-distribution predictions across time and action dimensions. We show that, when paired with the correct interventions---iterative computation through discrete flows, or distribution sharpening through classifier-free guidance---discrete flow policies can turn this weakness into a strength, enabling more responsive action changes during a predicted action chunk. Lastly, we show that attempts to explicitly inject geometric information into discrete policies, e.g. through corruption processes that emulate continuous flow matching, do not yield consistent improvements. Taken together, our findings question existing assumptions that robotic action prediction requires distinct design decisions compared to other AI domains, and motivates the possibility of discrete action prediction as a compelling alternative to today's continuous action parametrizations. Link for the webpage \\href{https://iscoyizj.github.io/discrete-action-website/}{https://iscoyizj.github.io/discrete-action-website/}",
+              "abstract": "Though modern AI models like LLMs predict discrete tokens, today's robotic foundation models represent actions as continuous vectors. In this paper, we challenge this common consensus by asking if continuous action parametrizations are superior to their discrete counterparts. We conduct an extensive comparison of single-step regression and multi-step flow variants of both continuous and discrete policies in both from-scratch single-task and multi-task VLA training, in both simulation and on real hardware. In all regimes, we find that discrete action prediction, even the most naive, uniform-bin quantization, can match or even outperform continuous-action policies in task success rate. Moreover, we find that the challenge to discrete action policies is not action precision, but rather factorization error introduced by product-distribution predictions across time and action dimensions. We show that, when paired with the correct interventions (iterative computation through discrete flows, or distribution sharpening through classifier-free guidance), discrete flow policies can turn this weakness into a strength, enabling more responsive action changes during a predicted action chunk. Lastly, we show that attempts to explicitly inject geometric information into discrete policies, e.g. through corruption processes that emulate continuous flow matching, do not yield consistent improvements. Taken together, our findings question existing assumptions that robotic action prediction requires distinct design decisions compared to other AI domains, and motivate the possibility of discrete action prediction as a compelling alternative to today's continuous action parametrizations. Project page: https://iscoyizj.github.io/discrete-action-website/",
               "categories": [
                 "cs.RO"
               ],
               "published": "2026-10-14T16:20:58Z",
               "url": "https://arxiv.org/abs/2610.20429",
-              "pdf_url": "https://arxiv.org/pdf/2610.20429v1",
+              "pdf_url": "https://arxiv.org/pdf/2610.20429v2",
               "comment": "53 pages (12 main text), 19 figures, 12 tables. Project page: https://iscoyizj.github.io/discrete-action-website/",
               "figure_url": "https://arxiv.org/html/2610.20429v1/state_responsiveness.png",
               "figure_caption": "Figure 3 : State responsiveness on held-out RoboCasa demonstrations: each head’s median change in its mean predicted chunk, divided by the expert’s median chunk change, for frame pairs four steps apart (1.00 matches the expert). Other lags are in Tab. 10 .",
@@ -1526,7 +1557,7 @@
           ]
         }
       ],
-      "total": 50
+      "total": 51
     },
     {
       "name": "Stanford",
@@ -4105,6 +4136,37 @@
           "name": "Guanya Shi",
           "papers": [
             {
+              "id": "2610.36539",
+              "title": "CARD: Contact-Anchored Retargeting for Dexterous Manipulation",
+              "authors": [
+                "Cunxi Dai",
+                "Botao He",
+                "Francois R Hogan",
+                "Wei Pan",
+                "Rao Fu",
+                "Wen-Han Hsieh",
+                "Ruoshi Liu",
+                "Jitendra Malik",
+                "Guanya Shi",
+                "Akash Sharma"
+              ],
+              "abstract": "Humans are dexterous, but traditional data collection paradigms such as teleoperation, kinesthetic teaching, and wearable exoskeletons force humans to act through the robot embodiment, bottlenecking their dexterity. Retargeting can avoid this. However, existing methods purely translate kinematics and ignore the real-world contact dynamics essential for task success. We present CARD: Contact-Anchored Retargeting for Dexterous Manipulation, a simulator and object-free framework that retargets human demonstrations to robot actions by explicitly preserving contact force targets. CARD unifies human data sources including video, motion capture, and tactile gloves via a shared hand--contact representation and generates explicit contact force targets in addition to kinematics. To maintain these contact targets during hardware open-loop replay, CARD also introduces a tactile tracking controller. For video which does not contain an explicit tactile source, we present Vid-HACO, our video-to-contact model that sets a new state of the art. Across our video, glove, motion-capture data and the GRAB dataset, CARD maintains contact on $43$--$78%$ of contact frames, while kinematic and object-aware retargeting methods maintain contact on $<10%$ and $22.5%$ of the frames respectively. Further, integrating our formulation into physics-based retargeting improves strict task success from 12% to 32% on GRAB dataset. Finally, we show that our tactile tracker is critical to reproduce demonstrated forces during hardware replay. These results establish that contact preservation via CARD is a scalable interface for transferring human dexterity to robots.",
+              "categories": [
+                "cs.RO"
+              ],
+              "published": "2026-10-27T02:51:20Z",
+              "url": "https://arxiv.org/abs/2610.36539",
+              "pdf_url": "https://arxiv.org/pdf/2610.36539v1",
+              "comment": "Project webpage: https://card-retargeting.github.io/",
+              "figure_url": "https://arxiv.org/html/2610.36539v1/fig_source_data.png",
+              "figure_caption": "Figure 2 : CARD overview. Video, glove, and motion capture are converted into a unified hand–contact representation, a MANO mesh with one contact force target per semantic link ( Sec. 3.1 ). Geometric initialization maps human joint angles to the robot skeleton, followed by contact-anchored retarget",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "project": "https://card-retargeting.github.io/"
+              }
+            },
+            {
               "id": "2610.35862",
               "title": "Learning Force-Reactive Humanoid Loco-Manipulation",
               "authors": [
@@ -4318,13 +4380,13 @@
                 "Max Simchowitz",
                 "Guanya Shi"
               ],
-              "abstract": "Though modern AI models like LLMs predict discrete tokens, today's robotic foundation models represent actions as continuous vectors. In this paper, we challenge this common consensus by asking if continuous action parametrizations are superior to their discrete counterparts. We conduct an extensive comparison of single-step regression and multi-step flow variants of both continuous and discrete policies in both from-scratch single-task and multi-task VLA training, in both simulation and on real hardware. In all regimes, we find that discrete action prediction, even the most naive, uniform-bin quantization, can match or even outperform continuous-action policies in task success rate. Moreover, we find that the challenge to discrete action policies is not action precision, but rather factorization error introduced by product-distribution predictions across time and action dimensions. We show that, when paired with the correct interventions---iterative computation through discrete flows, or distribution sharpening through classifier-free guidance---discrete flow policies can turn this weakness into a strength, enabling more responsive action changes during a predicted action chunk. Lastly, we show that attempts to explicitly inject geometric information into discrete policies, e.g. through corruption processes that emulate continuous flow matching, do not yield consistent improvements. Taken together, our findings question existing assumptions that robotic action prediction requires distinct design decisions compared to other AI domains, and motivates the possibility of discrete action prediction as a compelling alternative to today's continuous action parametrizations. Link for the webpage \\href{https://iscoyizj.github.io/discrete-action-website/}{https://iscoyizj.github.io/discrete-action-website/}",
+              "abstract": "Though modern AI models like LLMs predict discrete tokens, today's robotic foundation models represent actions as continuous vectors. In this paper, we challenge this common consensus by asking if continuous action parametrizations are superior to their discrete counterparts. We conduct an extensive comparison of single-step regression and multi-step flow variants of both continuous and discrete policies in both from-scratch single-task and multi-task VLA training, in both simulation and on real hardware. In all regimes, we find that discrete action prediction, even the most naive, uniform-bin quantization, can match or even outperform continuous-action policies in task success rate. Moreover, we find that the challenge to discrete action policies is not action precision, but rather factorization error introduced by product-distribution predictions across time and action dimensions. We show that, when paired with the correct interventions (iterative computation through discrete flows, or distribution sharpening through classifier-free guidance), discrete flow policies can turn this weakness into a strength, enabling more responsive action changes during a predicted action chunk. Lastly, we show that attempts to explicitly inject geometric information into discrete policies, e.g. through corruption processes that emulate continuous flow matching, do not yield consistent improvements. Taken together, our findings question existing assumptions that robotic action prediction requires distinct design decisions compared to other AI domains, and motivate the possibility of discrete action prediction as a compelling alternative to today's continuous action parametrizations. Project page: https://iscoyizj.github.io/discrete-action-website/",
               "categories": [
                 "cs.RO"
               ],
               "published": "2026-10-14T16:20:58Z",
               "url": "https://arxiv.org/abs/2610.20429",
-              "pdf_url": "https://arxiv.org/pdf/2610.20429v1",
+              "pdf_url": "https://arxiv.org/pdf/2610.20429v2",
               "comment": "53 pages (12 main text), 19 figures, 12 tables. Project page: https://iscoyizj.github.io/discrete-action-website/",
               "figure_url": "https://arxiv.org/html/2610.20429v1/state_responsiveness.png",
               "figure_caption": "Figure 3 : State responsiveness on held-out RoboCasa demonstrations: each head’s median change in its mean predicted chunk, divided by the expert’s median chunk change, for frame pairs four steps apart (1.00 matches the expert). Other lags are in Tab. 10 .",
@@ -4630,7 +4692,7 @@
           ]
         }
       ],
-      "total": 28
+      "total": 29
     },
     {
       "name": "MIT",
@@ -5312,6 +5374,40 @@
           "name": "Jia Deng",
           "papers": [
             {
+              "id": "2610.37161",
+              "title": "WorkFactory: Turning Professional Intents into Executable Work for Scalable Agent Training",
+              "authors": [
+                "Ziyang Zeng",
+                "Tingyang Chen",
+                "Jia Deng",
+                "Qiyao Wang",
+                "Shuo Tang",
+                "Yike Yang",
+                "Tao Ren",
+                "Wayne Xin Zhao",
+                "Feng Chang",
+                "Jujie He",
+                "Chuan Hao",
+                "Ran Tao",
+                "Bryan Dai"
+              ],
+              "abstract": "Scaling supervised training for working agents requires diverse professional tasks that yield reliable expert demonstrations. However, missing or inconsistent task information can obstruct teacher execution and weaken the resulting supervision. We propose WorkFactory, a scalable framework for constructing coherent and executable professional tasks. Starting from professional intents, information-level planning builds an information support graph to guide task instantiation, explicitly representing the dependencies and locations of information required for the intended outputs. Probe executions then identify support failures and guide repairs while preserving the intended work. We construct 112,686 tasks spanning 612 occupations and use the collected teacher trajectories to fine-tune Qwen models at 4B, 27B, and 35B-A3B scales, yielding the WorkPilot family. All three models improve over their respective base models across four professional-work benchmarks, with WorkPilot-35B-A3B improving from 879 to 1565 Elo on GDPval-AA v2.1. Scaling analyses reveal model-dependent diminishing returns, with execution length first increasing and then decreasing. Controlled component analyses show that planning and repair reduce probe-diagnosed task environment defects and improve downstream performance. The data and models are available at https://github.com/IQuestLab/WorkFactory.",
+              "categories": [
+                "cs.AI"
+              ],
+              "published": "2026-10-27T12:54:16Z",
+              "url": "https://arxiv.org/abs/2610.37161",
+              "pdf_url": "https://arxiv.org/pdf/2610.37161v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2610.37161v1/fig_benchmark_scores.png",
+              "figure_caption": "Figure 1 : WorkPilot-35B-A3B consistently outperforms its Qwen3.6-35B-A3B base model across four professional-work benchmarks, with representative models shown for context.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "code": "https://github.com/IQuestLab/WorkFactory"
+              }
+            },
+            {
               "id": "2610.35013",
               "title": "Multiscale Policy Optimization for Long-Horizon LLM Agents",
               "authors": [
@@ -5740,7 +5836,7 @@
           ]
         }
       ],
-      "total": 19
+      "total": 20
     },
     {
       "name": "University of Washington",
@@ -5977,6 +6073,37 @@
         {
           "name": "Animesh Garg",
           "papers": [
+            {
+              "id": "2610.36823",
+              "title": "TAPESTRY: A Single Backbone for Video Generation and Robot Control",
+              "authors": [
+                "Jeremy A. Collins",
+                "Seungjae Lee",
+                "Rachanon Wachakorn",
+                "Krishnan Srinivasan",
+                "Animesh Garg",
+                "Vitor Campagnolo Guizilini",
+                "Paarth Shah"
+              ],
+              "abstract": "Pretrained video generation models encode rich priors about physical interactions, but leveraging them for robot control typically requires either resource-intensive video generation at test time or action heads trained from scratch that do not fully utilize the pretrained backbone. We introduce Tokenizing Actions as Video Patches in a Shared Transformer Policy (TAPESTRY), a world action model that repurposes a pretrained video diffusion transformer into a robotic policy without requiring video generation at inference. Our key idea is to treat robot actions as single-patch tokens in the video model's latent space. A lightweight linear projection maps each action timestep to the patch dimensions of the pretrained VAE, and the resulting tokens are processed by the same patchifying layers and transformer backbone used for video. The shared backbone is optimized through three diffusion objectives sampled per minibatch element: Video diffusion uses VAE latents from robot and human videos to establish dynamics priors. Joint video+action diffusion trains on robot demonstrations using a coupled diffusion timestep and an asymmetric attention mask. Action-only diffusion denoises actions conditioned on clean image latents. At test time, the model generates a compact action token sequence in a single DDIM step from pure noise, producing smooth action chunks at 84 ms per action chunk on consumer hardware and avoiding the cost of full video generation. Across simulation benchmarks and real-robot experiments, TAPESTRY achieves strong performance with substantially lower inference cost than comparable joint video--action policies. More information can be found at https://tapestry-wam.github.io.",
+              "categories": [
+                "cs.RO",
+                "cs.AI",
+                "cs.CV",
+                "cs.LG"
+              ],
+              "published": "2026-10-27T08:23:30Z",
+              "url": "https://arxiv.org/abs/2610.36823",
+              "pdf_url": "https://arxiv.org/pdf/2610.36823v1",
+              "comment": "Accepted to Conference on Robot Learning (CoRL) 2026",
+              "figure_url": "https://arxiv.org/html/2610.36823v1/headliner_v7.png",
+              "figure_caption": "Figure 1: Tapestry overview. The model is trained across video, joint video/action, and action-only diffusion. At deployment, it bypasses heavy video decoding to predict actions in a single step, delivering the speed and memory efficiency required for real-time robotic control.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "project": "https://tapestry-wam.github.io"
+              }
+            },
             {
               "id": "2610.28925",
               "title": "One Policy, Many Styles: Where to Aggregate Preferences for Steerable Humanoid Control?",
@@ -6499,7 +6626,7 @@
           ]
         }
       ],
-      "total": 16
+      "total": 17
     },
     {
       "name": "ETH Zürich / TU Darmstadt",
@@ -6509,6 +6636,60 @@
         {
           "name": "Marco Hutter",
           "papers": [
+            {
+              "id": "2610.37602",
+              "title": "RESPLE2: Inertial-Informed Recursive Non-Uniform Spline Estimation for Multi-Sensor Odometry with Global Refinement",
+              "authors": [
+                "Ziyu Cao",
+                "William Talbot",
+                "Song Li",
+                "Pakpong Chirarattananon",
+                "Fredrik Gustafsson",
+                "Marco Hutter",
+                "Kailai Li"
+              ],
+              "abstract": "We present RESPLE2, a recursive multi-sensor state estimation framework using non-uniform B-splines for 6-DoF motion representation. By exploiting the knot-clamping boundary property, we propose a theoretically grounded mechanism for exact control-point prediction directly informed by inertial kinematics along the trajectory, with knot placement adapted to motion and measurement availability. Within an iterated extended Kalman filter, we perform this prediction using a subset of inertial measurements. A subsequent reset step preserves trajectory consistency as the knots extend. The update step further incorporates heterogeneous sensor measurements at their native timestamps through continuous-time observation models, supporting flexible combinations of LiDARs, cameras, inertial measurement units, and leg kinematics. We further develop a lightweight global optimization module that directly refines non-uniform B-spline control points by incorporating loop-closure constraints derived from LiDAR-visual cues. We conduct extensive evaluations on public and experimental datasets across handheld, tracked, legged, and hybrid aerial-legged platforms, covering highly dynamic maneuvers with extreme accelerations. Compared with state-of-the-art multi-sensor odometry systems, RESPLE2 achieves competitive or superior estimation accuracy and robustness in the corresponding sensor configurations, particularly under aggressive motion, while maintaining real-time operation. We publicly release our code and experimental datasets at https://github.com/ASIG-X/RESPLE2.",
+              "categories": [
+                "cs.RO"
+              ],
+              "published": "2026-10-27T17:33:19Z",
+              "url": "https://arxiv.org/abs/2610.37602",
+              "pdf_url": "https://arxiv.org/pdf/2610.37602v1",
+              "comment": "18 pages",
+              "figure_url": "https://arxiv.org/html/2610.37602v1/fig/front.png",
+              "figure_caption": "Fig. 1: RESPLE2 enables multi-sensor odometry across diverse scenarios on ANYmal D (a, b) and Unitree Go2 (e) legged robots, a tracked vehicle (c), a hybrid legged quadcopter (d), and handheld platforms (f, g, h). The Boxi sensor payload [ 10 ] was deployed for the ANYmal D and tracked vehicle.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "code": "https://github.com/ASIG-X/RESPLE2"
+              }
+            },
+            {
+              "id": "2610.36270",
+              "title": "Learning Multi-Phase Robot Loco-Manipulation via Phase-Conditioned Policy Optimization",
+              "authors": [
+                "Simone Manni",
+                "Annika Wollschläger",
+                "Dario Bellicoso",
+                "Abel Gawel",
+                "Marco Hutter",
+                "Simon Le Cleac'h",
+                "Jan Brüdigam"
+              ],
+              "abstract": "Complex whole-body loco-manipulation requires executing diverse maneuvers, such as crouching, grasping, and locomotion, within a single long-horizon task. While performing simple pick-and-place behaviors is well-established, scaling to complex, long-horizon tasks remains difficult. Currently, this challenge is addressed by relying on human motion data and correspondingly humanoid platforms, which limits platform independence and introduces substantial data processing overhead. Instead, we extend proximal policy optimization (PPO) to train a single policy for multi-phase tasks across diverse robotic hardware, leveraging prior task structure to shape behavior. Our method adapts PPO using a phase-conditioned critic, phase-gated reward functions, and a multi-phase reset curriculum to guide exploration. To support varied hardware, we employ a decoupled hierarchical control architecture that separates lower-level balancing dynamics from high-level phase execution. We demonstrate multi-stage loco-manipulation skills on hardware on both the Unitree G1 and a Boston Dynamics Spot equipped with a manipulator arm, and validate our design choices through ablations. Our approach enables the acquisition of complex loco-manipulation behaviors purely through environment interaction while directly incorporating high-level task structure into policy learning.",
+              "categories": [
+                "cs.RO"
+              ],
+              "published": "2026-10-26T20:44:05Z",
+              "url": "https://arxiv.org/abs/2610.36270",
+              "pdf_url": "https://arxiv.org/pdf/2610.36270v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2610.36270v1/03_wholebody_overview.png",
+              "figure_caption": "Fig. 2 : Overview of the low-level whole-body policy. The policy commands leg and waist joints to execute stable locomotion, low crouching, and crouch-walking. Training stability is achieved via inverse kinematics (IK) keyframe initializations that spawn the robot in valid postures, coupled with a f",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {}
+            },
             {
               "id": "2610.31608",
               "title": "Humanoid Mobility via Attention-based Contacts",
@@ -6908,6 +7089,92 @@
         {
           "name": "Jan Peters",
           "papers": [
+            {
+              "id": "2610.37215",
+              "title": "Retrieve to Act: Motion Primitive Graph Retrieval for Robust VLA Execution",
+              "authors": [
+                "Pham Tri Quang",
+                "Bao-Ngoc Dao",
+                "Minh Duc Nguyen",
+                "Duc-Duy Nguyen",
+                "Hung T. Ho",
+                "Linh Dang Le",
+                "Trong-Bao Ho",
+                "Thien-Loc Ha",
+                "Tan Q. Nguyen",
+                "Tuan Dam",
+                "Vu N. Duong",
+                "Daniel Sonntag",
+                "Ngan Le",
+                "Khoa D. Doan",
+                "Jan Peters",
+                "An Thai Le",
+                "Duy M. H. Nguyen",
+                "Vien Anh Ngo"
+              ],
+              "abstract": "Vision-Language-Action (VLA) policies demonstrate remarkable semantic generalization, yet remain highly vulnerable to out-of-distribution (OOD) visual shifts during execution. While existing test-time methods attempt to suppress spurious visual cues, they fundamentally overlook the rich, uncorrupted kinematic priors embedded in the policy's own training experience. We introduce Retrieve to Act (R2A), a test-time scaling framework that formulates OOD robustness purely as a geometric motion primitive retrieval problem. R2A bypasses fragile visual features by structuring successful training demonstrations into an offline spatiotemporal motion primitive graph. During inference, a query-dependent Graph Neural Network dynamically localizes the robot's ongoing execution within this graph, retrieving structurally compatible future motion primitives. These retrieved geometric priors are then seamlessly harmonized with the frozen VLA's predicted actions via a learned, dimension-wise gating mechanism, adaptively rectifying erroneous spatial trajectories while preserving the policy's local reactivity. Extensive experiments across three state-of-the-art VLA architectures, GR00T N1.7, $π_{0.5}$, and StableVLA, demonstrate that R2A consistently and significantly enhances robustness against diverse contextual perturbations. R2A achieves absolute success rate improvements of up to +12% in simulation benchmarks (LIBERO-Plus, RoboTwin2.0-Plus) and +40% in real-world deployments, without requiring any finetuning of the base policies. Project page: https://retrieve2act.github.io/r2a/",
+              "categories": [
+                "cs.RO",
+                "cs.AI"
+              ],
+              "published": "2026-10-27T13:28:33Z",
+              "url": "https://arxiv.org/abs/2610.37215",
+              "pdf_url": "https://arxiv.org/pdf/2610.37215v1",
+              "comment": "20 pages, 9 figures, 7 tables",
+              "figure_url": "https://arxiv.org/html/2610.37215v1/R2A_v7.png",
+              "figure_caption": "Figure 1: R2A organizes offline training demonstrations into a pure kinematic motion primitive graph. At test time, it projects OOD initial states back to the training manifold via diffusion, continuously retrieves context-aligned geometric priors 𝐀 t ref \\mathbf{A}_{t}^{\\text{ref}} via a kinematic ",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {
+                "project": "https://retrieve2act.github.io/r2a/"
+              }
+            },
+            {
+              "id": "2610.37203",
+              "title": "Remember Where You Walk: Learning Spatial Memory for End-to-End Legged Robot Exploration",
+              "authors": [
+                "Leon Magnus",
+                "Nico Bohlinger",
+                "Jan Peters",
+                "Oleg Arenz"
+              ],
+              "abstract": "Humanoids and other legged robots operating in complex environments must remember information that leaves their field of view and only becomes relevant much later. Reinforcement learning policies address this using memory networks such as LSTMs that are trained end-to-end with the policy to memorize such task-relevant aspects. Yet, such architectures often fail to preserve sufficient information over long horizons. In this work, we propose a network architecture based on Hadamard memory that specifically targets robot navigation. Our Local Spatial Matrix Memory (LSMM) enables RL agents to store generic task-relevant information at specific, position-based memory cells, enabling flexible and spatially grounded memorization. We evaluate LSMM on the task of autonomous maze exploration, where it matches the maze coverage of strong recurrent and finite-history baselines while being the only architecture that remembers the maze layout, reducing the reconstruction error threefold.",
+              "categories": [
+                "cs.RO"
+              ],
+              "published": "2026-10-27T13:22:51Z",
+              "url": "https://arxiv.org/abs/2610.37203",
+              "pdf_url": "https://arxiv.org/pdf/2610.37203v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2610.37203v1/real_figure.png",
+              "figure_caption": "Fig. 1 : (a) The Unitree Go2 autonomously explores a previously unseen 5 × 5 ​ m 5\\times 5\\,\\mathrm{m} outdoor maze. The red line shows the walked path. (b) The matrix memory at the end of the run. The policy has written into the cells along its path, shown with the three memory channels interpreted",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {}
+            },
+            {
+              "id": "2610.36452",
+              "title": "Whole-Body Humanoid Control via Stochastic Motion Tokenization",
+              "authors": [
+                "Michael Drolet",
+                "Oleg Arenz",
+                "Jan Peters"
+              ],
+              "abstract": "While velocity-commanded RL policies are effective for controlling quadrupeds, they are a limited interface for humanoids that need to perform complex whole-body motions. Furthermore, RL tracking policies for whole-body motions typically have limited information about the desired future motion, preventing them from performing controlled deviations to achieve long-term task success; such information is particularly relevant when a controller must prepare for transitions between behaviors. We address these challenges using concise motion representations that can be generated by a high-level controller, given a behavior label or text command. These representations can be fed directly into a tracking policy to provide a detailed motion reference. Our method exhibits a high degree of flexibility in performing real-world robot motions such as dancing, fighting, or walking based on conditional information. At matched capacity, our adopted stochastic motion tokenizer reconstructs motions from the Unitree G1 at a level that exceeds state-of-the-art approaches such as finite scalar quantization (FSQ) and the vector-quantized autoencoder (VQ-VAE). The resulting discrete interface conditions whole-body tracking policies that execute generated dance, fight, and walk motions lasting 16.8 s each and a 35 s fight-to-dance sequence on a physical Unitree G1.",
+              "categories": [
+                "cs.RO",
+                "cs.LG"
+              ],
+              "published": "2026-10-27T00:58:02Z",
+              "url": "https://arxiv.org/abs/2610.36452",
+              "pdf_url": "https://arxiv.org/pdf/2610.36452v1",
+              "comment": "Accepted to the 2026 IEEE-RAS International Conference on Humanoid Robots (Humanoids 2026). (c) 2026 IEEE. Personal use of this material is permitted. Permission from IEEE must be obtained for all other uses",
+              "figure_url": "https://arxiv.org/html/2610.36452v1/robot_behaviors.png",
+              "figure_caption": "Fig. 1: The Unitree G1 executing behaviors synthesized by our three-stage, next-token-prediction framework and tracked by a single policy.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {}
+            },
             {
               "id": "2610.33807",
               "title": "RoboWorM: Evaluating Movement Realism, Consistency and Acceleration Affects in Embodied Video World Models",
@@ -7364,6 +7631,29 @@
           "name": "Davide Scaramuzza",
           "papers": [
             {
+              "id": "2610.37557",
+              "title": "Learning Visuomotor Quadrotor Flight Through Dynamic Narrow Gaps via Differentiable Simulation",
+              "authors": [
+                "Riccardo Bianco",
+                "Yunfan Ren",
+                "Jiaxu Xing",
+                "Davide Scaramuzza"
+              ],
+              "abstract": "Threading a quadrotor through a moving narrow gap is a demanding test of agile flight, requiring centimeter-level spatial alignment and precise temporal execution. We address this challenge using a control policy that operates directly on onboard visual and inertial measurements to output collective thrust and body-rate commands. The task is difficult because success lies on a thin feasible manifold: small errors in timing, position, attitude, or visual observability cause collision. Prior planning and learning methods rely on privileged state, teachers, planners, or distillation; learning dynamic narrow-gap traversal directly, from scratch, remains open. We introduce a differentiable moving-gap formulation that gates centering, alignment, and smooth collision terms by signed distance to a time-varying gap plane, turning a sparse traversal event into a dense pathwise objective. We integrate this formulation into a visual-feature-to-command policy trained in one stage from random initialization, without a teacher, planner, or distillation. We validate our approach in both synthetic and real-world experiments. In controlled benchmarks, we demonstrate that pathwise gradients significantly outperform score-function gradients for precision-critical tasks, yielding a 99.3% success rate in simulation after only a few minutes of training on a single GPU. Furthermore, the policy transfers directly to a real quadrotor, successfully crossing a dynamic narrow gap from varied initial conditions using onboard sensing and inertial measurements, achieving an 80% success rate over 10 physical trials.",
+              "categories": [
+                "cs.RO"
+              ],
+              "published": "2026-10-27T17:05:05Z",
+              "url": "https://arxiv.org/abs/2610.37557",
+              "pdf_url": "https://arxiv.org/pdf/2610.37557v1",
+              "comment": "",
+              "figure_url": "https://arxiv.org/html/2610.37557v1/test.png",
+              "figure_caption": "Figure 1: Traversal of a narrow moving gap using onboard sensing and inertial measurements. The policy is trained with differentiable simulation and transferred zero-shot in the real world.",
+              "figure_source": "html",
+              "video_url": null,
+              "links": {}
+            },
+            {
               "id": "2610.06019",
               "title": "Adaptive Expert Guidance for Efficient On-Policy Reinforcement Learning",
               "authors": [
@@ -7474,7 +7764,7 @@
           ]
         }
       ],
-      "total": 36
+      "total": 42
     },
     {
       "name": "清华 / 北大 / 上交",
