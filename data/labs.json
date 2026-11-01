@@ -1,8 +1,8 @@
 {
-  "updated": "2026-10-31T12:59:43+00:00",
-  "day": "2026-10-31",
+  "updated": "2026-11-01T13:44:34+00:00",
+  "day": "2026-11-01",
   "days_back": 45,
-  "total": 262,
+  "total": 259,
   "labs": [
     {
       "name": "UC Berkeley",
@@ -3816,34 +3816,6 @@
               "links": {
                 "project": "https://cowboy-manip.com"
               }
-            },
-            {
-              "id": "2609.19463",
-              "title": "ParticleSplat: Self-supervised Object-centric Latent Particle Splatting",
-              "authors": [
-                "Lyuxing He",
-                "Daniel Guo",
-                "Elizabeth Terveen",
-                "Deepak Pathak",
-                "David Held",
-                "Tal Daniel"
-              ],
-              "abstract": "We present ParticleSplat, a self-supervised object-centric learning method that decomposes scenes into a set of latent ''particles'' representing semantic entities through feedforward 3D Gaussian Splatting. Building on the Deep Latent Particles (DLP) framework, which represents images as a set of particles with attributes such as position, scale, and visual appearance, we address a key limitation of DLP: its inherently 2D nature, which prevents explicit 3D spatial and geometric reasoning that are critical for downstream tasks such as robotic manipulation. Leveraging the structural similarity between latent particles and 3D Gaussian primitives, we introduce a 3D latent particle space trained with a novel view synthesis objective. Our model jointly encodes multiple views with camera poses into a shared 3D object-centric latent space, then transforms particles into particle-aligned 3D Gaussians whose composition reconstructs the full scene. On simulated and real-world datasets, we show that this formulation inherently learns object masks without supervision and supports controllable 3D scene editing, such as moving objects by modifying particles in the latent space. We further establish that the learned 3D representation improves downstream performance on robotic manipulation tasks.",
-              "categories": [
-                "cs.CV",
-                "cs.RO"
-              ],
-              "published": "2026-09-16T22:05:05Z",
-              "url": "https://arxiv.org/abs/2609.19463",
-              "pdf_url": "https://arxiv.org/pdf/2609.19463v1",
-              "comment": "Project page: https://lyuxinghe.github.io/ParticleSplat-website/",
-              "figure_url": "https://arxiv.org/html/2609.19463v1/figs/arch_main_c.png",
-              "figure_caption": "Figure 1 : ParticleSplat architecture. Given multi-view context observations (RGB images, camera poses encoded as Plücker ray coordinates, and optional depth maps), the view-aware encoder infers a set of object-centric latent particles. The decoder transforms these particles into world-space 3D Gaus",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://lyuxinghe.github.io/ParticleSplat-website/"
-              }
             }
           ]
         },
@@ -4681,7 +4653,7 @@
           ]
         }
       ],
-      "total": 30
+      "total": 29
     },
     {
       "name": "MIT",
@@ -6549,40 +6521,11 @@
               "links": {
                 "project": "https://liberomax.github.io"
               }
-            },
-            {
-              "id": "2609.18929",
-              "title": "Social Laws for Multi-agent Coordination in Stochastic Environments",
-              "authors": [
-                "Rolando Fernandez",
-                "Caleb Probine",
-                "Tyler Lee",
-                "Jeffrey Chen",
-                "Erez Karpas",
-                "Muhammad Arrasy Rahman",
-                "Peter Stone",
-                "Ufuk Topcu"
-              ],
-              "abstract": "In multi-agent environments, coordinating agents to prevent interference and ensure robust individual performance is a critical challenge. Previous research on social laws for multi-agent systems has primarily focused on deterministic, goal-based settings. This paper extends the concept of social laws to stochastic, reward-based environments, proposing a formalism for defining and verifying their robustness under various conditions. We introduce the notion of $α$-robustness, a measure of the guaranteed utility each agent retains while pursuing its optimal single agent policy, assuming all agents obey the social law. We then present an approach for robustness verification of social laws in stochastic settings, based on a reduction to solving a series of Markov decision processes. Empirical evaluations on toy environments illustrate the potential of our framework.",
-              "categories": [
-                "cs.MA",
-                "cs.AI",
-                "cs.LG"
-              ],
-              "published": "2026-09-16T17:05:03Z",
-              "url": "https://arxiv.org/abs/2609.18929",
-              "pdf_url": "https://arxiv.org/pdf/2609.18929v1",
-              "comment": "Appeared at the RIPL Workshop as part of ICAPS 2026",
-              "figure_url": "thumbs/2609.18929.jpg",
-              "figure_caption": "论文首页预览",
-              "figure_source": "pdf",
-              "video_url": null,
-              "links": {}
             }
           ]
         }
       ],
-      "total": 18
+      "total": 17
     },
     {
       "name": "ETH Zürich / TU Darmstadt",
@@ -8524,45 +8467,6 @@
               "links": {
                 "project": "https://steveouo.github.io/DualWAM-Web/"
               }
-            },
-            {
-              "id": "2609.18732",
-              "title": "PASSAGE: Scaling Scene-Aligned Motion Learning for Perceptive Humanoid Traversal in Cluttered Environments",
-              "authors": [
-                "Yuxuan Ma",
-                "Zicheng Zeng",
-                "Chunlin Peng",
-                "Zhoujian Li",
-                "Zetong Zhao",
-                "Zhikai Zhang",
-                "Yunrui Lian",
-                "Han Xue",
-                "Sikai Liang",
-                "Weiyi Zhu",
-                "Mulin Chen",
-                "Chenghuai Lin",
-                "Jiayu Zeng",
-                "Yanwei An",
-                "Songan Zhang",
-                "Jiayuan Gu",
-                "Jilong Wang",
-                "Jingbo Wang",
-                "He Wang",
-                "Li Yi"
-              ],
-              "abstract": "Humanoid robots can step over, squeeze past, and duck under obstacles, but learning to select and coordinate these behaviors from onboard perception remains challenging. Many existing approaches rely on task-specific reinforcement-learning objectives or curated motion libraries, making broad behavioral coverage costly. We present PASSAGE, a perception-conditioned planner--tracker framework for humanoid traversal. Using virtual reality and inertial motion capture, we collect 100 h of scene-aligned human motion across 1,500 cluttered scenes. A conditional flow-matching planner generates short-horizon references from motion history, a local destination, and a robot-centric multi-layer elevation map, while a perceptive whole-body tracker executes them at 50 Hz with geometric feedback. Real-time chunking promotes inter-chunk consistency, and planner-side RL post-training under the frozen tracker further improves closed-loop performance. Without skill annotations or obstacle-specific policies, one planner--tracker pair selects and composes traversal behaviors across unseen geometries. In simulation, component ablations quantify the contribution of each stage. Across three independent training seeds, scaling captured data from 6 to 100 h increases mean contact-free success from 48.1% to 68.9% on held-out scenes, while the final model with validated scene augmentation reaches 70.3%. The fully onboard system integrates egocentric 3D LiDAR perception, online occupancy mapping, 6.25 Hz planning, and 50 Hz control on a Jetson AGX Orin; tests across 50 unseen physical layouts demonstrate traversal without prebuilt maps or offboard computation.",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-09-16T14:30:52Z",
-              "url": "https://arxiv.org/abs/2609.18732",
-              "pdf_url": "https://arxiv.org/pdf/2609.18732v1",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2609.18732v1/PASSAGE_publish.png",
-              "figure_caption": "Fig. 2 : Slow–fast plan-and-control architecture: the flow-matching planner (6.25 Hz) outputs reference motions from the elevation map, and the perceptive controller (50 Hz) executes them at the joint level.",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
             }
           ]
         },
@@ -9372,7 +9276,7 @@
           ]
         }
       ],
-      "total": 56
+      "total": 55
     },
     {
       "name": "工业界研究团队",
