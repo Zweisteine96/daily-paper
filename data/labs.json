@@ -1,8 +1,8 @@
 {
-  "updated": "2026-11-06T14:34:07+00:00",
-  "day": "2026-11-06",
+  "updated": "2026-11-07T13:28:24+00:00",
+  "day": "2026-11-07",
   "days_back": 45,
-  "total": 294,
+  "total": 292,
   "labs": [
     {
       "name": "UC Berkeley",
@@ -1530,32 +1530,6 @@
               "figure_source": "html",
               "video_url": null,
               "links": {}
-            },
-            {
-              "id": "2609.27068",
-              "title": "HiRE: Hindsight Reward Editing for Policy Finetuning",
-              "authors": [
-                "Haoyi Niu",
-                "Zhengtao Han",
-                "Yufeng Ji",
-                "Zhongyu Li",
-                "Koushil Sreenath"
-              ],
-              "abstract": "Pre-trained robot policies always require finetuning to adapt to specific environments. Reinforcement Learning (RL) offers high performance potential because it improves action optimality rather than simply mimicking data. However, such potential depends heavily on reward quality. Sparse rewards lack process feedback, human-designed rewards are costly and biased, and semantic rewards from foundation representations are often not control-centric. We propose Hindsight Reward Editing (HiRE), a training-free framework to break this reward bottleneck. HiRE bridges the broad knowledge of foundation representation models with physical control awareness, by contrasting successful and failed trajectories in hindsight. It calibrates foundation representation models by identifying \"trap states\" that are predicted as high-rewarding states yet eventually result in failure, and vice versa. HiRE explicitly penalizes these traps while boosting rewards for critical successful states. This approach can be flexibly compatible with any foundation representations and RL algorithms. Experiments show that HiRE consistently outperforms other reward recipes by delivering dense, control-aware feedback that prevents value function collapse and reward hacking, thereby achieving superior sample efficiency, stable policy updates, and higher performance ceilings, e.g., at least 3x performance of the base policies. Qualitative results are at https://hire-project.github.io .",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-09-22T21:04:10Z",
-              "url": "https://arxiv.org/abs/2609.27068",
-              "pdf_url": "https://arxiv.org/pdf/2609.27068v1",
-              "comment": "CoRL 2026",
-              "figure_url": "https://arxiv.org/html/2609.27068v1/visualization/reward_score_plot/segment_focused_viz.png",
-              "figure_caption": "Figure 2: HiRE reflects task progress better than naïve visual similarity-based rewards. We visualize reward scores along two representative trajectories, with selected segments highlighted and shown as thumbnails above the plot. The shaded regions correspond to key behavioral phases, including targ",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://hire-project.github.io"
-              }
             }
           ]
         },
@@ -1802,7 +1776,7 @@
           ]
         }
       ],
-      "total": 59
+      "total": 58
     },
     {
       "name": "Stanford",
@@ -4468,44 +4442,6 @@
               "figure_source": "html",
               "video_url": null,
               "links": {}
-            },
-            {
-              "id": "2609.27308",
-              "title": "EmbodiedSWE: Coding Agents for Long Horizon Dexterous Robotics",
-              "authors": [
-                "Zeyu Shen",
-                "Haoxiang You",
-                "Yilang Liu",
-                "Zhicheng Zheng",
-                "Lihan Zha",
-                "Kashu Yamazaki",
-                "Mingtong Zhang",
-                "Suning Huang",
-                "Jiankai Sun",
-                "Qianzhong Chen",
-                "Lucy He",
-                "Kaiyuan Liu",
-                "Haoran Chang",
-                "Katerina Fragkiadaki",
-                "Dhruv Shah",
-                "Mac Schwager",
-                "Peter Henderson",
-                "Ian Abraham",
-                "Canwen Xu"
-              ],
-              "abstract": "We study coding agents for long-horizon, dexterous robotics and ask whether their solutions can provide scalable supervision for learning general robot policies. To test this, we develop EMBODIEDSWE-BENCH, a simulation benchmark for coding agents spanning contact-rich manipulation, deformable objects, and long-horizon tasks requiring up to half an hour of continuous interaction. We find that frontier coding agents can solve complex long-horizon tasks and transfer prior solutions across both tasks and embodiments. We also design supporting tools that help agents more effectively solve these tasks. However, the resulting solutions require substantial iterative interaction and are typically specialized to individual task instances. We therefore introduce EMBODIEDSWE-GEN, which expands a single solution from coding agent into large diverse trajectories for training a VLA. VLA performance improves with more generated demonstrations, and agent-aided diversification improves generalization to held-out task variations. We also show that a VLA finetuned solely on coding-agent-generated simulation demonstrations completes a long-horizon task on real robot. Together, our framework uses coding agents to solve complex robotics tasks and turn verified solutions into scalable supervision for robot policies.",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-09-23T03:38:58Z",
-              "url": "https://arxiv.org/abs/2609.27308",
-              "pdf_url": "https://arxiv.org/pdf/2609.27308v2",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2609.27308v2/overview_labels_revised.png",
-              "figure_caption": "Figure 1: Overview of our framework: Top: EmbodiedSWE-Bench contains diverse long-horizon robotics tasks. Bottom: coding agents solve these tasks and turn verified solutions into scalable supervision for general policies.",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
             }
           ]
         },
@@ -5133,7 +5069,7 @@
           ]
         }
       ],
-      "total": 30
+      "total": 29
     },
     {
       "name": "MIT",
@@ -11071,49 +11007,11 @@
               "links": {
                 "project": "https://ego-lap.github.io/"
               }
-            },
-            {
-              "id": "2609.27308",
-              "title": "EmbodiedSWE: Coding Agents for Long Horizon Dexterous Robotics",
-              "authors": [
-                "Zeyu Shen",
-                "Haoxiang You",
-                "Yilang Liu",
-                "Zhicheng Zheng",
-                "Lihan Zha",
-                "Kashu Yamazaki",
-                "Mingtong Zhang",
-                "Suning Huang",
-                "Jiankai Sun",
-                "Qianzhong Chen",
-                "Lucy He",
-                "Kaiyuan Liu",
-                "Haoran Chang",
-                "Katerina Fragkiadaki",
-                "Dhruv Shah",
-                "Mac Schwager",
-                "Peter Henderson",
-                "Ian Abraham",
-                "Canwen Xu"
-              ],
-              "abstract": "We study coding agents for long-horizon, dexterous robotics and ask whether their solutions can provide scalable supervision for learning general robot policies. To test this, we develop EMBODIEDSWE-BENCH, a simulation benchmark for coding agents spanning contact-rich manipulation, deformable objects, and long-horizon tasks requiring up to half an hour of continuous interaction. We find that frontier coding agents can solve complex long-horizon tasks and transfer prior solutions across both tasks and embodiments. We also design supporting tools that help agents more effectively solve these tasks. However, the resulting solutions require substantial iterative interaction and are typically specialized to individual task instances. We therefore introduce EMBODIEDSWE-GEN, which expands a single solution from coding agent into large diverse trajectories for training a VLA. VLA performance improves with more generated demonstrations, and agent-aided diversification improves generalization to held-out task variations. We also show that a VLA finetuned solely on coding-agent-generated simulation demonstrations completes a long-horizon task on real robot. Together, our framework uses coding agents to solve complex robotics tasks and turn verified solutions into scalable supervision for robot policies.",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-09-23T03:38:58Z",
-              "url": "https://arxiv.org/abs/2609.27308",
-              "pdf_url": "https://arxiv.org/pdf/2609.27308v2",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2609.27308v2/overview_labels_revised.png",
-              "figure_caption": "Figure 1: Overview of our framework: Top: EmbodiedSWE-Bench contains diverse long-horizon robotics tasks. Bottom: coding agents solve these tasks and turn verified solutions into scalable supervision for general policies.",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
             }
           ]
         }
       ],
-      "total": 8
+      "total": 7
     }
   ]
 }
