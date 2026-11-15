@@ -1,8 +1,8 @@
 {
-  "updated": "2026-11-14T13:46:29+00:00",
-  "day": "2026-11-14",
+  "updated": "2026-11-15T14:18:34+00:00",
+  "day": "2026-11-15",
   "days_back": 45,
-  "total": 273,
+  "total": 265,
   "labs": [
     {
       "name": "UC Berkeley",
@@ -720,35 +720,6 @@
               "video_url": null,
               "links": {
                 "project": "https://rpg-robot.github.io/"
-              }
-            },
-            {
-              "id": "2609.40134",
-              "title": "Tactile Curiosity Drives Robot Interaction",
-              "authors": [
-                "Klemens Iten",
-                "Alexander Proshkin",
-                "Bhavya Sukhija",
-                "Stelian Coros",
-                "Andreas Krause",
-                "Pieter Abbeel",
-                "Carmelo Sferrazza"
-              ],
-              "abstract": "Mastering robot manipulation skills via reinforcement learning (RL) remains largely sample-inefficient. The most common RL algorithms rely on random action sampling to discover new strategies, resulting in agents that allocate most of their training budget to motions in free space, away from the contacts from which manipulation skills emerge. Existing intrinsic motivation methods based on model disagreement or epistemic uncertainty improve on isotropic noise, but they can also reward uncertainty in functionally irrelevant transitions, such as erratic motions in free space. In this work, we argue that tactile feedback provides a natural signal for exploration, and introduce TacEx, a framework that incorporates touch into epistemic uncertainty-driven exploration by decomposing model uncertainty across sensory modalities and directing curiosity toward the tactile channel. By anchoring curiosity to the sense of touch, TacEx drives the robot to discover complex contact dynamics, learning to manipulate and grasp objects without task rewards or expert demonstrations during exploration. The interaction-dense dataset collected through this tactile-driven curiosity supports offline learning of downstream pick-and-place policies without additional environment interaction. We further use tactile-driven exploration to post-train vision-language-action (VLA) models. Although the VLAs are initially pre-trained without tactile feedback, post-training with TacEx substantially improves downstream performance while remaining highly sample-efficient.",
-              "categories": [
-                "cs.RO",
-                "cs.AI"
-              ],
-              "published": "2026-09-30T16:49:40Z",
-              "url": "https://arxiv.org/abs/2609.40134",
-              "pdf_url": "https://arxiv.org/pdf/2609.40134v3",
-              "comment": "17 pages, 6 figures, 1 table. Accepted to the 10th Conference on Robot Learning (CoRL 2026), Austin, Texas, USA. Project website: https://go.klem.nz/tacex",
-              "figure_url": "https://arxiv.org/html/2609.40134v3/fig_1.png",
-              "figure_caption": "Figure 1: Overview of TacEx . The state s s concatenates the fused latent z z , a visual embedding v v , and a tactile embedding ι \\iota , where v v and ι \\iota are produced by separate CNN encoders from RGB and tactile force maps. At each step, the policy π ⁡ ( a | s ) \\pi(a|s) acts in the environm",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://go.klem.nz/tacex"
               }
             }
           ]
@@ -1607,37 +1578,11 @@
               "links": {
                 "project": "https://robota-ai.github.io/robota-embed/"
               }
-            },
-            {
-              "id": "2610.01742",
-              "title": "World Motion Models: Flexible Sequence Modeling of SE(3) Trajectories",
-              "authors": [
-                "Jiahui Lei",
-                "Qianqian Wang",
-                "Trevor Darrell",
-                "Angjoo Kanazawa"
-              ],
-              "abstract": "Equipping artificial agents with spatial intelligence requires a comprehensive generative prior over the dynamic 3D world. We propose World Motion Models (WMMs) that capture \"what was, is, and will be where across time\" via sparse SE(3) pose trajectories. WMMs are built on the observation that elements of dynamic scenes can be well approximated by a set of rigid SE(3) trajectories, a minimal yet expressive primitive for 4D modeling. This representation unifies articulated objects, human bodies, hand-object interactions, piecewise-rigid scene dynamics, camera motion, and even robot states and actions into a single shared space. Given this representation, we cast the joint distribution of these entities as a flexible sequence modeling problem, utilizing flow-matching with per-token noise levels. Coupled with a context token mechanism for non-sequential conditioning, this formulation supports any-to-any marginal conditioning across an arbitrary number of entities and time steps. Tasks such as future prediction, motion infilling, model-predictive control, inverse kinematics, cross-embodiment retargeting, and policy learning all reduce to the application of different masks over the same network. Experiments on 6 diverse applications of 3D vision and robotics demonstrate the versatility and flexibility of WMMs with strong performance.",
-              "categories": [
-                "cs.RO",
-                "cs.CV"
-              ],
-              "published": "2026-10-01T14:13:24Z",
-              "url": "https://arxiv.org/abs/2610.01742",
-              "pdf_url": "https://arxiv.org/pdf/2610.01742v1",
-              "comment": "Accepted at NeurIPS 2026 (Spotlight). Url: https://jiahuilei.com/projects/wmm/",
-              "figure_url": "https://arxiv.org/html/2610.01742v1/teaser-v2.png",
-              "figure_caption": "Figure 1 : World Motion Models represent the 4D world across diverse entities and prediction modes in a unified manner, and can be flexibly conditioned for various downstream tasks.",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://jiahuilei.com/projects/wmm/"
-              }
             }
           ]
         }
       ],
-      "total": 53
+      "total": 51
     },
     {
       "name": "Stanford",
@@ -3035,61 +2980,6 @@
                 "code": "https://github.com/4DCodeBench/4DCodeBench",
                 "project": "https://4dcodebench.com/"
               }
-            },
-            {
-              "id": "2610.00801",
-              "title": "ECoMEM: Explicit Concept Memory for Memory-Dependent Robot Control",
-              "authors": [
-                "Yize Liu",
-                "Ke Wang",
-                "Mac Schwager",
-                "Yiqing Xu",
-                "Jiajun Wu"
-              ],
-              "abstract": "A robot may lose sight of an object it must later retrieve, need to recall what a person demonstrated earlier, or track which steps of a task it has already completed. Current vision-language-action (VLA) policies often fail once the information needed for action disappears from the current observation, making memory critical for long-horizon robot behavior. Existing approaches typically provide longer histories or learn implicit memory from observation-action trajectories. But action supervision tells a policy how to act, not what to remember: it does not specify which past facts should persist or how they should change as new evidence arrives. We therefore separate maintaining an evidence-grounded account of the past from learning how to act on it. This insight motivates Explicit Concept Memory (ECoMEM), which represents task-relevant history with a reusable library of grounded concepts. An evidence-based Writer selects and updates these records, while a learned Reader turns them into memory tokens that directly condition the VLA. Across 16 RoboMME tasks, ECoMEM leads the evaluated robot policies on 15 tasks. On two new real-robot tasks, the same memory library either transfers directly or requires only one new concept, achieving 86.1% success versus 8.6% for a no-memory VLA. These results show that explicit concepts provide a reusable and extensible memory interface for robot control. Project website: https://ecomem.github.io/",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-09-30T22:54:28Z",
-              "url": "https://arxiv.org/abs/2610.00801",
-              "pdf_url": "https://arxiv.org/pdf/2610.00801v1",
-              "comment": "Project website: https://ecomem.github.io/",
-              "figure_url": "https://arxiv.org/html/2610.00801v1/archi.png",
-              "figure_caption": "Figure 2: ECoMEM separates memory construction from memory use. The Writer selects task-relevant concepts, recognizes them from visual and robot-state evidence, and maintains structured records. The learned Reader encodes these records as memory tokens that condition the VLA alongside image and lang",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://ecomem.github.io/"
-              }
-            },
-            {
-              "id": "2610.00781",
-              "title": "DITTO-X: Forward and Reverse Teleoperation for Dexterous Manipulation and Human Intervention",
-              "authors": [
-                "Zhanpeng He",
-                "Joaquin Palacios",
-                "Zhangyu Wang",
-                "Chenhao Li",
-                "Katelyn Lee",
-                "Matei Ciocarlie",
-                "C. Karen Liu",
-                "Jiajun Wu"
-              ],
-              "abstract": "Teleoperated demonstrations are a primary source of data for robot manipulation, and teleoperated interventions are a primary mechanism for correcting policies at deployment. Yet most teleoperation systems close the loop through vision alone and are built around parallel-jaw grippers, limiting both what the robot can execute and what the operator can express through it. This is most damaging in shared autonomy, where the operator sees the scene only through occluded cameras and must take over a dexterous hand mid-task, often with an object already grasped. We present DITTO-X, a hand-agnostic dexterous teleoperation interface that renders joint-level force and fingertip contact events from sensing already on the robot hand, and drives three commercial dexterous hands (Sharpa, Wuji, and Inspire) without per-hand redesign. Because the exoskeleton is actuated, DITTO-X also supports reverse teleoperation, in which the robot back-drives the operator's fingers into its own configuration before control is transferred, so the human enters the loop already matched to the state they inherit. Our results show that DITTO-X improves demonstration quality and throughput over a commercial hand-tracking glove, both in regular data collection and in human intervention during policy deployment for contact-rich manipulation tasks. More information can be found from our website: https://tml.stanford.edu/ditto-x/.",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-09-30T22:18:17Z",
-              "url": "https://arxiv.org/abs/2610.00781",
-              "pdf_url": "https://arxiv.org/pdf/2610.00781v2",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2610.00781v2/figs/final/ditto_x_hardware_updates.png",
-              "figure_caption": "Fig. 2: Design improvements from DITTO. (A) A third finger module instruments middle-finger MCP abduction/adduction, MCP flexion, and PIP flexion, and a simplified thumb reduces weight. (B) Fingertip haptics from 8 mm z-axis LRAs (JYLRA0825Z) driven by DRV2605L drivers.",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://tml.stanford.edu/ditto-x/"
-              }
             }
           ]
         },
@@ -3341,35 +3231,6 @@
               "video_url": null,
               "links": {
                 "project": "https://eyerobot2.github.io/"
-              }
-            },
-            {
-              "id": "2610.00781",
-              "title": "DITTO-X: Forward and Reverse Teleoperation for Dexterous Manipulation and Human Intervention",
-              "authors": [
-                "Zhanpeng He",
-                "Joaquin Palacios",
-                "Zhangyu Wang",
-                "Chenhao Li",
-                "Katelyn Lee",
-                "Matei Ciocarlie",
-                "C. Karen Liu",
-                "Jiajun Wu"
-              ],
-              "abstract": "Teleoperated demonstrations are a primary source of data for robot manipulation, and teleoperated interventions are a primary mechanism for correcting policies at deployment. Yet most teleoperation systems close the loop through vision alone and are built around parallel-jaw grippers, limiting both what the robot can execute and what the operator can express through it. This is most damaging in shared autonomy, where the operator sees the scene only through occluded cameras and must take over a dexterous hand mid-task, often with an object already grasped. We present DITTO-X, a hand-agnostic dexterous teleoperation interface that renders joint-level force and fingertip contact events from sensing already on the robot hand, and drives three commercial dexterous hands (Sharpa, Wuji, and Inspire) without per-hand redesign. Because the exoskeleton is actuated, DITTO-X also supports reverse teleoperation, in which the robot back-drives the operator's fingers into its own configuration before control is transferred, so the human enters the loop already matched to the state they inherit. Our results show that DITTO-X improves demonstration quality and throughput over a commercial hand-tracking glove, both in regular data collection and in human intervention during policy deployment for contact-rich manipulation tasks. More information can be found from our website: https://tml.stanford.edu/ditto-x/.",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-09-30T22:18:17Z",
-              "url": "https://arxiv.org/abs/2610.00781",
-              "pdf_url": "https://arxiv.org/pdf/2610.00781v2",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2610.00781v2/figs/final/ditto_x_hardware_updates.png",
-              "figure_caption": "Fig. 2: Design improvements from DITTO. (A) A third finger module instruments middle-finger MCP abduction/adduction, MCP flexion, and PIP flexion, and a simplified thumb reduces weight. (B) Fingertip haptics from 8 mm z-axis LRAs (JYLRA0825Z) driven by DRV2605L drivers.",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://tml.stanford.edu/ditto-x/"
               }
             }
           ]
@@ -4209,7 +4070,7 @@
           ]
         }
       ],
-      "total": 79
+      "total": 76
     },
     {
       "name": "Carnegie Mellon University",
@@ -5904,34 +5765,6 @@
               "figure_source": "html",
               "video_url": null,
               "links": {}
-            },
-            {
-              "id": "2609.40127",
-              "title": "Learning Functional Subspaces for Neural Network Compression",
-              "authors": [
-                "Massimo Bini",
-                "Anders Christensen",
-                "Stephan Alaniz",
-                "Judah Goldfeder",
-                "Ole Winther",
-                "Yann LeCun",
-                "Ravid Shwartz-Ziv",
-                "Zeynep Akata"
-              ],
-              "abstract": "Modern transformers pair impressive capabilities with substantial memory and compute demands. Low-rank weight factorization reduces both while keeping the matrices dense, and thus efficient on standard hardware. Existing methods, however, choose the subspace to remove from each weight matrix with local closed-form criteria: activation energy, layer-wise reconstruction error, or a quadratic approximation of the loss. These criteria ignore how errors propagate through the network, so at high compression the errors compound with depth and performance collapses. We introduce Learnable Subspace Projections (LSP), which instead learns the subspaces to discard end-to-end. Each linear layer, or tied group of layers that read the same activations, is assigned an orthogonal projector. All projectors are optimized jointly against a global objective--the KL divergence to the dense model's output distribution or the model's original training loss--while the pretrained weights remain frozen. Projectors are initialized from a whitened SVD truncation, and ranks are allocated by the output KL each projector induces per parameter saved. After training, the projectors merge into standard low-rank factors, with each tied group sharing one factor. In attention, this also lets the model cache one narrow latent in place of full keys and values. Across LLMs (OPT-125M/1.3B, Qwen3-4B, Llama-2-7B) and ViT-B/16, LSP outperforms baselines, and its advantage widens as compression increases. At -70% compression, LSP brings Llama-2-7B to 10.9 WikiText-2 perplexity and 42.2% mean zero-shot accuracy, versus 13.3 and 36.0% for the strongest baseline. The factorized model decodes up to 1.6x faster than the dense model at small batch sizes, and aching the shared latent shrinks the combined memory of weights and KV cache by 13.5x at a 128k-token context, versus at most 6.5x for untied baseline factorizations.",
-              "categories": [
-                "cs.LG",
-                "cs.CL"
-              ],
-              "published": "2026-09-30T16:47:35Z",
-              "url": "https://arxiv.org/abs/2609.40127",
-              "pdf_url": "https://arxiv.org/pdf/2609.40127v1",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2609.40127v1/lsp_overview.png",
-              "figure_caption": "Figure 2: Overview of LSP. (1) An orthogonal projector 𝑷 = 𝑰 − 𝑼 ​ 𝑼 ⊤ {\\bm{P}}={\\bm{I}}-{\\bm{U}}{\\bm{U}}^{\\top} removes the learned subspace span ⁡ ( 𝑼 ) \\operatorname{span}({\\bm{U}}) from the input or output of 𝑾 {\\bm{W}} . (2) Layers that read the same activations (Q/K/V, gate/up) share a tied pr",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
             }
           ]
         },
@@ -6420,7 +6253,7 @@
           ]
         }
       ],
-      "total": 21
+      "total": 20
     },
     {
       "name": "University of Washington",
@@ -7210,36 +7043,6 @@
               "links": {
                 "project": "https://worldoracle-benchmark.github.io/"
               }
-            },
-            {
-              "id": "2610.01178",
-              "title": "Recova: Agent-Guided Failure Recovery for Autonomous Robotic Manipulation",
-              "authors": [
-                "Isabella Liu",
-                "An-Chieh Cheng",
-                "Johan Bjorck",
-                "Zhiding Yu",
-                "Hongxu Yin",
-                "Jan Kautz",
-                "Linxi Fan",
-                "Yuke Zhu",
-                "Sifei Liu"
-              ],
-              "abstract": "Manipulation failures can leave scenes in states from which a task policy cannot recover. Learning corrective behaviors requires scalable failure exploration and physical grounding. We present Recova, an agent-guided framework that jointly develops task execution and recovery in a reconstructed digital twin, then verifies and refines both through real-world experience. In the twin, the agent diagnoses failures, tests corrective programs, and collects successful task and recovery rollouts for separate policies. During deployment, it monitors progress, invokes a learned or programmatic recovery, verifies scene restoration, and resumes execution. When no suitable recovery is available, a human demonstration resolves the failure and enters the learning loop, allowing the system to expand its recovery capabilities. Physical rollouts and human demonstrations are routed to the corresponding policy for DAgger training. Across six LIBERO-Pro settings and four MolmoSpaces categories, Recova achieves 78.8% and 64.9% mean success, compared with 71.7% and 38.0% for the strongest baselines. With parallel collection across four real-robot workstations, DAgger fine-tuning raises mean success from 23.8% to 77.5%, and recovery skills further raise it to 87.5%. Over four collection rounds on one task, observed human intervention falls from 87.5% to 0%. Together, these results show how agent-guided recovery turns failures into reusable capabilities, improving robustness while progressively reducing human intervention. Project page: https://www.liuisabella.com/Recova",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-10-01T06:52:05Z",
-              "url": "https://arxiv.org/abs/2610.01178",
-              "pdf_url": "https://arxiv.org/pdf/2610.01178v1",
-              "comment": "Project page: https://www.liuisabella.com/Recova",
-              "figure_url": "https://arxiv.org/html/2610.01178v1/recova_overview.png",
-              "figure_caption": "Figure 2: (A) Simulation: Recova builds a digital twin from camera observations, calibration, and robot trajectories. Successful task and recovery rollouts train separate policies, while recovery programs populate a code-as-policy skill library. (B) Real-robot rollout: Recova monitors execution, inv",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://www.liuisabella.com/Recova"
-              }
             }
           ]
         },
@@ -7379,41 +7182,11 @@
               "figure_source": "html",
               "video_url": null,
               "links": {}
-            },
-            {
-              "id": "2609.40245",
-              "title": "STARS: From Spatiotemporal Dynamics to Social Representations in Human-Robot Interaction",
-              "authors": [
-                "Nathan Tsoi",
-                "Michael J. Munje",
-                "Tejas Oberoi",
-                "Rishab Maheshwari",
-                "Pengen Zheng",
-                "Tanush Chauhan",
-                "Peter Stone",
-                "Joydeep Biswas"
-              ],
-              "abstract": "Robot navigation in dynamic, human-centered environments requires socially-compliant decisions grounded in robust scene understanding. Recent Vision-Language Models (VLMs) exhibit promising capabilities such as object recognition, common-sense reasoning, and contextual understanding, capabilities that align with the nuanced requirements of social robot navigation. However, it remains unclear whether VLMs can accurately understand complex social navigation scenes (e.g., inferring the spatial-temporal relations among agents and human intentions), which is essential for safe and socially compliant robot navigation. While some recent works have explored the use of VLMs in social robot navigation, no existing work systematically evaluates their ability to meet these necessary conditions. In this paper, we introduce the Social Navigation Scene Understanding Benchmark (SocialNav-SUB), a Visual Question Answering (VQA) dataset and benchmark designed to evaluate VLMs for scene understanding in real-world social robot navigation scenarios. SocialNav-SUB provides a unified framework for evaluating VLMs against human and rule-based baselines across VQA tasks requiring spatial, spatiotemporal, and social reasoning in social robot navigation. Through experiments with state-of-the-art VLMs, we find that while the best-performing VLM achieves an encouraging probability of agreeing with human answers, it still underperforms simpler rule-based approach and human consensus baselines, indicating critical gaps in social scene understanding of current VLMs. Our benchmark sets the stage for further research on foundation models for social robot navigation, offering a framework to explore how VLMs can be tailored to meet real-world social robot navigation needs. An overview of this paper along with the code and data can be found at https://larg.github.io/stars.",
-              "categories": [
-                "cs.RO",
-                "cs.LG"
-              ],
-              "published": "2026-09-30T17:35:08Z",
-              "url": "https://arxiv.org/abs/2609.40245",
-              "pdf_url": "https://arxiv.org/pdf/2609.40245v3",
-              "comment": "Conference on Robot Learning (CoRL) 2026. First two authors contributed equally. Project site: https://larg.github.io/stars/",
-              "figure_url": "https://arxiv.org/html/2609.40245v3/figures/ds-sns-legend-no-cpt.png",
-              "figure_caption": "Figure 2: (A) Dataset Overview. We utilize two human-robot interaction datasets: SEAN-T [ 47 ] for evaluating subjective human ratings of robot navigation and SNS [ 31 ] for downstream relational action classification (e.g., avoid , follow ). (B) Latent Space Analysis (RQ3). 2D Projections of the SN",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {
-                "project": "https://larg.github.io/stars"
-              }
             }
           ]
         }
       ],
-      "total": 21
+      "total": 19
     },
     {
       "name": "ETH Zürich / TU Darmstadt",
@@ -8336,29 +8109,6 @@
               "links": {
                 "project": "https://residual-compliant-policy.github.io"
               }
-            },
-            {
-              "id": "2610.01397",
-              "title": "Continue, Abort, or Fall: Viability-Aware Policy Selection (VAPS) for Safe Humanoid Acrobatics",
-              "authors": [
-                "Siwei Ju",
-                "Lu Liu",
-                "Jan Peters",
-                "Oleg Arenz"
-              ],
-              "abstract": "Dynamic humanoid motions such as flips risk hardware damage due to suboptimal policies, disturbances or sim-to-real gaps. A motion tracking policy offers no way out once the maneuver leaves its reference, and a backup policy needs to take over to protect the hardware for a minimum-damage landing. Which backup to use matters as much as when to switch. We present Viability-Aware Policy Selection (VAPS), which treats safety as a policy-conditioned, receding-horizon decision. Besides a protective fall policy, we also train an abort policy which can abort the motion at any time, landing on its feet. At every control step, learned predictors estimate whether the nominal tracking policy and the abort policy remain viable over a short horizon, and a least-sacrificial hierarchy keeps the most task-ambitious behavior that remains viable. In simulation with randomized disturbances, VAPS sharply reduces head contact and hand contact, which are the dominant sources of hardware damage, with both a Unitree G1 and a LimX Oli; on the LimX Oli, we validate the viability predictors and the full VAPS controller for side-flip motions. VAPS Pareto-dominates the strongest single-network alternatives we could train, including an end-to-end safe-tracking policy and students distilled from VAPS's own oracle-routed decisions, in both task success and head impact. We also show that VAPS is a powerful framework to supervise undertrained policies and protect the hardware.",
-              "categories": [
-                "cs.RO"
-              ],
-              "published": "2026-10-01T10:02:22Z",
-              "url": "https://arxiv.org/abs/2610.01397",
-              "pdf_url": "https://arxiv.org/pdf/2610.01397v1",
-              "comment": "",
-              "figure_url": "https://arxiv.org/html/2610.01397v1/final_figure2.png",
-              "figure_caption": "Fig. 2 : Overview of VAPS . (a) Specialist policy training. (b) Receding-horizon predictor training. (c) VAPS : The least-sacrificial rule of policy selection.",
-              "figure_source": "html",
-              "video_url": null,
-              "links": {}
             }
           ]
         },
@@ -8491,7 +8241,7 @@
           ]
         }
       ],
-      "total": 40
+      "total": 39
     },
     {
       "name": "清华 / 北大 / 上交",
